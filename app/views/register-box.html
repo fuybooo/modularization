@@ -1,0 +1,46 @@
+<div class="register-box">
+    <form class="form-horizontal" role="form" name="register_form" novalidate>
+        <div class="form-group">
+            <label for="register-username" class="col-sm-3 control-label">账号</label>
+            <div class="col-sm-9">
+                <!-- 唯一性验证，只能包含中文/字母/数字/.@|_- -->
+                <input type="text" name="username" ng-model="registerInfo.username" placeholder="请输入"
+                       class="form-control" id="register-username"
+                       required ng-minlength="3" ng-maxlength="20" regist-username-unique register-username-rules>
+                <span ng-init="v1=register_form.username" class="text-danger"
+                      ng-show="v1.$dirty && v1.$invalid">
+                    <span ng-show="v1.$error.required">账号不能为空</span>
+                    <span ng-show="v1.$error.minlength">账号不能少于3位</span>
+                    <span ng-show="v1.$error.maxlength">账号不能多于20位</span>
+                    <span ng-show="v1.$error.registerUsernameRules">账号只能包含中文、字母、数字、.、@、|、_、-</span>
+                    <span ng-show="v1.$error.registerUsernameUnique">账号已被注册</span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="register-password" class="col-sm-3 control-label">密码</label>
+            <div class="col-sm-9">
+                <input type="password" name="password" ng-model="registerInfo.password" placeholder="请输入您的密码"
+                       class="form-control" id="register-password"
+                       required>
+                <span class="text-danger"
+                      ng-show="register_form.password.$dirty && register_form.password.$invalid">密码不能为空</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="register-validateCode" class="col-sm-3 control-label">验证码</label>
+            <div class="col-sm-9">
+                <input type="text" name="validateCode" ng-model="registerInfo.validateCode" placeholder="请输入验证码"
+                       class="form-control" id="register-validateCode"
+                       required>
+                <span class="text-danger"
+                      ng-show="register_form.validateCode.$dirty && register_form.validateCode.$invalid">验证码不能为空</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button class="btn btn-primary btn-block" ng-disabled="register_form.$invalid">登录</button>
+            </div>
+        </div>
+    </form>
+</div>

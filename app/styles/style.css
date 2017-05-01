@@ -1,0 +1,49 @@
+.nav-header{
+    margin-left: 20%;
+}
+.navbar-header .nav-logo{
+    padding:0;
+}
+.logo{
+    background-image: url("../images/logo48-48.png");
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+}
+
+/* home start */
+
+.login-register-box{
+    position: absolute;
+    right: 20%;
+    top: 0;
+}
+.login-register-box > span{
+    display: inline-flex;
+}
+.login-register-box > span > span{
+    padding: 15px 0;
+}
+.login-register-box .border{
+    display: inline-block;
+    border-right:1px solid #c0c0c0;
+    margin: 10px;
+}
+/* home end */
+
+/* login-box start */
+.login-box{
+    width: 400px;
+}
+.register-now {
+    margin-top: 7px;
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+}
+
+/* login-box end */
+
+.register-box{
+    width: 600px;
+}
