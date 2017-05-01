@@ -1,8 +1,22 @@
+.app-header{
+    width: 100%;
+    position: fixed;
+}
 .nav-header{
     margin-left: 20%;
 }
 .navbar-header .nav-logo{
     padding:0;
+}
+.app-container{
+    padding-top: 70px;
+    min-height: 710px;
+}
+.app-footer{
+    text-align: center;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
 }
 .logo{
     background-image: url("../images/logo48-48.png");
@@ -12,7 +26,12 @@
 }
 
 /* home start */
-
+.text-default{
+    color: #777;
+}
+.text-default:hover{
+    color: #333;
+}
 .login-register-box{
     position: absolute;
     right: 20%;
@@ -26,7 +45,7 @@
 }
 .login-register-box .border{
     display: inline-block;
-    border-right:1px solid #c0c0c0;
+    border-right:1px solid #777;
     margin: 10px;
 }
 /* home end */

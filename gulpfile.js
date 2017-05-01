@@ -207,4 +207,5 @@ gulp.task('dev', ['clean:app'], function () {
 // gulp.task('release', ['build', 'bak', 'replace']);// 执行组合任务时出现问题，分开执行正常
 
 // 默认组合任务
-gulp.task('default', ['serve', 'watch']);
+// gulp.task('default', ['serve', 'watch']);
+gulp.task('default', ['serve']);

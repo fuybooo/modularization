@@ -28,6 +28,9 @@ require.config({
         // app文件
         'app': 'scripts/configs/app',
         'router': 'scripts/configs/router',
+        'commonService': 'scripts/common/common-service',
+        'dataService': 'scripts/common/data-service',
+        'popupwinService': 'scripts/common/popupwin-service',
         'formDirective': 'scripts/common/form-directive'
     },
     shim : {
@@ -147,6 +150,9 @@ require(
 
         'app',
         'router',
+        'commonService',
+        'dataService',
+        'popupwinService',
         'formDirective',
 
         'require',

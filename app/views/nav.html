@@ -1,9 +1,27 @@
 <div class="navbar navbar-default" role="navigation">
+    <div class="navbar-header nav-header mr30">
+        <a href="" class="navbar-brand nav-logo"><span class="logo"></span></a>
+    </div>
     <ul class="nav navbar-nav">
-        <li class="active"><a href="##">网站首页</a></li>
-        <li><a href="##">系列教程</a></li>
-        <li><a href="##">名师介绍</a></li>
-        <li><a href="##">成功案例</a></li>
-        <li><a href="##">关于我们</a></li>
+        <li class="active"><a ui-sref="home.landing">首页</a></li>
+        <li class="dropdown">
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">精彩实例<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a ui-sref="home.useBootstrapTable">bootstrap-table的使用</a></li>
+                <li><a ui-sref="home.userBootstrapModal">bootstrap弹出层的使用</a></li>
+                <li><a ui-sref="home.usePopupwin">popupwin弹出层的使用</a></li>
+                <li><a ui-sref="home.useEcharts">echarts的使用</a></li>
+            </ul>
+        </li>
+        <li><a ui-sref="home.managementSystem">管理系统模板</a></li>
+        <li><a ui-sref="home.commonFunction">常用功能</a></li>
+        <li><a ui-sref="home.codingRule">开发规范</a></li>
+        <li><a ui-sref="home.test">测试样例</a></li>
     </ul>
+    <div class="login-register-box">
+        <span ng-hide="isLoggedIn"><span class="login-span cp text-default" pop-login>登录</span><em
+                class="border"></em><span class="register-span cp text-default">注册</span></span>
+        <span ng-show="isLoggedIn"><span>欢迎您，</span><span class="login-user cp text-default">xxx<span
+                class="caret"></span></span><span class="cp text-default">注销</span></span>
+    </div>
 </div>

@@ -1,25 +1,7 @@
-.cp{
-    cursor: pointer;
-}
-.fl{
-    float: left;
-}
-.fr{
-    float: right;
-}
-.dif{
-    display: inline-flex;
-}
-.text-hover{
-    color: #333;
-}
-.text-hover:hover{
-    color: #1b6d85;
-}
+/* 常用样式汇总 */
 
 
 /* form start */
-
 input.ng-dirty.ng-invalid,
 select.ng-dirty.ng-invalid,
 textarea.ng-dirty.ng-invalid {
@@ -37,6 +19,241 @@ textarea.ng-dirty.ng-invalid:focus {
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
 }
-
-
 /* form end */
+
+/* 样式简写 */
+.lh50 {
+    line-height: 50px;
+}
+
+.m0a {
+    margin: 0 auto;
+}
+/* color */
+.c-f {
+    color: #fff;
+}
+
+.c-f00 {
+    color: #f00;
+}
+
+.c-red {
+    color: #f00;
+}
+
+/* cursor */
+.cp {
+    cursor: pointer;
+}
+
+/* display */
+.dn {
+    display: none;
+}
+
+.db {
+    display: block;
+}
+
+.dif {
+    display: inline-flex;
+}
+
+.oh {
+    overflow: hidden;
+}
+/* position */
+.pa {
+    position: absolute;
+}
+
+.pr {
+    position: relative;
+}
+
+.pf {
+    position: fixed;
+}
+
+/* css tools */
+
+/*  对于数量单位有如下规则   */
+
+/*  1.数字单位为px，如w20表示width: 20px;  */
+
+/*  2.下划线代表百分比，如w_90表示width: 90%;  */
+
+/*  3.中划线代表负值，如w-100表示width: -100px;  */
+
+/*  4.综合：w-_100表示width: -100%;  */
+
+/*  5.特例：因为比较常用的关系，w表示width: 100%;等等  */
+
+.f14 {
+    font-size: 14px;
+}
+
+.f16 {
+    font-size: 16px;
+}
+
+.f20 {
+    font-size: 20px;
+}
+/* bootstrap中已经有对应的样式了 */
+.tac {
+    text-align: center;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+/* width */
+.w {
+    width: 100%;
+}
+
+.w18 {
+    width: 18px;
+}
+
+.w260 {
+    width: 260px;
+}
+
+.w480 {
+    width: 480px;
+}
+
+.w_40 {
+    width: 40%;
+}
+
+.w_45 {
+    width: 45%;
+}
+/* 46.5% */
+.w_46-5 {
+    width: 46.5%;
+}
+.w_48 {
+    width: 48%;
+}
+
+.w_50 {
+    width: 50%;
+}
+
+/* height */
+.h {
+    height: 100%;
+}
+
+.h18 {
+    height: 18px;
+}
+
+.h50 {
+    height: 50px;
+}
+
+.h70 {
+    height: 70px;
+}
+
+.h100 {
+    height: 100px;
+}
+
+/* top */
+.t_50 {
+    top: 50%;
+}
+/* right */
+.r {
+}
+/* bottom */
+.b0 {
+    bottom: 0;
+}
+/* left */
+.l100 {
+    left: 100px;
+}
+/* margin-top */
+.mt0{
+    margin-top: 0;
+}
+.mt10{
+    margin-top: 10px;
+}
+.mt30 {
+    margin-top: 30px;
+}
+
+.mt-35 {
+    margin-top: -35px;
+}
+/* margin-right */
+.mr30 {
+    margin-right: 30px;
+}
+/* margin-bottom */
+.mb {
+}
+/* margin-left */
+.ml100 {
+    margin-left: 100px;
+}
+
+.ml298 {
+    margin-left: 298px;
+}
+
+.ml356 {
+    margin-left: 356px;
+}
+/* padding-top */
+.pt40 {
+    padding-top: 40px;
+}
+
+.pt100 {
+    padding-top: 100px;
+}
+
+/* pr已经被占用，这时加上第二个字母以示区分 */
+
+/* padding-right */
+.pri15 {
+    padding-right: 15px;
+}
+
+.pb40 {
+    padding-bottom: 40px;
+}
+
+.pb50 {
+    padding-bottom: 50px;
+}
+/* padding-left */
+.pl_3 {
+    padding-left: 3%;
+}
+.pl_4 {
+    padding-left: 4%;
+}
+.pl_10 {
+    padding-left: 10%;
+}
+
+.pl356 {
+    padding-left: 356px;
+}
+

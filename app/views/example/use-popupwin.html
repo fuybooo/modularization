@@ -1,0 +1,22 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1>Popupwin弹出层!</h1>
+        <p>这是一个灵活度极高的弹出层组件,作为一个angular的service被引入项目中使用!</p>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">弹出提示</div>
+    <div class="panel-body">
+        <p class="mt10">代码:</p>
+        <pre class="pre-scrollable w_50">
+            /**
+             * 不传任何参数,弹出层示例
+             */
+            $scope.popTip = function(){
+                popupwin.create();
+            };
+        </pre>
+        <button class="btn btn-primary" ng-click="popTip()">不传任何参数</button>
+    </div>
+</div>
