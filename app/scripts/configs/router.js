@@ -37,7 +37,8 @@ define(function (require) {
                 // support to load more controllers, services, filters, ...
                 dependencies: [
                     'scripts/home/home-directive', // 提供了home-nav的指令
-                    'scripts/home/home-controller'
+                    'scripts/home/home-controller',
+                    'scripts/login/login-controller'
                 ]
             })
             // 当home为abstract时,url需要和home的url保持一致,才能正常显示

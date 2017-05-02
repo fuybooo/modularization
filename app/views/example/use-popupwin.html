@@ -12,7 +12,7 @@
                 <p>1.不传任何参数，将弹出一个不带任何事件的提示，默认的提示语是操作成功，可以在源码中根据项目需求修改</p>
                 <button type="button" class="btn btn-primary" ng-click="popTip()" tabindex="-1">不传任何参数</button>
                 <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -29,7 +29,7 @@
                 <p>2.传字符串参数，弹出的提示显示字符串</p>
                 <button type="button" class="btn btn-primary" ng-click="popString()" tabindex="-1">传字符串参数</button>
                 <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -46,7 +46,7 @@
                 <p>3.传函数参数，弹出提示：“您确定删除吗？”，点击确定触发该函数</p>
                 <button type="button" class="btn btn-primary" ng-click="popConfirm()" tabindex="-1">确定删除</button>
                 <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -65,7 +65,7 @@
                 <p>4.传自定义对象参数，改变提示语</p>
                 <button type="button" class="btn btn-primary" ng-click="popConfirmUpload()" tabindex="-1">确定上传</button>
                 <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -88,7 +88,7 @@
                 <p>5.传自定义对象参数，弹出自定义内容</p>
                 <button type="button" class="btn btn-primary" ng-click="popHtml()" tabindex="-1">填写信息</button>
                 <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -119,7 +119,7 @@
                 <p>6.传自定义对象参数，不自动关闭弹出层</p>
                 <button type="button" class="btn btn-primary" ng-click="popNotAutoClose()" tabindex="-1">执行逻辑再关闭</button>
                 <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -159,8 +159,8 @@
             <li>
                 <p>7.传自定义对象参数，弹出html模板内容</p>
                 <button type="button" class="btn btn-primary" ng-click="popHtmlUrl()" tabindex="-1">HtmlUrl模板内容</button>
-                <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <p class="mt10">JavaScript代码:</p>
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -177,12 +177,29 @@
                         });
                     </code>
                 </pre>
+                <p class="mt10">Html代码:</p>
+                <pre>
+                    <code class="html">
+                        &lt;p class=&quot;text-center&quot;&gt;
+                            模板中的内容，为什么没有class名称的提示呢？需要等待一会儿。
+                        &lt;/p&gt;
+                        &lt;form class=&quot;form-horizontal&quot; role=&quot;form&quot; novalidate&gt;
+                            &lt;div class=&quot;form-group&quot;&gt;
+                                &lt;div class=&quot;col-sm-12&quot;&gt;
+                                    &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;请输入您的账号&quot;
+                                           class=&quot;form-control&quot; id=&quot;login-username&quot; ng-model=&quot;info&quot;
+                                           required&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/form&gt;
+                    </code>
+                </pre>
             </li>
             <li>
                 <p>8.传自定义对象参数，弹出html模板内容，当模板中的代码含有angular指令时，需要使用$compile进行编译，所以要用到scope，需要传scope参数</p>
                 <button type="button" class="btn btn-primary" ng-click="popHtmlUrlWithScope()" tabindex="-1">编译模板内容</button>
-                <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <p class="mt10">JavaScript代码:</p>
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -210,8 +227,8 @@
             <li>
                 <p>9.传自定义对象参数，弹出html模板内容,模板中有自定义的按钮，不需要弹出层提供的操作按钮</p>
                 <button type="button" class="btn btn-primary" ng-click="popHtmlUrlUseSelfBtn()" tabindex="-1">HtmlUrl模板内容</button>
-                <p class="mt10">代码:</p>
-                <pre class="pre-scrollable">
+                <p class="mt10">JavaScript代码:</p>
+                <pre>
                     <code>
                         define(function(require){
                             var app = require('app');
@@ -231,7 +248,67 @@
                         });
                     </code>
                 </pre>
+                <p class="mt10">Html代码:</p>
+                <pre>
+                    <code>
+                        &lt;p class=&quot;text-center&quot;&gt;
+                            模板中的内容，为什么没有class名称的提示呢？需要等待一会儿。
+                        &lt;/p&gt;
+                        &lt;form class=&quot;form-horizontal&quot; role=&quot;form&quot; novalidate&gt;
+                            &lt;div class=&quot;form-group&quot;&gt;
+                                &lt;div class=&quot;col-sm-12&quot;&gt;
+                                    &lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;请输入您的账号&quot;
+                                           class=&quot;form-control&quot; id=&quot;login-username&quot; ng-model=&quot;info&quot;
+                                           required&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;form-group&quot;&gt;
+                                &lt;div class=&quot;col-sm-12&quot;&gt;
+                                    &lt;button type=&quot;button&quot; class=&quot;btn btn-block btn-info&quot; ng-click=&quot;popEx()&quot;&gt;提交&lt;/button&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/form&gt;
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>10.多层弹框</p>
+                <button type="button" class="btn btn-primary" ng-click="popMultiWin()" tabindex="-1">多层弹框</button>
+                <p class="mt10">JavaScript代码:</p>
+                <pre>
+                    <code>
+                        var k = 0;
+                        $scope.popMultiWin = function(){
+                            Popupwin.create({
+                                htmlUrl: 'app/views/example/use-popupwin-ex-2.html',
+                                isFooter: false,
+                                scope: $scope
+                            });
+                            $scope.popEx = function(){
+                                if(k === 3){
+                                    Popupwin.close();
+                                    if(Popupwin.currentIndex() === 0){
+                                        k = 0;
+                                    }
+                                    return;
+                                }else{
+                                    k ++;
+                                }
+                                Popupwin.create({
+                                    htmlUrl: 'app/views/example/use-popupwin-ex-2.html',
+                                    isFooter: false,
+                                    scope: $scope
+                                });
+                            }
+                        };
+                    </code>
+                </pre>
             </li>
         </ul>
     </div>
 </div>
+<script>
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+</script>

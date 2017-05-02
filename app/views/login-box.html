@@ -2,7 +2,7 @@
     <form class="form-horizontal" role="form" name="login_form" novalidate>
         <div class="form-group">
             <label for="login-username" class="col-sm-3 control-label">账号</label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <input type="text" name="username" ng-model="loginInfo.username" placeholder="请输入您的账号"
                        class="form-control" id="login-username"
                        required>
@@ -12,8 +12,8 @@
         </div>
         <div class="form-group">
             <label for="login-password" class="col-sm-3 control-label">密码</label>
-            <div class="col-sm-9">
-                <input type="text" name="password" ng-model="loginInfo.password" placeholder="请输入您的密码"
+            <div class="col-sm-8">
+                <input type="password" name="password" ng-model="loginInfo.password" placeholder="请输入您的密码"
                        class="form-control" id="login-password"
                        required>
                 <span class="form-error-tip text-danger"
@@ -22,16 +22,17 @@
         </div>
         <div class="form-group">
             <label for="login-validateCode" class="col-sm-3 control-label">验证码</label>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <input type="text" name="validateCode" ng-model="loginInfo.validateCode" placeholder="请输入验证码"
-                       class="form-control" id="login-validateCode"
+                       class="form-control w_50 fl" id="login-validateCode"
                        required>
+                <validate-code></validate-code>
                 <span class="form-error-tip text-danger"
                       ng-show="login_form.validateCode.$dirty && login_form.validateCode.$invalid">验证码不能为空</span>
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9 dif">
+            <div class="col-sm-offset-3 col-sm-8 dif">
                 <div class="checkbox fl">
                     <input type="checkbox" id="remember-me">记住密码
                 </div>
@@ -39,7 +40,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
+            <div class="col-sm-offset-1 col-sm-10">
                 <button class="btn btn-primary btn-block" ng-disabled="login_form.$invalid">登录</button>
             </div>
         </div>

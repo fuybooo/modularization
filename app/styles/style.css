@@ -3,7 +3,7 @@
     position: fixed;
 }
 .nav-header{
-    margin-left: 20%;
+    margin-left: 10%;
 }
 .navbar-header .nav-logo{
     padding:0;
@@ -34,7 +34,7 @@
 }
 .login-register-box{
     position: absolute;
-    right: 20%;
+    right: 10%;
     top: 0;
 }
 .login-register-box > span{
@@ -60,7 +60,19 @@
     right: 15px;
     cursor: pointer;
 }
-
+.validate-code{
+    width: 40%;
+    margin-left: 10%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.validate-code, .validate-code span{
+    display: inline-block;
+    height:30px;
+    line-height:30px;
+}
 /* login-box end */
 
 .register-box{
@@ -72,7 +84,4 @@
     margin-bottom:10px;
     border-bottom:1px solid #337ab7;
     padding-bottom: 10px;
-}
-.popupwin-ul pre{
-    margin-bottom:10px;
 }

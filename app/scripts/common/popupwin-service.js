@@ -42,6 +42,7 @@ define(function (require) {
              *
              */
         };
+        var zIndex = DEF.zIndex;
         var findMaxPop = function(){
             var $allPopupwin = $('.popupwin:visible');
             var shown_count = $allPopupwin.length;
@@ -79,14 +80,16 @@ define(function (require) {
 
         PopupWin._count = 0;
         /**
-         * 创建遮罩层，调用时不需要显示使用new关键字
+         * 创建遮罩层，调用时不需要显式使用new关键字
          * @param {Object} options
          */
         PopupWin.create = function (options) {
-
             PopupWin._count++;
             return new PopupWin(options);
         };
+        /**
+         * 关闭最上层的弹框
+         */
         PopupWin.close = function(){
             var $maxPop = findMaxPop();
             if($maxPop){
@@ -99,11 +102,24 @@ define(function (require) {
             }
         };
         /**
+         * 获取当前的层级
+         * @returns {number}
+         */
+        PopupWin.currentIndex = function(){
+            var $maxPop = findMaxPop();
+            if($maxPop){
+                return ($maxPop.css('z-index') - zIndex - 1) / 10;
+            }else{
+                return 0;
+            }
+        };
+        /**
          * 初始化插件
          */
         PopupWin.prototype.init = function () {
             // 合并默认条件
             this.options = $.extend({}, DEF, this.options);
+            zIndex = this.options.zIndex;
             if (!this.options.htmlUrl && this.options.html === DEF.html) {
                 this.options.html = this.options.html
                     .replace('><', '>' + this.options.text + '<')

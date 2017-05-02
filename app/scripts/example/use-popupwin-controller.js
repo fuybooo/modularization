@@ -104,7 +104,30 @@ define(function (require) {
                 Popupwin.close();// 关闭最上层的弹出层
             }
         };
-
+        var k = 0;
+        $scope.popMultiWin = function(){
+            Popupwin.create({
+                htmlUrl: 'app/views/example/use-popupwin-ex-2.html',
+                isFooter: false,
+                scope: $scope
+            });
+            $scope.popEx = function(){
+                if(k === 3){
+                    Popupwin.close();
+                    if(Popupwin.currentIndex() === 0){
+                        k = 0;
+                    }
+                    return;
+                }else{
+                    k ++;
+                }
+                Popupwin.create({
+                    htmlUrl: 'app/views/example/use-popupwin-ex-2.html',
+                    isFooter: false,
+                    scope: $scope
+                });
+            }
+        };
 
     });
 });
