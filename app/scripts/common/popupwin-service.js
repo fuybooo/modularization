@@ -7,75 +7,115 @@
 define(function (require) {
     var $ = require('jquery');
     var app = require('app');
-    var escapeHTML = function (text) {
-        if (typeof text === 'string') {
-            return text
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;')
-                .replace(/`/g, '&#x60;');
-        }
-        return text;
-    };
-    app.factory('popupwin', function ($http, $compile) {
+    app.factory('Popupwin', function ($http, $compile) {
+        /**
+         * 默认配置项
+         */
+        var DEF = {
+            cls: '', // 弹出层的类名
+            isMask: true, // 是否启动遮罩层
+            isKeyboard: true, // 是否启动快捷键 ESC为关闭，空格为确认执行当前选中的按钮，默认会选中确认，只有一个按钮是选中一个按钮
+            zIndex: 200, // 在文档流上的位置，如果需要较高位置可以配置
+            animation: 'random', // 动画效果： 'none':无效果, 'fade': 渐渐的出来 , 'top': 上边, 'right': 右边, 'bottom': 下边, 'left': 左边, 'random': 随机
+            animationTime: 400, // 动画效果的时间
+            okBtnText: '确定', // 执行ok事件按钮的文本
+            okBtnCls: 'btn-primary btn-sm',
+            closeBtnText: '取消', // 执行取消事件按钮的文本
+            closeBtnCls: 'btn-primary btn-sm',
+            btnPosition: 'right',// 底部按钮的位置 left， center， right
+            isFooter: true,// 是否需要底部按钮
+            isOkOnly: true, // 只有确定按钮
+            isCancelOnly: false, // 只有取消按钮
+            title: '温馨提示', // 弹出窗标题
+            text: '操作成功!',
+            textCls: 'text-primary',
+            defaultText: '您确定删除吗？',
+            top: 100,
+            minWidth: 300,
+            html: '<p class="text-center"></p>',
+            closeWinAfterOk: true, // 是否在点击ok之后关闭弹出
+            closeWinAfterClose: true // 是否在点击close之后关闭弹出
+            /**
+             *
+             * scope,
+             * htmlUrl
+             *
+             */
+        };
+        var findMaxPop = function(){
+            var $allPopupwin = $('.popupwin:visible');
+            var shown_count = $allPopupwin.length;
+            if (shown_count !== 0) {
+                var $maxPop = $($allPopupwin[0]);
+                for (var i = 1; i < shown_count; i++) {
+                    if ($($allPopupwin[i]).css('z-index') - 0 > $maxPop.css('z-index') - 0) {
+                        $maxPop = $($allPopupwin[i]);
+                    }
+                }
+                return $maxPop;
+            }
+        };
         /**
          * 弹出层
          * @param {Object} options 配置项
          */
         var PopupWin = function (options) {
-            this.options = options || {};
+            // 判断参数
+            // 如果没有参数，弹出一个没有任何事件的提示框,默认提示语为DEF.text
+            // 如果参数是一个字符串，弹出一个没有任何事件，提示语为传入的字符串的提示框
+            // 如果传如的参数是一个函数，则提示语变为‘确认删除吗？’，函数为点击确认时的回调 这是最常用的用法，即弹出一个是否删除的提示
+            // 如果需要改变提示语，则传入一个对象，有两个属性，一个是text，一个是ok，这是次常用的用法
+            if (typeof options === 'object') {
+                this.options = options;
+            } else if (typeof options === 'function') {
+                this.options = {text: DEF.defaultText, ok: options};
+            } else if (typeof options === 'string') {
+                this.options = {text: options};
+            } else if (typeof options === 'undefined') {
+                this.options = {};
+            }
             this.init();
         };
-        /**
-         * 默认配置项
-         */
-        var DEF = {
-            isMask: true, // 是否启动遮罩层
-            isKeyboard: true, // 是否启动快捷键 ESC为关闭，空格为确认执行当前选中的按钮，默认会选中确认，只有一个按钮是选中一个按钮
-            zIndex: 200, // 在文档流上的位置，如果需要较高位置可以配置
-            animation: 'none', // 动画效果： 'none':无效果, 'fade': 渐渐的出来 , 'top': 上边, 'right': 右边, 'bottom': 下边, 'left': 左边, 'random': 随机
-            animationTime: 400, // 动画效果的时间
-            okBtnText: '确定', // 执行ok事件按钮的文本
-            closeBtnText: '取消', // 执行取消事件按钮的文本
-            cls: '', // 弹出层的类名
-            isOkOnly: true, // 只有确定按钮
-            isCancelOnly: false, // 只有取消按钮
-            title: '温馨提示', // 弹出窗标题
-            text: '恭喜您操作成功!',
-            textCls: 'text-primary',
-            top: 100,
-            width: 300,
-            requireScope: false,
-            html: '<p class="text-center"></p>'
-        };
+
         PopupWin._count = 0;
         /**
          * 创建遮罩层，调用时不需要显示使用new关键字
          * @param {Object} options
          */
         PopupWin.create = function (options) {
-            
+
             PopupWin._count++;
             return new PopupWin(options);
         };
-        
+        PopupWin.close = function(){
+            var $maxPop = findMaxPop();
+            if($maxPop){
+                $maxPop.prev().fadeOut(function(){
+                    $(this).remove();
+                });
+                $maxPop.fadeOut(function(){
+                    $(this).remove();
+                });
+            }
+        };
         /**
          * 初始化插件
          */
         PopupWin.prototype.init = function () {
             // 合并默认条件
-            this.options = $.extend(DEF, this.options);
-            if(this.options.html === DEF.html){
+            this.options = $.extend({}, DEF, this.options);
+            if (!this.options.htmlUrl && this.options.html === DEF.html) {
                 this.options.html = this.options.html
                     .replace('><', '>' + this.options.text + '<')
                     .replace('">', ' ' + this.options.textCls + '">');
             }
+            /**
+             * 将页面所有的按钮都置为失去焦点状态
+             */
+            $('button, [type="button"], [type="submit"], [type="reset"]').blur();
             this.initContainer();
             this.initPopupwin();
-            // this.initEvent();
-            
+
         };
         PopupWin.prototype.initContainer = function () {
             var cls = this.options.cls;
@@ -86,12 +126,12 @@ define(function (require) {
                 var allPopupwins = $('.popupwin');
                 for (var i = 0, l = allPopupwins.length; i < l; i++) {
                     if ($(allPopupwins[i]).hasClass('pw-' + cls)) {
-                        cls = cls + PopupWin._count;
+                        cls = cls + '-' + PopupWin._count;
                         break;
                     }
                 }
             }
-            this.$pop = $([
+            var popHtmlArray = [
                 // 遮罩层
                 '<div class="popupwin-bg pw-bg-' + cls + '"></div>',
                 // 弹出层
@@ -99,22 +139,26 @@ define(function (require) {
                 // 头部
                 '<div class="pw-header">',
                 // 标题
-                '<span class="pw-title">系统提示</span>',
+                '<span class="pw-title">' + this.options.title + '</span>',
                 // 关闭
                 '<span class="pw-close pw-js-close">&#215;</span>',
                 '</div>',
-                // 身体
-                '<div class="pw-body">',
-                '</div>',
-                // 底部
-                '<div class="pw-footer text-right">',
-                // 取消
-                '<button class="btn btn-primary btn-sm pw-btn-close pw-js-close btn-xs">取消</button>',
-                // 确定
-                '<button class="btn btn-primary btn-sm pw-btn-ok btn-xs">确定</button>',
-                '</div>',
-                '</div>'
-            ].join(''));
+                // 内容
+                '<div class="pw-body"></div>'
+            ];
+            if(this.options.isFooter){
+                popHtmlArray = popHtmlArray.concat([
+                    // 底部
+                    '<div class="pw-footer text-' + this.options.btnPosition + '">',
+                    // 取消
+                    '<button type="button" class="btn ' + this.options.closeBtnCls + ' pw-btn-close pw-js-close">' + this.options.closeBtnText + '</button>',
+                    // 确定
+                    '<button type="button" class="btn ' + this.options.okBtnCls + ' pw-btn-ok">' + this.options.okBtnText + '</button>',
+                    '</div>'
+                ]);
+            }
+            popHtmlArray = popHtmlArray.concat(['</div>']);
+            this.$pop = $(popHtmlArray.join(''));
             this.$bg = $(this.$pop[0]);
             this.$container = $(this.$pop[1]);
             this.$title = this.$container.find('.pw-title');
@@ -128,33 +172,32 @@ define(function (require) {
                 this.$okBtn.hide();
             }
         };
+
         PopupWin.prototype.initEvent = function () {
             var that = this;
             this.$close.off('click.pw').on('click.pw', $.proxy(this.closeEvent, this));
             this.$okBtn.off('click.pw').on('click.pw', $.proxy(this.okEvent, this));
             if (this.options.isKeyboard) {
                 $('body').off('keydown.pw').on('keydown.pw', function (e) {
-                    var $allPopupwin = $('.popupwin:visible');
-                    var shown_count = $allPopupwin.length;
-                    if (shown_count !== 0) {
-                        var $maxReveal = $($allPopupwin[0]);
-                        for (var i = 1; i < shown_count; i++) {
-                            if ($($allPopupwin[i]).css('z-index') - 0 > $maxReveal.css('z-index') - 0) {
-                                $maxReveal = $($allPopupwin[i]);
-                            }
-                        }
+                    var $maxPop = findMaxPop();
+                    if($maxPop){
                         var key = e.which || e.keyCode;
                         if (key === 27) {
-                            $maxReveal.find('.pw-btn-close').click();
-                        } else if (key === 32) {
-                            if (that.options.isOkOnly) {
-                                $maxReveal.find('.pw-btn-ok').click();
-                            } else if (that.options.isCancelOnly) {
-                                $maxReveal.find('.pw-btn-close').click();
-                            } else {
-                                $maxReveal.find('.pw-btn-ok').click();
-                            }
+                            $maxPop.find('.pw-js-close').click();
                         }
+                        // 2017-05-02 空格事件遇到问题
+                        // else if (key === 32) {
+                        //     // 阻止事件传播，默认行为--浏览器空格键默认会激活选中的按钮
+                        //     e.stopPropagation();
+                        //     e.preventDefault();
+                        //     if (that.options.isOkOnly) {
+                        //         $maxPop.find('.pw-btn-ok').click();
+                        //     } else if (that.options.isCancelOnly) {
+                        //         $maxPop.find('.pw-js-close').click();
+                        //     } else {
+                        //         $maxPop.find('.pw-btn-ok').click();
+                        //     }
+                        // }
                     }
                 });
             }
@@ -162,18 +205,24 @@ define(function (require) {
         PopupWin.prototype.closeEvent = function () {
             if (this.options.close) {
                 this.options.close();
+                if(this.options.closeWinAfterClose){
+                    this.animate('close');
+                }
+            }else{
+                this.animate('close');
             }
-            this.animate('close');
         };
         PopupWin.prototype.okEvent = function () {
             if (this.options.ok) {
                 this.options.ok();
+                if(this.options.closeWinAfterOk){
+                    this.animate('close');
+                }
             } else {
                 this.$close.click();
             }
         };
         PopupWin.prototype.initPopupwin = function () {
-            this.$title.text(this.options.title);
             var that = this;
             if (this.options.htmlUrl) {
                 $http({
@@ -209,7 +258,7 @@ define(function (require) {
             this.animate('show');
         };
         PopupWin.prototype.close = function () {
-            this.$closeBtn.click();
+            this.animate('close');
         };
         PopupWin.prototype.animate = function (type) {
             var an = this.options.animation;
@@ -237,20 +286,19 @@ define(function (require) {
                         }
                     }
                 }
+                // 关闭遮罩层时解绑
+                $('body').off('keydown.pw');
                 setTimeout(function () {
                     that.$pop.remove();
                 }, 700);
             } else {
-                this.$container.css('width', that.options.width);
-                this.$container.css('top', that.options.top); // 需要计算滚动条的值
+                this.$container.css('min-width', that.options.minWidth);
+                this.$container.css('top', $('body').scrollTop() + that.options.top); // 需要计算滚动条的值
                 this.$container.fadeIn(anTime);
                 this.$bg.fadeIn(anTime);
             }
-            
+
         };
-        /**
-         * 该方法暂时行不通 2017-04-30
-         */
         /* 初始化按钮为禁用状态 */
         PopupWin.prototype.bindBtn = function (html) {
             // 判断模板中是否存在form表单且form表单中是否存在button
@@ -268,9 +316,8 @@ define(function (require) {
             } else {
                 $('body').append(this.$pop);
             }
-            
+
         };
         return PopupWin;
     });
-    // return PopupWin;
 });

@@ -48,11 +48,11 @@ define(function(require){
      * pop-login
      * 功能:弹出登录界面
      */
-    .directive('popLogin', function(popupwin){
+    .directive('popLogin', function(Popupwin){
         return {
             link: function(scope,element,attrs){
                 $(element).click(function(){
-                    popupwin.create({
+                    Popupwin.create({
                         title: '登录',
                         scope: scope, // 需要使用$compile编译html
                         footer: false, // 不需要弹出层自带的按钮

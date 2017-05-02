@@ -5,18 +5,233 @@
     </div>
 </div>
 
-<div class="panel panel-primary">
-    <div class="panel-heading">弹出提示</div>
+<div class="panel panel-primary m0a w_80 bgc-dff0d8">
     <div class="panel-body">
-        <p class="mt10">代码:</p>
-        <pre class="pre-scrollable w_50">
-            /**
-             * 不传任何参数,弹出层示例
-             */
-            $scope.popTip = function(){
-                popupwin.create();
-            };
-        </pre>
-        <button class="btn btn-primary" ng-click="popTip()">不传任何参数</button>
+        <ul class="list-unstyled popupwin-ul m0a w_90">
+            <li>
+                <p>1.不传任何参数，将弹出一个不带任何事件的提示，默认的提示语是操作成功，可以在源码中根据项目需求修改</p>
+                <button type="button" class="btn btn-primary" ng-click="popTip()" tabindex="-1">不传任何参数</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popString = function(){
+                                    popupwin.create();
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>2.传字符串参数，弹出的提示显示字符串</p>
+                <button type="button" class="btn btn-primary" ng-click="popString()" tabindex="-1">传字符串参数</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popString = function(){
+                                    popupwin.create('操作成功了哦！');
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>3.传函数参数，弹出提示：“您确定删除吗？”，点击确定触发该函数</p>
+                <button type="button" class="btn btn-primary" ng-click="popConfirm()" tabindex="-1">确定删除</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popConfirm = function(){
+                                    popupwin.create(function(){
+                                        alert('执行删除操作！');
+                                    });
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>4.传自定义对象参数，改变提示语</p>
+                <button type="button" class="btn btn-primary" ng-click="popConfirmUpload()" tabindex="-1">确定上传</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popConfirmUpload = function(){
+                                    popupwin.create({
+                                        text: '您确定上传吗？',
+                                        textCls: 'text-danger', // 文字显示的class名称
+                                        ok: function(){
+                                            alert('执行上传操作！');
+                                        }
+                                    });
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>5.传自定义对象参数，弹出自定义内容</p>
+                <button type="button" class="btn btn-primary" ng-click="popHtml()" tabindex="-1">填写信息</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popHtml = function(){
+                                    popupwin.create({
+                                        title: '填写信息', // 弹出层标题
+                                        isOkOnly: false, // 显示取消按钮
+                                        okBtnText: '保存', // 执行ok事件的按钮名称，默认是确定
+                                        okBtnCls: 'btn-success', // 为ok按钮添加样式
+                                        closeBtnText: '不保存', // 默认是取消
+                                        closeBtnCls: 'btn-danger', // 为close按钮添加样式
+                                        html: '&lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;请输入名称&quot;&gt;',
+                                        ok: function(){
+                                            alert('执行操作！');
+                                        },
+                                        close: function(){ // 一般情况都执行默认的关闭操作，不需要写这个方法，这里只是演示
+                                            alert('执行取消操作');
+                                        }
+                                    });
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>6.传自定义对象参数，不自动关闭弹出层</p>
+                <button type="button" class="btn btn-primary" ng-click="popNotAutoClose()" tabindex="-1">执行逻辑再关闭</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popNotAutoClose = function () {
+                                    var win = popupwin.create({ // 声明一个弹出层变量，在多个弹出层弹出时，可以使用，如果只有一个弹出层，则无需声明
+                                        title: '填写信息', // 弹出层标题
+                                        isOkOnly: false, // 显示取消按钮
+                                        okBtnText: '保存', // 执行ok事件的按钮名称，默认是确定
+                                        okBtnCls: 'btn-success', // 为ok按钮添加样式
+                                        closeBtnText: '不保存', // 默认是取消
+                                        closeBtnCls: 'btn-danger', // 为close按钮添加样式
+                                        html: '&lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;请输入名称&quot;&gt;',
+                                        // ========================================
+                                        closeWinAfterOk: false, // 执行ok事件后不自动关闭
+                                        closeWinAfterClose: false, // 执行close事件后不自动关闭
+                                        // ========================================
+                                        ok: function () {
+                                            alert('执行操作！');
+                                            setTimeout(function () {// setTimeout为了看出关闭方法是手动执行的
+                                                popupwin.close();// 无需声明变量，直接关闭弹出层，但是关闭的是最上层的弹出层，如果在此操作之前，需要再次弹出一个弹出层，则慎用
+                                            }, 1000);
+                                        },
+                                        close: function () { // 一般情况都执行默认的关闭操作，不需要写这个方法，这里只是演示
+                                            alert('执行取消操作');
+                                            setTimeout(function () {// setTimeout为了看出关闭方法是手动执行的
+                                                win.close(); // 需要声明一个多余的变量,但稳定关闭当前弹出层
+                                            }, 1000);
+                                        }
+                                    });
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>7.传自定义对象参数，弹出html模板内容</p>
+                <button type="button" class="btn btn-primary" ng-click="popHtmlUrl()" tabindex="-1">HtmlUrl模板内容</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popHtmlUrl = function () {
+                                    Popupwin.create({
+                                        htmlUrl: 'app/views/example/use-popupwin-ex-1.html',
+                                        ok: function(){
+                                            alert($scope.info);// 没有传入scope，无法获得那个-model中的值
+                                        }
+                                    });
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>8.传自定义对象参数，弹出html模板内容，当模板中的代码含有angular指令时，需要使用$compile进行编译，所以要用到scope，需要传scope参数</p>
+                <button type="button" class="btn btn-primary" ng-click="popHtmlUrlWithScope()" tabindex="-1">编译模板内容</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popHtmlUrlWithScope = function () {
+                                    Popupwin.create({
+                                        htmlUrl: 'app/views/example/use-popupwin-ex-1.html',
+                                        scope: $scope,
+                                        closeWinAfterOk: false,
+                                        ok: function(){
+                                            if($scope.info){
+                                                alert($scope.info);// 传入了scope，可以获得值
+                                                Popupwin.close();
+                                            }else{
+                                                alert($scope.info);
+                                            }
+                                        }
+                                    });
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+            <li>
+                <p>9.传自定义对象参数，弹出html模板内容,模板中有自定义的按钮，不需要弹出层提供的操作按钮</p>
+                <button type="button" class="btn btn-primary" ng-click="popHtmlUrlUseSelfBtn()" tabindex="-1">HtmlUrl模板内容</button>
+                <p class="mt10">代码:</p>
+                <pre class="pre-scrollable">
+                    <code>
+                        define(function(require){
+                            var app = require('app');
+                            app.controller('UsePopupwinController', function($scope, Popupwin){
+                                $scope.popHtmlUrlUseSelfBtn = function () {
+                                    Popupwin.create({
+                                        htmlUrl: 'app/views/example/use-popupwin-ex-2.html',
+                                        isFooter: false,
+                                        scope: $scope
+                                    });
+                                    $scope.popEx = function(){// 该事件在模板中的按钮上以ng-click指令绑定
+                                        alert($scope.info);
+                                        Popupwin.close();// 关闭最上层的弹出层
+                                    }
+                                };
+                            });
+                        });
+                    </code>
+                </pre>
+            </li>
+        </ul>
     </div>
 </div>

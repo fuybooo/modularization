@@ -21,7 +21,7 @@ require.config({
         'underscore':'vendor/underscore/underscore',
         'lodash':'vendor/lodash/lodash',
         'zTree':'vendor/zTree/js/jquery.ztree.all.min',
-        'ECharts':'vendor/ECharts/echarts-all',
+        'ECharts':'vendor/echarts/echarts-all',
         'bootstrap-datetimepicker':'vendor/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker',
         'bootstrap-datetimepicker-zh-CN':'vendor/bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.zh-CN',
 

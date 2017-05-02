@@ -75,6 +75,10 @@ textarea.ng-dirty.ng-invalid:focus {
 .pf {
     position: fixed;
 }
+/* background-color */
+.bgc-dff0d8{
+    background-color: #dff0d8;
+}
 
 /* css tools */
 
@@ -148,6 +152,12 @@ textarea.ng-dirty.ng-invalid:focus {
 
 .w_50 {
     width: 50%;
+}
+.w_80 {
+    width: 80%;
+}
+.w_90 {
+    width: 90%;
 }
 
 /* height */

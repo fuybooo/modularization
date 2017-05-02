@@ -66,3 +66,13 @@
 .register-box{
     width: 600px;
 }
+
+/* example popupwin */
+.popupwin-ul li{
+    margin-bottom:10px;
+    border-bottom:1px solid #337ab7;
+    padding-bottom: 10px;
+}
+.popupwin-ul pre{
+    margin-bottom:10px;
+}
