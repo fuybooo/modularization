@@ -44,12 +44,20 @@ define(function (require) {
             // 当home为abstract时,url需要和home的url保持一致,才能正常显示
             .state('home.land', {
                 url: '',
-                templateUrl: 'app/views/landing.html'
+                templateUrl: 'app/views/landing.html',
+                controller: 'LandingController',
+                dependencies: [
+                    'scripts/home/landing-controller'
+                ]
             })
             // 点击首页时跳转
             .state('home.landing', {
                 url: '/home',
-                templateUrl: 'app/views/landing.html'
+                templateUrl: 'app/views/landing.html',
+                controller: 'LandingController',
+                dependencies: [
+                    'scripts/home/landing-controller'
+                ]
             })
             .state('login', {
                 url: '/login',
