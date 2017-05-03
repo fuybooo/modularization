@@ -62,6 +62,14 @@ define(function (require) {
         service.getUsers = function (params, callback) {
             get('user.json', params, callback);
         };
+        /**
+         * 登录
+         */
+        service.doLogin = function(params, callback){
+            get('login', params, callback);
+        };
+        
+        
         return service;
     });
 });

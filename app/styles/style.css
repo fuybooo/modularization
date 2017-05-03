@@ -24,6 +24,16 @@
     width: 48px;
     height: 48px;
 }
+.alert-global-tip{
+    position: absolute;
+    left: 50%;
+    z-index: 300;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
 
 /* home start */
 .text-default{
