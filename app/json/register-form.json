@@ -1,0 +1,157 @@
+{
+  "_comment": "",
+  "title": "注册",
+  "form": {
+    "name": "register_form",
+    "labelCol": 3,
+    "colType": "sm",
+    "content": [
+      {
+        "sort": 1,
+        "label": "账号",
+        "type":"text",
+        "name": "username",
+        "model":"registerInfo.username",
+        "placeholder":"请输入账号",
+        "limitRules": [
+          {
+            "name":"required",
+            "value":"",
+            "type":0,
+            "tip":"账号不能为空"
+          },
+          {
+            "name":"minlength",
+            "value":"3",
+            "type":0,
+            "tip":"账号不能少于3位"
+          },
+          {
+            "name":"maxlength",
+            "value":"20",
+            "type":0,
+            "tip":"账号不能多于20位"
+          },
+          {
+            "name":"registerUsernameUnique",
+            "value":"",
+            "type":1,
+            "tip":"账号已被注册"
+          },
+          {
+            "name":"registerUsernameRules",
+            "value":"",
+            "type":1,
+            "tip":"账号不符合规范"
+          }
+        ]
+      },
+      {
+        "sort": 2,
+        "label": "验证码",
+        "type":"validateCode",
+        "name": "validateCode",
+        "model":"registerInfo.validateCode",
+        "placeholder":"请输入验证码",
+        "limitRules": [
+          {
+            "name":"required",
+            "value":"",
+            "type":0,
+            "tip":"账号不能为空"
+          }
+        ]
+      },
+      {
+        "sort": 3,
+        "label": "密码",
+        "type": "password",
+        "name": "password",
+        "model": "registerInfo.password",
+        "placeholder":"请输入密码",
+        "limitRules": [
+          {
+            "name":"required",
+            "value":"",
+            "type":0,
+            "tip":"密码不能为空"
+          },
+          {
+            "name":"minlength",
+            "value":"6",
+            "type":0,
+            "tip":"密码不能少于6位"
+          },
+          {
+            "name":"maxlength",
+            "value":"16",
+            "type":0,
+            "tip":"密码不能多于16位"
+          },
+          {
+            "name":"passwordConfirm",
+            "value":"",
+            "type":1,
+            "tip":"两次密码不一致"
+          }
+        ]
+      },
+      {
+        "sort": 4,
+        "label": "确认密码",
+        "type": "password",
+        "name": "confirmPassword",
+        "model": "registerInfo.confirmPassword",
+        "placeholder":"请再次输入密码",
+        "limitRules": [
+          {
+            "name":"required",
+            "value":"",
+            "type":0,
+            "tip":"密码不能为空"
+          },
+          {
+            "name":"minlength",
+            "value":"6",
+            "type":0,
+            "tip":"密码不能少于6位"
+          },
+          {
+            "name":"maxlength",
+            "value":"16",
+            "type":0,
+            "tip":"密码不能多于16位"
+          },
+          {
+            "name":"passwordConfirm",
+            "value":"",
+            "type":1,
+            "tip":"两次密码不一致"
+          }
+        ]
+      },
+      {
+        "sort": 5,
+        "label": "我已认真阅读了服务条款，并且同意条款内容。",
+        "type": "checkbox",
+        "name": "serviceItems",
+        "model": "registerInfo.serviceItems",
+        "limitRules": [
+          {
+            "name":"required"
+          }
+        ]
+      },
+      {
+        "sort": 6,
+        "type": "button",
+        "btns": [
+          {
+            "value": "注册",
+            "click": "doRegister()"
+          }
+        ]
+      }
+    ]
+  }
+}

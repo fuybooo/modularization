@@ -13,7 +13,8 @@ define(
         var app = angular.module('app', ['ui.router', 'ui.load', 'restangular', 'ngSanitize', 'ngAnimate', 'ngTouch', 'ui.bootstrap']);
         //配置APP
         app.config(configure);
-        app.constant('baseRequestUrl', 'http://127.0.0.1:3003/');// 使用constant注册的服务可以在config中使用，而value不可以
+        app.constant('baseRequestUrl', 'http://127.0.0.1:3003/');
+        app.constant('baseStaticUrl', 'app/');
         //注入参数
         configure.$inject = ['$stateProvider', '$locationProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider'];
         // initialze app module for async loader

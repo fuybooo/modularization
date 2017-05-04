@@ -4,7 +4,17 @@ define(function(require){
     app.factory('commonService', ['$timeout', function($timeout){
         var service = {};
         var timeout = null;
+        /**
+         * 弹出提示
+         * @param text 提示文本，默认为操作成功，即不传任何参数时，弹出操作成功的提示
+         * @param state 提示文本的样式，目前只支持 s：success， i：info， w：warning， d：danger，默认为s
+         */
         service.alert = function(text, state){
+            if(arguments.length === 0){
+                text = '操作成功！';
+                state = 's';
+            }
+
             var cls = 'success';
             if(state === 's' || !state){
                 cls = 'success';
@@ -35,6 +45,68 @@ define(function(require){
             }, 1200);
             
         };
+
+        /**
+         * 字符串转换
+         * @param str 需要被转换的字符串
+         * @param type 转换的方式 默认为驼峰与中划线的互转，如 console.log(transformString('ss-bb')); // ssBb；console.log(transformString('ssBb')); // ss-bb
+         */
+        service.transformString = function(str, type){
+            var string = '';
+            if(typeof type === 'undefined'){
+                var reg_upper_letter = /[A-Z]/;
+                var reg_upper_letter_g = /[A-Z]/g;
+                var reg_separator = /-/;
+                var reg_separator_letter = /-[a-zA-Z]/;
+                var reg_separator_letter_g = /-[a-zA-Z]/g;
+                var upperIndex = str.search(reg_upper_letter); // 大写字母第一次出现的位置
+                var separatorIndex = str.search(reg_separator); // 分隔符第一次出现的位置
+                var transType = 1; // 转换方法为大写转分隔符
+                if(upperIndex !== -1){
+                    if(separatorIndex !== -1){
+                        // 传入的字符串既包含大写字母，又包含分隔符，（不规范字符串）
+                        if(upperIndex > separatorIndex){// 分隔符先出现
+                            transType = 2;// 转换方法为分割符转大写
+                        }
+                    }
+                }else{
+                    if(separatorIndex !== -1){
+                        transType = 2;// 转换方法为分割符转大写
+                    }else {
+                        return str;
+                    }
+                }
+                var strSplitArr, strMatchArr;
+                if(transType === 1){
+                    // 大写转分隔符
+                    strSplitArr = str.split(reg_upper_letter);// 以大写字母分割带转换字符串
+                    strMatchArr = str.match(reg_upper_letter_g);// 匹配大写字母出现的具体情况
+                    for(var i=0,l=strSplitArr.length;i<l;i++){
+                        string += strSplitArr[i];
+                        if(i !== l - 1){
+                            string += '-' + strMatchArr[i].toLowerCase();
+                        }
+                    }
+                    return string;
+                }else{
+                    // 分隔符转大写
+                    strSplitArr = str.split(reg_separator_letter);
+                    strMatchArr = str.match(reg_separator_letter_g);
+                    for(var i=0,l=strSplitArr.length;i<l;i++){
+                        string += strSplitArr[i];
+                        if(i !== l - 1){
+                            string += strMatchArr[i].slice(1).toUpperCase();
+                        }
+                    }
+                    return string;
+                }
+            }else{
+                // 其他转换方式
+            }
+
+            return string || str;
+        };
+
         return service;
     }]);
 

@@ -6,7 +6,7 @@
                 <!-- 唯一性验证，只能包含中文/字母/数字/.@|_- -->
                 <input type="text" name="username" ng-model="registerInfo.username" placeholder="请输入"
                        class="form-control" id="register-username"
-                       required ng-minlength="3" ng-maxlength="20" regist-username-unique register-username-rules>
+                       required ng-minlength="3" ng-maxlength="20" register-username-unique register-username-rules>
                 <span ng-init="v1=register_form.username" class="text-danger"
                       ng-show="v1.$dirty && v1.$invalid">
                     <span ng-show="v1.$error.required">账号不能为空</span>
