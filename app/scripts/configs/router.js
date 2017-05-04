@@ -38,6 +38,7 @@ define(function (require) {
                 dependencies: [
                     'scripts/home/home-directive', // 提供了home-nav的指令
                     'scripts/home/home-controller',
+                    'scripts/login/login-directive',
                     'scripts/login/login-controller'
                 ]
             })

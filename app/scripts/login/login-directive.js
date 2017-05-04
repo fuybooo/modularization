@@ -8,18 +8,27 @@ define(function (require) {
             scope: {}
         };
     })
-        .directive('loginDirective', function () {
+        .directive('popLogin', function (Popupwin) {
             return {
-                scope: {
-                    onClickLogin: '&'
-                },
                 controller: 'LoginController',
-                link: function (scope, ele, attrs) {
-                    console.log('loginDirective');
-                    $(ele).click(function () {
-                        scope.onClickLogin(scope.login);
+                link: function (scope, element, attrs) {
+                    $(element).click(function () {
+                        Popupwin.create({
+                            title: '登录',
+                            scope: scope, // 需要使用$compile编译html
+                            isFooter: false, // 不需要弹出层自带的按钮
+                            htmlUrl: 'app/views/login-box.html'
+                        });
                     });
                 }
+            };
+        })
+        .directive('validateCode', function (commonService) {
+            return {
+                restrict: 'EA',
+                replace: true,
+                controller: 'LoginController',
+                template: commonService.getValidateCode
             }
         })
     ;

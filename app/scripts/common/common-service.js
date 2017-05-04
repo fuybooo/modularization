@@ -106,7 +106,31 @@ define(function(require){
 
             return string || str;
         };
-
+    
+        /**
+         * 生成验证码
+         */
+        service.getValidateCode = function(){
+            var VALIDATE_LENGTH = 6;
+            var arr_num = [1,2,3,4,5,6,7,8,9,0];
+            var arr_lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+            var arr_upper = arr_lower.map(function(i){
+                return i.toUpperCase();
+            });
+            var arr = arr_num.concat(arr_lower).concat(arr_upper);
+            var colors = ['muted', 'primary', 'success', 'info', 'warning', 'danger'];
+            var code_span = '';
+            var code = '';
+            for(var i = 0; i< VALIDATE_LENGTH; i++){
+                var code_i = arr[Math.floor(Math.random() * arr.length)];
+                code += code_i;
+                code_span += '<span class="w__1_6 text-center text-' + colors[Math.floor(Math.random() * colors.length)] + '">' +
+                    code_i + '</span>';
+            }
+            service.validateCode = code;
+            return '<span class="validate-code" title="换一张" ng-click="refreshValidateCode($event)">' + code_span + '</span>';
+        };
+    
         return service;
     }]);
 

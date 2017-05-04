@@ -24,10 +24,13 @@ define(function (require) {
                     console.log(templateData);
                     var formName = templateData.form.name;
                     var labelCol = templateData.form.labelCol;
-                    var right_col = 12 - labelCol;
+                    var rightCol = templateData.form.rightCol;
+                    var colType = templateData.form.colType;
                     var formContentArr = [];
-                    var genBtnItemHtml = function(){
-
+                    var genBtnItemHtml = function(btnValue, btnCol){
+                        return '<div class="col-' + colType + '-offset-' + labelCol + ' col-' + colType + '-' + btnCol + '">' +
+                            '<button class="btn btn-primary btn-block" ng-disabled="' + formName + '.$invalid || ' + formName + '.$pristine">' + btnValue + '</button>' +
+                            '</div>';
                     };
                     angular.forEach(templateData.form.content, function (item) {
                         var ruleString = ' ';
@@ -62,8 +65,8 @@ define(function (require) {
                                     });
                                 }
                                 formContentItem = '<div class="form-group">' +
-                                    '<label ' + (item.id ? 'for="' + item.id + '"' : '') + ' class="col-sm-3 control-label">' + item.label + '</label>' +
-                                    '<div class="col-sm-9">' +
+                                    '<label ' + (item.id ? 'for="' + item.id + '"' : '') + ' class="col-' + colType + '-' + labelCol + ' control-label">' + item.label + '</label>' +
+                                    '<div class="col-' + colType + '-' + rightCol + '">' +
                                     '<input type="' + item.type + '" name="' + item.name + '" ng-model="' + item.model + '" placeholder="' + item.placeholder + '"' +
                                     'class="form-control" ' + (item.id ? 'for="' + item.id + '"' : '') + ruleString + '>' +
                                     '<span class="text-danger"' +
@@ -81,37 +84,21 @@ define(function (require) {
                             case 'validateCode':
                                 break;
                             case 'button':
-                                formContentItem = '';
                                 var btnItemHtml = '';
                                 if(item.btns.length === 2){
-                                    if(right_col / 2 === 0){
-                                        btnItemHtml += '<div class="col-sm-offset-' + labelCol + ' col-sm-' + (right_col / 2 - 1) + '">' +
-                                            '<button class="btn btn-primary btn-block" ng-disabled="' + formName + '.$invalid || ' + formName + '.$pristine">' +  + '</button>' +
-                                            '</div>';
-                                    }else{
-
-                                    }
+                                    btnItemHtml = genBtnItemHtml(item.btns[0].value, rightCol / 2 - 1) + genBtnItemHtml(item.btns[1].value, rightCol / 2 - 1);
+                                }else{
+                                    btnItemHtml = genBtnItemHtml(item.btns[0].value, rightCol);
                                 }
-
-
+                                formContentItem = '<div class="form-group">' + btnItemHtml + '</div>';
+                                formContentArr[item.sort] = formContentItem;
                                 break;
                             default:
                                 break;
                         }
                     });
-                    var btnsHtml = '';
-                    if (templateData.btns) {
-                        for (var i = 0; i < templateData.btns.length; i++) {
-                            btnsHtml += '<div class="form-group">' +
-                            '<div class="col-sm-offset-3 col-sm-9">' +
-                            '<button class="btn btn-primary btn-block" ng-disabled="register_form.$invalid">登录</button>' +
-                            '</div>' +
-                            '</div>';
-                        }
-                    }
                     var templateHtml = '<form class="form-horizontal" role="form" name="' + formName + '" novalidate>' +
                         formContentArr.join('') +
-                        btnsHtml +
                         '</form>';
                     return templateHtml;
                 }

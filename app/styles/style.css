@@ -73,6 +73,7 @@
 .validate-code{
     width: 40%;
     margin-left: 10%;
+    cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -80,8 +81,8 @@
 }
 .validate-code, .validate-code span{
     display: inline-block;
-    height:30px;
-    line-height:30px;
+    height:34px;
+    line-height:34px;
 }
 /* login-box end */
 

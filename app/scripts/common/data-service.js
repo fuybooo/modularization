@@ -89,9 +89,8 @@ define(function (require) {
          * 登录
          */
         service.doLogin = function(params, callback){
-            get('login', params, callback);
+            post('login', params, callback);
         };
-
 
         return service;
     });

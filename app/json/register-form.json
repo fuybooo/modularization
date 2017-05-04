@@ -4,6 +4,7 @@
   "form": {
     "name": "register_form",
     "labelCol": 3,
+    "rightCol": 6,
     "colType": "sm",
     "content": [
       {
