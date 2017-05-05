@@ -45,7 +45,7 @@
     │  │  ├─common
     │  │  │      common-service.js
     │  │  │      data-service.js
-    │  │  │      form-directive.js
+    │  │  │      common-directive.js
     │  │  │      popupwin-service.js
     │  │  │
     │  │  ├─configs

@@ -4,7 +4,8 @@
   "form": {
     "name": "register_form",
     "labelCol": 3,
-    "rightCol": 6,
+    "rightCol": 9,
+    "btnOffsetCol":1,
     "colType": "sm",
     "content": [
       {
@@ -13,55 +14,47 @@
         "type":"text",
         "name": "username",
         "model":"registerInfo.username",
-        "placeholder":"请输入账号",
+        "placeholder":"请输入",
+        "required":true,
         "limitRules": [
           {
             "name":"required",
             "value":"",
             "type":0,
-            "tip":"账号不能为空"
+            "tip":"不能为空"
           },
           {
             "name":"minlength",
             "value":"3",
             "type":0,
-            "tip":"账号不能少于3位"
+            "tip":"不能少于3位"
           },
           {
             "name":"maxlength",
             "value":"20",
             "type":0,
-            "tip":"账号不能多于20位"
+            "tip":"不能多于20位"
           },
           {
             "name":"registerUsernameUnique",
             "value":"",
             "type":1,
-            "tip":"账号已被注册"
+            "tip":"已被注册"
           },
           {
             "name":"registerUsernameRules",
             "value":"",
             "type":1,
-            "tip":"账号不符合规范"
+            "tip":"不符合规范"
           }
         ]
       },
       {
         "sort": 2,
-        "label": "验证码",
-        "type":"validateCode",
+        "isDirective":true,
+        "type":"validateCodeControl",
         "name": "validateCode",
-        "model":"registerInfo.validateCode",
-        "placeholder":"请输入验证码",
-        "limitRules": [
-          {
-            "name":"required",
-            "value":"",
-            "type":0,
-            "tip":"账号不能为空"
-          }
-        ]
+        "model":"registerInfo.validateCode"
       },
       {
         "sort": 3,
@@ -69,31 +62,32 @@
         "type": "password",
         "name": "password",
         "model": "registerInfo.password",
-        "placeholder":"请输入密码",
+        "placeholder":"请输入",
+        "required":true,
         "limitRules": [
           {
             "name":"required",
             "value":"",
             "type":0,
-            "tip":"密码不能为空"
+            "tip":"不能为空"
           },
           {
             "name":"minlength",
             "value":"6",
             "type":0,
-            "tip":"密码不能少于6位"
+            "tip":"不能少于6位"
           },
           {
             "name":"maxlength",
             "value":"16",
             "type":0,
-            "tip":"密码不能多于16位"
+            "tip":"不能多于16位"
           },
           {
             "name":"passwordConfirm",
             "value":"",
             "type":1,
-            "tip":"两次密码不一致"
+            "tip":"不一致"
           }
         ]
       },
@@ -103,43 +97,44 @@
         "type": "password",
         "name": "confirmPassword",
         "model": "registerInfo.confirmPassword",
-        "placeholder":"请再次输入密码",
+        "placeholder":"请再次输入",
+        "required":true,
         "limitRules": [
           {
             "name":"required",
             "value":"",
             "type":0,
-            "tip":"密码不能为空"
+            "tip":"不能为空"
           },
           {
             "name":"minlength",
             "value":"6",
             "type":0,
-            "tip":"密码不能少于6位"
+            "tip":"密不能少于6位"
           },
           {
             "name":"maxlength",
             "value":"16",
             "type":0,
-            "tip":"密码不能多于16位"
+            "tip":"不能多于16位"
           },
           {
             "name":"passwordConfirm",
             "value":"",
             "type":1,
-            "tip":"两次密码不一致"
+            "tip":"不一致"
           }
         ]
       },
       {
         "sort": 5,
-        "label": "我已认真阅读了服务条款，并且同意条款内容。",
         "type": "checkbox",
         "name": "serviceItems",
-        "model": "registerInfo.serviceItems",
-        "limitRules": [
+        "checkItems":[
           {
-            "name":"required"
+            "label": "我已认真阅读了<a class=\"cp\" ui-sref=\"serviceItem\">服务条款</a>，并且同意条款内容。",
+            "model": "registerInfo.serviceItems",
+            "required": true
           }
         ]
       },
@@ -149,7 +144,8 @@
         "btns": [
           {
             "value": "注册",
-            "click": "doRegister()"
+            "click": "doRegister()",
+            "btnCol": 10
           }
         ]
       }

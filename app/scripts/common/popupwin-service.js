@@ -31,7 +31,7 @@ define(function (require) {
             textCls: 'text-primary',
             defaultText: '您确定删除吗？',
             top: 100,
-            minWidth: 300,
+            width: 300,
             html: '<p class="text-center"></p>',
             closeWinAfterOk: true, // 是否在点击ok之后关闭弹出
             closeWinAfterClose: true // 是否在点击close之后关闭弹出
@@ -308,7 +308,7 @@ define(function (require) {
                     that.$pop.remove();
                 }, 700);
             } else {
-                this.$container.css('min-width', that.options.minWidth);
+                this.$container.css('min-width', that.options.width);
                 this.$container.css('top', $('body').scrollTop() + that.options.top); // 需要计算滚动条的值
                 this.$container.fadeIn(anTime);
                 this.$bg.fadeIn(anTime);

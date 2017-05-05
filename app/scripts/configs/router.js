@@ -39,7 +39,9 @@ define(function (require) {
                     'scripts/home/home-directive', // 提供了home-nav的指令
                     'scripts/home/home-controller',
                     'scripts/login/login-directive',
-                    'scripts/login/login-controller'
+                    'scripts/login/login-controller',
+                    'scripts/login/register-directive',
+                    'scripts/login/register-controller'
                 ]
             })
             // 当home为abstract时,url需要和home的url保持一致,才能正常显示
@@ -80,6 +82,10 @@ define(function (require) {
                     'scripts/login/register-directive'
                 ]
             })
+            .state('serviceItem', {
+                url: '/serviceItem',
+                templateUrl: 'app/views/service-item.html'
+            })
             .state('home.useBootstrapTable', {
                 url: '/example/use-bootstrap-table',
                 templateUrl: 'app/views/example/use-bootstrap-table.html'
@@ -93,7 +99,7 @@ define(function (require) {
                 templateUrl: 'app/views/example/use-popupwin.html',
                 controller: 'UsePopupwinController',
                 dependencies: [
-                    'scripts/example/use-popupwin-controller',
+                    'scripts/example/use-popupwin-controller'
                 ]
             })
             .state('home.useEcharts', {

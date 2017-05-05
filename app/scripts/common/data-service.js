@@ -83,7 +83,7 @@ define(function (require) {
          * @param callback
          */
         service.getUsers = function (params, callback) {
-            get('user.json', params, callback);
+            get('user', params, callback);
         };
         /**
          * 登录

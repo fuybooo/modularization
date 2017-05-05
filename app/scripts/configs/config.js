@@ -31,7 +31,7 @@ require.config({
         'commonService': 'scripts/common/common-service',
         'dataService': 'scripts/common/data-service',
         'popupwinService': 'scripts/common/popupwin-service',
-        'formDirective': 'scripts/common/form-directive'
+        'commonDirective': 'scripts/common/common-directive'
     },
     shim : {
         'angular':{
@@ -153,7 +153,7 @@ require(
         'commonService',
         'dataService',
         'popupwinService',
-        'formDirective',
+        'commonDirective',
 
         'require',
         'exports',

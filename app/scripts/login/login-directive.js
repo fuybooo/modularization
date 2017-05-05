@@ -10,7 +10,6 @@ define(function (require) {
     })
         .directive('popLogin', function (Popupwin) {
             return {
-                controller: 'LoginController',
                 link: function (scope, element, attrs) {
                     $(element).click(function () {
                         Popupwin.create({
@@ -22,14 +21,6 @@ define(function (require) {
                     });
                 }
             };
-        })
-        .directive('validateCode', function (commonService) {
-            return {
-                restrict: 'EA',
-                replace: true,
-                controller: 'LoginController',
-                template: commonService.getValidateCode
-            }
         })
     ;
 });
