@@ -1,7 +1,7 @@
 define(function(require){
     var app = require('app');
     var $ = require('jquery');
-    app.factory('commonService', ['$timeout', '$compile', function($timeout, $compile){
+    app.factory('commonService', function($timeout){
         var service = {};
         var timeout = null;
         /**
@@ -130,8 +130,9 @@ define(function(require){
             service.validateCode = code;
             return '<span class="validate-code" title="换一张" ng-click="refreshValidateCode($event)">' + code_span + '</span>';
         };
-
+    
+    
         return service;
-    }]);
+    });
 
 });

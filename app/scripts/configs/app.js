@@ -14,6 +14,7 @@ define(
         //配置APP
         app.config(configure);
         app.constant('baseRequestUrl', 'http://127.0.0.1:3003/');
+        app.constant('webSocketUrl', 'ws://127.0.0.1:3004');
         app.constant('baseStaticUrl', 'app/');
         //注入参数
         configure.$inject = ['$stateProvider', '$locationProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider'];

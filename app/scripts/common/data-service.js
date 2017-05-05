@@ -1,7 +1,7 @@
 define(function (require) {
     var app = require('app');
     var angular = require('angular');
-    app.factory('dataService', function ($http, baseRequestUrl,baseStaticUrl) {
+    app.factory('dataService', function ($http, baseRequestUrl, baseStaticUrl, webSocketUrl) {
         var service = {};
         /**
          * 请求资源
@@ -22,7 +22,7 @@ define(function (require) {
                     }
                 }
             });
-
+            
             promise = service.getPromise(method, url, param);
             if (cb_e) {
                 promise.success(cb_s).error(cb_e);
@@ -36,8 +36,8 @@ define(function (require) {
         var post = function () {
             request('POST', arguments);
         };
-
-
+        
+        
         /**
          * 请求返回promise对象
          * 如果只传一个url作为参数，则请求静态资源，目前只限制.html和.json两种格式
@@ -49,16 +49,16 @@ define(function (require) {
         service.getPromise = function (type, url, data) {
             // url以.html或者.json结尾，则请求静态资源
             // 否则请求服务器资源
-            if(arguments.length === 1){
+            if (arguments.length === 1) {
                 type = 'GET';
                 url = arguments[0];
             }
             var requestType = url.slice(-5);
-            if(requestType === '.html'){
+            if (requestType === '.html') {
                 url = baseStaticUrl + 'views/';
-            }else if(requestType === '.json'){
+            } else if (requestType === '.json') {
                 url = baseStaticUrl + 'json/';
-            }else{
+            } else {
                 url = baseRequestUrl + url;
             }
             var options = {
@@ -78,6 +78,12 @@ define(function (require) {
             return $http(options);
         };
         /**
+         * 建立webSocket
+         */
+        service.createWebSocket = function (address) {
+            return new WebSocket(webSocketUrl + (address || ''));
+        };
+        /**
          * 获取人员信息
          * @param params
          * @param callback
@@ -88,10 +94,10 @@ define(function (require) {
         /**
          * 登录
          */
-        service.doLogin = function(params, callback){
+        service.doLogin = function (params, callback) {
             post('login', params, callback);
         };
-
+        
         return service;
     });
 });
