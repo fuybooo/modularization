@@ -17,6 +17,7 @@ define(function (require) {
          */
         .directive('popRegister', function (Popupwin) {
             return {
+                // controller:'RegisterController',
                 link: function (scope, element, attrs) {
                     $(element).click(function () {
                         Popupwin.create({
@@ -25,7 +26,7 @@ define(function (require) {
                             scope: scope, // 需要使用$compile编译html
                             isFooter: false, // 不需要弹出层自带的按钮
                             // htmlUrl: 'app/views/register-box.html'
-                            html: '<div form-generator data-url="register-form.json"></div>'// 使用表单生成指令生成register表单
+                            html: '<div ng-controller="RegisterController" form-generator data-url="register-form.json"></div>'// 使用表单生成指令生成register表单
                         });
                     });
                 }

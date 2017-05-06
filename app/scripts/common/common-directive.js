@@ -45,9 +45,9 @@ define(function (require) {
                 var btnOffsetCol = templateData.form.btnOffsetCol;
                 var colType = templateData.form.colType;
                 var formContentArr = [];
-                var genBtnItemHtml = function(btnValue, btnCol){
-                    return '<div class="col-' + colType + '-offset-' + btnOffsetCol + ' col-' + colType + '-' + btnCol + '">' +
-                        '<button class="btn btn-primary btn-block" ng-disabled="' + formName + '.$invalid || ' + formName + '.$pristine">' + btnValue + '</button>' +
+                var genBtnItemHtml = function(btnItem){
+                    return '<div class="col-' + colType + '-offset-' + btnOffsetCol + ' col-' + colType + '-' + btnItem.btnCol + '">' +
+                        '<button class="btn btn-primary btn-block" ng-click="' + btnItem.click + '" ng-disabled="' + formName + '.$invalid || ' + formName + '.$pristine">' + btnItem.value + '</button>' +
                         '</div>';
                 };
                 // 表单内容
@@ -121,9 +121,9 @@ define(function (require) {
                             formContentArr[item.sort] = formContentItem;
                             break;
                         case 'button':
-                            var btnItemHtml = genBtnItemHtml(item.btns[0].value, item.btns[0].btnCol);
+                            var btnItemHtml = genBtnItemHtml(item.btns[0]);
                             if(item.btns.length === 2){
-                                btnItemHtml += genBtnItemHtml(item.btns[1].value, item.btns[1].btnCol);
+                                btnItemHtml += genBtnItemHtml(item.btns[1]);
                             }
                             formContentItem = '<div class="form-group">' + btnItemHtml + '</div>';
                             formContentArr[item.sort] = formContentItem;

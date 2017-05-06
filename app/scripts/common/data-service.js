@@ -78,11 +78,19 @@ define(function (require) {
             return $http(options);
         };
         /**
-         * 建立webSocket
+         * 建立webSocket,使用单例模式
          */
-        service.createWebSocket = function (address) {
-            return new WebSocket(webSocketUrl + (address || ''));
-        };
+        service.createWebSocket = (function (address) {
+            var ws = null;
+            var init = function(){
+                return ws = new WebSocket(webSocketUrl + (address || ''));
+            };
+            return {
+                getInstance: function () {
+                    return ws || init();
+                }
+            };
+        })();
         /**
          * 获取人员信息
          * @param params
@@ -90,6 +98,12 @@ define(function (require) {
          */
         service.getUsers = function (params, callback) {
             get('user', params, callback);
+        };
+        /**
+         * 注册
+         */
+        service.doRegister = function(params, callback){
+            post('register', params, callback);
         };
         /**
          * 登录
