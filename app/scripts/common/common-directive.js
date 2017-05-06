@@ -13,8 +13,8 @@ define(function (require) {
          * @param tAttrs
          * @returns {*}
          */
-        var template = function(tElement, tAttrs){
-
+        var template = function (tElement, tAttrs) {
+            var i;
             var templateData = '';
             var templateType = tAttrs.url.slice(-4);
             // 同步获取模板数据
@@ -38,14 +38,13 @@ define(function (require) {
                  * 4.目前只支持最多两个按钮，按钮样式可配置
                  * 5.支持各种验证器，angular默认验证器，自定义验证器（以指令方式配置）
                  */
-                console.log(templateData);
                 var formName = templateData.form.name;
                 var labelCol = templateData.form.labelCol;
                 var rightCol = templateData.form.rightCol;
                 var btnOffsetCol = templateData.form.btnOffsetCol;
                 var colType = templateData.form.colType;
                 var formContentArr = [];
-                var genBtnItemHtml = function(btnItem){
+                var genBtnItemHtml = function (btnItem) {
                     return '<div class="col-' + colType + '-offset-' + btnOffsetCol + ' col-' + colType + '-' + btnItem.btnCol + '">' +
                         '<button class="btn btn-primary btn-block" ng-click="' + btnItem.click + '" ng-disabled="' + formName + '.$invalid || ' + formName + '.$pristine">' + btnItem.value + '</button>' +
                         '</div>';
@@ -54,6 +53,8 @@ define(function (require) {
                 angular.forEach(templateData.form.content, function (item) {
                     var ruleString = ' ';
                     var validArea = [];
+                    var ngShowArr = [];
+                    var _ngShowArr = [];
                     var formContentItem = '';
                     switch (item.type) {
                         case 'text':
@@ -62,6 +63,7 @@ define(function (require) {
                             if (item.limitRules) {
                                 // 验证规则
                                 angular.forEach(item.limitRules, function (rule) {
+                                    _ngShowArr.push(formName + '.' + item.name + '.$error.' + rule.name);
                                     if (rule.type === 0) {
                                         // angular内置验证器
                                         if (rule.value === '') {
@@ -71,7 +73,6 @@ define(function (require) {
                                             // 需要值
                                             ruleString += 'ng-' + rule.name + '="' + rule.value + '" ';
                                         }
-                                        validArea.push('<span ng-show="' + formName + '.' + item.name + '.$error.' + rule.name + '">' + item.label + rule.tip + '</span>');
                                     } else {
                                         // 自定义验证器
                                         if (rule.value === '') {
@@ -81,13 +82,31 @@ define(function (require) {
                                             // 需要值
                                             ruleString += commonService.transformString(rule.name) + '="' + rule.value + '" ';
                                         }
-                                        validArea.push('<span ng-show="' + formName + '.' + item.name + '.$error.' + rule.name + '">' + rule.tip + '</span>');
                                     }
+                                    validArea.push('<span ng-show="%%ngShow%%">' + item.label + rule.tip + '</span>');
                                 });
+                                // 处理ngShow,使得提示信息只显示一种
+                                var ngShow = '';
+                                for (i = 0; i < _ngShowArr.length; i++) {
+                                    ngShow += '!' + _ngShowArr[i];
+                                    if (i < _ngShowArr.length - 1) {
+                                        ngShow += ' && ';
+                                    }
+                                }
+                                for (i = 0; i < _ngShowArr.length; i++) {
+                                    var _ngShow = ngShow;
+                                    for (var j = i + 1; j < _ngShowArr.length; j++) {
+                                        _ngShow = _ngShow.replace(' && !' + _ngShowArr[j], '');
+                                    }
+                                    ngShowArr[i] = _ngShow.replace('!' + _ngShowArr[i], _ngShowArr[i]);
+                                }
+                                for (i = 0; i < validArea.length; i++) {
+                                    validArea[i] = validArea[i].replace('%%ngShow%%', ngShowArr[i]);
+                                }
                             }
                             var labelStart = '<input type="' + item.type + '" ';
                             var labelEnd = '">';
-                            if(item.type === 'textarea'){
+                            if (item.type === 'textarea') {
                                 labelStart = '<textarea';
                                 labelEnd = '></textarea>';
                             }
@@ -107,7 +126,7 @@ define(function (require) {
                         case 'checkbox':
                         case 'radio':
                             var itemHtml = '';
-                            for(var i=0;i<item.checkItems.length;i++){
+                            for (i = 0; i < item.checkItems.length; i++) {
                                 var checkItem = item.checkItems[i];
                                 itemHtml += '<div class="' + item.type + '">' +
                                     '<input type="' + item.type + '" ng-model="' + checkItem.model + '" ' + (checkItem.required ? 'required' : '') + ' >' + checkItem.label +
@@ -122,7 +141,7 @@ define(function (require) {
                             break;
                         case 'button':
                             var btnItemHtml = genBtnItemHtml(item.btns[0]);
-                            if(item.btns.length === 2){
+                            if (item.btns.length === 2) {
                                 btnItemHtml += genBtnItemHtml(item.btns[1]);
                             }
                             formContentItem = '<div class="form-group">' + btnItemHtml + '</div>';
@@ -132,10 +151,10 @@ define(function (require) {
                             // 将该配置项当做指令来处理
                             formContentItem = '<div ' +
                                 commonService.transformString(item.type) + ' ' +
-                                'data-formName="' + formName + '" '+
-                                'data-labelCol="' + labelCol + '" '+
-                                'data-rightCol="' + rightCol + '" '+
-                                'data-btnOffsetCol="' + btnOffsetCol + '" '+
+                                'data-formName="' + formName + '" ' +
+                                'data-labelCol="' + labelCol + '" ' +
+                                'data-rightCol="' + rightCol + '" ' +
+                                'data-btnOffsetCol="' + btnOffsetCol + '" ' +
                                 'data-colType="' + colType + '" ' +
                                 'data-sort="' + item.sort + '" ' +
                                 'data-name="' + item.name + '" ' +
@@ -145,12 +164,11 @@ define(function (require) {
                             break;
                     }
                 });
-                var templateHtml = '<form class="form-horizontal" role="form" name="' + formName + '" novalidate>' +
+                return '<form class="form-horizontal" role="form" name="' + formName + '" novalidate>' +
                     formContentArr.join('') +
                     '</form>';
-                return templateHtml;
             }
-
+            
         };
         return {
             template: template
@@ -162,7 +180,7 @@ define(function (require) {
         .directive('validateCodeControl', function () {
             return {
                 replace: true,
-                template: function(tElement, tAttrs){
+                template: function (tElement, tAttrs) {
                     return '<div class="form-group">' +
                         '<label ' + (tAttrs.id ? 'for="' + tAttrs.id + '"' : '') + ' class="col-' + tAttrs.coltype + '-' + tAttrs.labelcol + ' control-label"><span class="c-red">*</span>验证码</label>' +
                         '<div class="col-' + tAttrs.coltype + '-' + tAttrs.rightcol + '">' +
@@ -171,28 +189,28 @@ define(function (require) {
                         '<validate-code></validate-code>' +
                         '<span class="form-error-tip text-danger"' +
                         'ng-show="' + tAttrs.formname + '.' + tAttrs.name + '.$dirty && ' + tAttrs.formname + '.' + tAttrs.name + '.$invalid">验证码不能为空</span>' +
-                    '</div>' +
-                    '</div>';
+                        '</div>' +
+                        '</div>';
                 }
-
+                
             }
         })
-    /**
-     * 验证码指令
-     */
-        .directive('validateCode', function ($compile,commonService) {
+        /**
+         * 验证码指令
+         */
+        .directive('validateCode', function ($compile, commonService) {
             return {
                 restrict: 'EA',
                 replace: true,
                 template: commonService.getValidateCode,
-                link: function(scope, ele, attrs){
+                link: function (scope, ele, attrs) {
                     // 点击刷新验证码
-                    $(ele).click(function(){
+                    $(ele).click(function () {
                         $(this).replaceWith($compile('<validate-code></validate-code>')(scope));
                     });
                 }
             }
         })
     ;
-
+    
 });

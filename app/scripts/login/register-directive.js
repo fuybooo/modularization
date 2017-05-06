@@ -63,5 +63,31 @@ define(function (require) {
                 }
             };
         })
+        /**
+         * 注册用户名的规范验证
+         */
+        .directive('registerUsernameRules', function ($timeout, commonService) {
+            return {
+                require: 'ngModel',
+                link: function (scope, element, attrs, c) {
+                    var timeout = null;
+                    scope.$watch(attrs.ngModel, function (n) {
+                        if (!n) {
+                            return;
+                        }
+                        if (timeout) {
+                            $timeout.cancel();
+                        }
+                        timeout = $timeout(function () {
+                            if (commonService.REGEXP.username.test(n)) {
+                                c.$setValidity('registerUsernameRules', true);
+                            } else {
+                                c.$setValidity('registerUsernameRules', false);
+                            }
+                        }, 300);
+                    })
+                }
+            };
+        })
     ;
 });

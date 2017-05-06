@@ -3,6 +3,32 @@ define(function(require){
     var $ = require('jquery');
     app.factory('commonService', function($timeout){
         var service = {};
+        /**
+         * 所有的正则
+         */
+        service.REGEXP = {
+            username: /^[\u4E00-\u9FA5A-Za-z0-9\-_@\.\|\/]+$/ // 只能包含数字/英文/汉字/下划线/减号/@符号/点/竖杠/斜杠
+        };
+    
+        /**
+         * 所有的sessionStorage
+         */
+        service.SESSION = {
+            userInfo: 'userInfo'
+        };
+        /**
+         * 所有的事件
+         */
+        service.EVENT = {
+            login: 'login'
+        };
+        /**
+         * 所有的事件的值
+         */
+        service.EVENT_KEY = {
+            success: 'success'
+        };
+        
         var timeout = null;
         /**
          * 弹出提示
