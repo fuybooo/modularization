@@ -19,9 +19,13 @@
         <li><a ui-sref="home.test">测试样例</a></li>
     </ul>
     <div class="login-register-box">
-        <span ng-hide="isLoggedIn"><span class="login-span cp text-default" pop-login>登录</span><em
-                class="border"></em><span class="register-span cp text-default" pop-register>注册</span></span>
-        <span ng-show="isLoggedIn"><span>欢迎您，</span><span class="login-user cp text-default">{{username}}<span
-                class="caret"></span></span><span class="cp text-default">注销</span></span>
+        <span ng-hide="isLoggedIn"><span class="cp text-default" pop-login>登录</span><em
+                class="border"></em><span class="cp text-default" pop-register>注册</span></span>
+        <span ng-show="isLoggedIn"><span>欢迎您，</span><span class="cp js-nav-user" ng-click="toggleUserMenu()">{{username}}<span
+                class="caret"></span><ul class="list-unstyled nav-user-ul js-nav-user-li" ng-show="isUserMenu">
+                <li pop-edit-user>修改资料</li>
+                <li pop-logout>退出登录</li>
+                </ul></span></span>
+
     </div>
 </div>

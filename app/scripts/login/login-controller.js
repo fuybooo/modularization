@@ -15,8 +15,17 @@ define(function(require){
                     Popupwin.close();
                     // controller之间的通信
                     // 使用事件传播机制,让$rootScope广播事件,所有的controller只要监听了loginEvent都可以被触发
-                    sessionStorage.setItem(commonService.SESSION.userInfo, data.data);
+                    sessionStorage.setItem(commonService.SESSION.userInfo, JSON.stringify(data.data));
                     $rootScope.$broadcast(commonService.EVENT.login, commonService.EVENT_KEY.success);
+                    // 登录成功建立webSocket
+                    dataService.webSocket.send(data.data.user_name);
+                    // var ws = dataService.createWebSocket.getInstance();
+                    // ws.onopen = function(){
+                    //     ws.send(data.data.user_name);
+                    // };
+                    dataService.webSocket.onmessage = function(evt){
+                        console.log('login:onmessage',evt.data);
+                    }
                 }
                 commonService.alert(data.msg, data.code === 0 ? 's' : 'd');
             })

@@ -26,10 +26,10 @@ define(function (require) {
             promise = service.getPromise(method, url, param);
             if (cb_e) {
                 promise.success(cb_s).error(cb_e);
-            } else {
+            } else if(cb_s){
                 promise.success(cb_s);
             }
-        }
+        };
         var get = function () {
             request('GET', arguments);
         };
@@ -62,7 +62,8 @@ define(function (require) {
                 url = baseRequestUrl + url;
             }
             var options = {
-                url: url
+                url: url,
+                withCredentials: true
             }
             if (type === 'GET') {
                 options.method = 'GET';
@@ -80,7 +81,7 @@ define(function (require) {
         /**
          * 建立webSocket,使用单例模式
          */
-        service.createWebSocket = (function (address) {
+        var createWebSocket = (function (address) {
             var ws = null;
             var init = function(){
                 return ws = new WebSocket(webSocketUrl + (address || ''));
@@ -91,6 +92,8 @@ define(function (require) {
                 }
             };
         })();
+        service.webSocket = createWebSocket.getInstance();
+        
         /**
          * 获取人员信息
          * @param params
@@ -110,6 +113,12 @@ define(function (require) {
          */
         service.doLogin = function (params, callback) {
             post('login', params, callback);
+        };
+        /**
+         * 退出
+         */
+        service.doLogout = function () {
+            get('logout');
         };
         
         return service;

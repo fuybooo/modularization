@@ -47,6 +47,9 @@ textarea.ng-dirty.ng-invalid:focus {
 .cp {
     cursor: pointer;
 }
+.cd{
+    cursor: default;
+}
 
 /* display */
 .dn {

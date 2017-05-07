@@ -1,6 +1,6 @@
 define(function(require){
     var app = require('app');
-    app.controller('LandingController', function($scope, $state, $http){
+    app.controller('LandingController', function($scope, $state, $http, dataService){
         console.log('LandingController');
         $scope.landingTest = function(){
             // 测试跨域请求get
@@ -28,6 +28,16 @@ define(function(require){
             }).success(function(data){
                 console.log('success', data);
             })
+        };
+        
+        $scope.testLoginAgain = function(){
+            var ws = dataService.createWebSocket.getInstance();
+            ws.onopen = function(){
+                ws.send('fuybooo');
+            }
+            ws.onmessage = function(evt){
+                console.log('landing:evt', evt);
+            };
         }
     });
     

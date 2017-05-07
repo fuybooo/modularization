@@ -26,7 +26,8 @@ define(function(require){
          * 所有的事件的值
          */
         service.EVENT_KEY = {
-            success: 'success'
+            success: 'success',
+            logout: 'logout'
         };
         
         var timeout = null;
