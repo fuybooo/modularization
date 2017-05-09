@@ -18,6 +18,7 @@ define(function (require) {
             $state.go($rootScope.previousState_name, $rootScope.previousState_params);
         };
         $rootScope.$on('$stateChangeStart', function (evt, next, current) {
+            $rootScope.pageTitle = next.name;
         });
         $rootScope.$on('$locationChangeStart', function(){
         });
@@ -88,7 +89,12 @@ define(function (require) {
             })
             .state('home.useBootstrapTable', {
                 url: '/example/use-bootstrap-table',
-                templateUrl: 'app/views/example/use-bootstrap-table.html'
+                templateUrl: 'app/views/example/use-bootstrap-table.html',
+                controller: 'UseBootstrapTableController',
+                dependencies: [
+                    'scripts/example/use-bootstrap-table-controller',
+                    'scripts/example/use-bootstrap-table-directive',
+                ]
             })
             .state('home.userBootstrapModal', {
                 url: '/example/use-bootstrap-modal',

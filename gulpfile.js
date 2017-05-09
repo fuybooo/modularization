@@ -37,6 +37,7 @@ gulp.task("scripts", ['clean:scripts'], function () {
                 $.notify.onError('Error: <%= error.message %>')
             }
         }))
+        .pipe($.ngmin())
         .pipe($.uglify())
         .pipe(gulp.dest("./dist/scripts"))
         .pipe($.notify({message: 'scripts task complete'}));

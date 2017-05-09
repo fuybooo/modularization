@@ -9,7 +9,7 @@ define(function(require){
             }
             dataService.doRegister($scope.registerInfo, function(res){
                 console.log(res);
-                if(code === 0){
+                if(res.code === 0){
                     // 注册成功,自动登录
                     Popupwin.close();
                 }

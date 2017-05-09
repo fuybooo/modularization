@@ -19,10 +19,6 @@ define(function(require){
                     $rootScope.$broadcast(commonService.EVENT.login, commonService.EVENT_KEY.success);
                     // 登录成功建立webSocket
                     dataService.webSocket.send(data.data.user_name);
-                    // var ws = dataService.createWebSocket.getInstance();
-                    // ws.onopen = function(){
-                    //     ws.send(data.data.user_name);
-                    // };
                     dataService.webSocket.onmessage = function(evt){
                         console.log('login:onmessage',evt.data);
                     }
