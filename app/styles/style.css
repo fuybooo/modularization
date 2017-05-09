@@ -117,3 +117,10 @@
     border-bottom:1px solid #337ab7;
     padding-bottom: 10px;
 }
+
+/* scroll */
+.scroll-left-side{
+    width: 15%;
+    position: fixed;
+
+}

@@ -2,7 +2,8 @@ define(function (require) {
     var app = require('app');
     var $ = require('jquery');
     //用于初始化全局的数据，仅对全局作用域起作用
-    app.run(['$state', '$stateParams', '$rootScope', function ($state, $stateParams, $rootScope) {
+    app.run(function ($state, $stateParams, $rootScope, $anchorScroll) {
+        $anchorScroll.yOffset = 70;
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         /*返回上一页：（当前定的打开新窗口问题太多，比如详情页面什么时机关闭，等等。。。 单页应用SPA，除非必要不应该去打开太多窗口。）
@@ -22,7 +23,7 @@ define(function (require) {
         });
         $rootScope.$on('$locationChangeStart', function(){
         });
-    }]);
+    });
     //配置信息
     app.config(['RestangularProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', '$logProvider', function (RestangularProvider, $stateProvider, $urlRouterProvider, $httpProvider, $logProvider) {
         //关闭	$log.debug();
@@ -119,6 +120,14 @@ define(function (require) {
             .state('home.commonFunction', {
                 url: '/commonFunction',
                 templateUrl: 'app/views/commonFunction.html'
+            })
+            .state('home.scroll', {
+                url: '/commonFunction/scroll',
+                templateUrl: 'app/views/common-function/scroll.html',
+                controller: 'ScrollController',
+                dependencies: [
+                    'scripts/common-function/scroll-controller'
+                ]
             })
             .state('home.codingRule', {
                 url: '/codingRule',
