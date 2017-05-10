@@ -120,7 +120,12 @@ define(function (require) {
         service.doLogout = function () {
             get('logout');
         };
-        
+        /**
+         * 获取学生分数
+         */
+        service.getStudentsScores = function(callback){
+            get('studentsScores', callback);
+        };
         return service;
     });
 });
