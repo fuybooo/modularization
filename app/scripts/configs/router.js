@@ -111,11 +111,24 @@ define(function (require) {
             })
             .state('home.useEcharts', {
                 url: '/example/use-echarts',
-                templateUrl: 'app/views/example/use-echarts.html'
+                templateUrl: 'app/views/example/use-echarts.html',
+                controller: 'UseEchartsController',
+                dependencies: [
+                    'scripts/example/use-echarts-controller'
+                ]
             })
-            .state('home.managementSystem', {
-                url: '/managementSystem',
-                templateUrl: 'app/views/managementSystem.html'
+            .state('home.admin', {
+                abstract: true,
+                url: '/admin',
+                templateUrl: 'app/views/admin/admin.html'
+            })
+            .state('home.admin.index', {
+                url: '/index',
+                templateUrl: 'app/views/admin/admin-index.html',
+                controller: 'AdminIndexController',
+                dependencies: [
+                    'scripts/admin/admin-index-controller'
+                ]
             })
             .state('home.commonFunction', {
                 url: '/commonFunction',

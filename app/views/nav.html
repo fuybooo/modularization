@@ -1,4 +1,4 @@
-<div class="navbar navbar-default" role="navigation">
+<div class="navbar navbar-default" role="navigation" ng-class="{'hide-nav':hides.appHeader}">
     <div class="navbar-header nav-header mr30">
         <a href="" class="navbar-brand nav-logo"><span class="logo"></span></a>
     </div>
@@ -13,7 +13,7 @@
                 <li><a ui-sref="home.useEcharts">echarts的使用</a></li>
             </ul>
         </li>
-        <li><a ui-sref="home.managementSystem">管理系统模板</a></li>
+        <li><a ui-sref="home.admin.index">管理系统模板</a></li>
         <li>
             <a href="" data-toggle="dropdown" class="dropdown-toggle">常用功能<span class="caret"></span></a>
             <ul class="dropdown-menu">

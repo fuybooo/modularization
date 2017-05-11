@@ -1,0 +1,13 @@
+define(function (require) {
+    var app = require('app');
+    var $ = require('jquery');
+    app.controller('AdminIndexController', function ($rootScope, $scope, $location,$anchorScroll) {
+        console.log('AdminIndexController');
+        $rootScope.hides = {
+            appHeader:true,
+            appFooter:true
+        };
+
+
+    });
+});

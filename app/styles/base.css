@@ -275,9 +275,12 @@ pre {
 }
 
 /* margin-bottom */
-.mb {
+.mb0 {
+    margin-bottom: 0;
 }
-
+.mb20{
+    margin-bottom: 20px;
+}
 /* margin-left */
 .ml100 {
     margin-left: 100px;
