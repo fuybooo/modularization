@@ -13,7 +13,7 @@ require.config({
         'angular-sanitize':'vendor/angular-sanitize/angular-sanitize',
         'angular-ui-load':'vendor/angular-ui-load/angular-ui-load',
         'angular-async-loader':'vendor/angular-async-loader/angular-async-loader',
-        'jquery':'vendor/jquery/dist/jquery',
+        'jquery':'vendor/jquery/jquery',
         'bootstrap-table':'vendor/bootstrap-table/src/bootstrap-table',
         'bootstrap-table-zh-CN':'vendor/bootstrap-table/src/locale/bootstrap-table-zh-CN',
         'bootstrap-select':'vendor/bootstrap-select/dist/js/bootstrap-select',
@@ -22,8 +22,8 @@ require.config({
         'lodash':'vendor/lodash/lodash',
         'zTree':'vendor/zTree/js/jquery.ztree.all.min',
         'ECharts':'vendor/echarts/echarts-all',
-        'bootstrap-datetimepicker':'vendor/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker',
-        'bootstrap-datetimepicker-zh-CN':'vendor/bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.zh-CN',
+        'bootstrap-datetimepicker':'vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker',
+        'bootstrap-datetimepicker-zh-CN':'vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
 
         // app文件
         'app': 'scripts/configs/app',
@@ -114,7 +114,7 @@ require.config({
             ]
         },
         'bootstrap-datetimepicker':{
-            deps:['bootstrap']
+            deps:['jquery', 'bootstrap']
         },
         'bootstrap-datetimepicker-zh-CN':{
             deps:['bootstrap-datetimepicker']

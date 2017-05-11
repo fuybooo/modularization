@@ -7,7 +7,6 @@ define(function (require) {
             // 滚动右侧内容
             $location.hash(anchor);
             $anchorScroll();
-            
             // 激活点击的标签
             $(e.target).addClass('active').siblings().removeClass('active');
             
@@ -38,6 +37,6 @@ define(function (require) {
                 }
             }
             $('#list-a' + (topValueList.indexOf(min) + 1)).addClass('active').siblings().removeClass('active');
-        })
+        });
     });
 });

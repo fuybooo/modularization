@@ -1,0 +1,58 @@
+<div class="dashboard-wrap container-fluid">
+    <p><strong>过滤条件</strong></p>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-sm-3 pri0 middle-text-30">最后发生时间</div>
+                <div class="col-sm-4 p0">
+                    <input type="text" class="form-control input-sm" id="updateTimeStart" ng-model="query.updateTimeStart" data-autoclose="true" placeholder="请选择开始时间">
+                </div>
+                <div class="col-sm-1 p05 w_5 middle-text-30">到</div>
+                <div class="col-sm-4 p0">
+                    <input type="text" class="form-control input-sm" id="updateTimeEnd" ng-model="query.updateTimeEnd" placeholder="请选择结束时间">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-sm-3 pri0 middle-text-30">首次发生时间</div>
+                <div class="col-sm-4 p0">
+                    <input type="text" class="form-control input-sm" placeholder="请选择开始时间">
+                </div>
+                <div class="col-sm-1 p05 w_5 middle-text-30">到</div>
+                <div class="col-sm-4 p0">
+                    <input type="text" class="form-control input-sm" placeholder="请选择结束时间">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-sm-1 w_10 pri0 middle-text-30">告警级别</div>
+                <div class="col-sm-1 p0">
+                    <select class="form-control input-sm"></select>
+                </div>
+                <div class="col-sm-1 w_10 pri0 middle-text-30">告警状态</div>
+                <div class="col-sm-1 p0">
+                    <select class="form-control input-sm"></select>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-primary btn-block btn-sm">查询</button>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-block btn-success btn-sm">导出Excel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tip-division">
+        <strong>设备告警</strong>
+        <span class="badge pull-right bg-danger tip">紧急:<span>29</span></span>
+        <span class="badge pull-right bg-muted tip">重大:<span>29</span></span>
+        <span class="badge pull-right bg-primary tip">一般:<span>29</span></span>
+        <span class="badge pull-right bg-success tip">提示:<span>29</span></span>
+        <span class="badge pull-right bg-info tip">未确定:<span>29</span></span>
+    </div>
+    <div class="dashboard-table">
+        <table></table>
+    </div>
+</div>

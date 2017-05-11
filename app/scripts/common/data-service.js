@@ -84,7 +84,12 @@ define(function (require) {
         var createWebSocket = (function (address) {
             var ws = null;
             var init = function(){
-                return ws = new WebSocket(webSocketUrl + (address || ''));
+                try {
+                    // ws = new WebSocket(webSocketUrl + (address || ''));
+                }catch (e){
+
+                }
+                return ws;
             };
             return {
                 getInstance: function () {

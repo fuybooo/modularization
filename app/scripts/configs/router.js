@@ -94,7 +94,7 @@ define(function (require) {
                 controller: 'UseBootstrapTableController',
                 dependencies: [
                     'scripts/example/use-bootstrap-table-controller',
-                    'scripts/example/use-bootstrap-table-directive',
+                    'scripts/example/use-bootstrap-table-directive'
                 ]
             })
             .state('home.userBootstrapModal', {
@@ -136,6 +136,14 @@ define(function (require) {
             .state('home.test', {
                 url: '/test',
                 templateUrl: 'app/views/test.html'
+            })
+            .state('home.dataTimePicker', {
+                url: '/test/dataTimePicker',
+                templateUrl: 'app/views/test/data-time-picker.html',
+                controller: 'DataTimePickerController',
+                dependencies: [
+                    'scripts/test/data-time-picker-controller'
+                ]
             })
         ;
         $urlRouterProvider.otherwise('');

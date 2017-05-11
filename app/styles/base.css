@@ -100,6 +100,11 @@ pre {
     max-height: 340px;
 }
 
+.middle-text-30{
+    height:30px;
+    line-height:30px;
+}
+
 /* css tools */
 
 /*  对于数量单位有如下规则   */
@@ -155,7 +160,15 @@ pre {
 .w480 {
     width: 480px;
 }
-
+.w_5{
+    width: 5%;
+}
+.w_10{
+    width:10%;
+}
+.w_20{
+    width: 20%;
+}
 .w_40 {
     width: 40%;
 }
@@ -236,7 +249,9 @@ pre {
 .l100 {
     left: 100px;
 }
-
+.m0{
+    margin:0;
+}
 /* margin-top */
 .mt0 {
     margin-top: 0;
@@ -275,6 +290,13 @@ pre {
 .ml356 {
     margin-left: 356px;
 }
+/* padding */
+.p0{
+    padding:0;
+}
+.p05{
+    padding: 0 5px;
+}
 
 /* padding-top */
 .pt40 {
@@ -288,6 +310,12 @@ pre {
 /* pr已经被占用，这时加上第二个字母以示区分 */
 
 /* padding-right */
+.pri0{
+    padding-right: 0;
+}
+.pri5{
+    padding-right: 5px;
+}
 .pri15 {
     padding-right: 15px;
 }
@@ -301,6 +329,12 @@ pre {
 }
 
 /* padding-left */
+.pl0{
+    padding-left:0;
+}
+.pl5{
+    padding-left: 5px;
+}
 .pl_3 {
     padding-left: 3%;
 }
@@ -316,4 +350,5 @@ pre {
 .pl356 {
     padding-left: 356px;
 }
+
 

@@ -124,3 +124,28 @@
     position: fixed;
 
 }
+.tip-division{
+    margin-top: 10px;
+    padding-top: 10px;
+    height: 40px;
+    background-color: #ddd;
+}
+.tip-division .bg-danger{
+    background-color: #e93030;
+}
+.tip-division .bg-info{
+    background-color: #9ed09e;
+}
+.tip-division .bg-success{
+    background-color: #ff9601;
+}
+.tip-division .bg-primary{
+    background-color: #337ab7;
+}
+.tip-division .bg-muted{
+    background-color: #9d3cb3;
+}
+.tip-division .tip{
+    padding:5px 10px;
+    margin-right: 20px;
+}

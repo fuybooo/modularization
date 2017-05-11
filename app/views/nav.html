@@ -21,7 +21,12 @@
             </ul>
         </li>
         <li><a ui-sref="home.codingRule">开发规范</a></li>
-        <li><a ui-sref="home.test">测试样例</a></li>
+        <li>
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">测试样例<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a ui-sref="home.dataTimePicker">时间选择控件</a></li>
+            </ul>
+        </li>
     </ul>
     <div class="login-register-box">
         <span ng-hide="isLoggedIn"><span class="cp text-default" pop-login>登录</span><em
