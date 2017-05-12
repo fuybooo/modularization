@@ -56,5 +56,12 @@ define(function (require) {
                 resetDateChange('occurTimeStart');
             }
         });
+
+
+
+        console.log('获取下拉框默认值', $scope.social);
+        $scope.getSelectValue = function(){
+            console.log('获取下拉框默认值', $scope.social);
+        }
     });
 });
