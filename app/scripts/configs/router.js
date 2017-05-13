@@ -1,25 +1,55 @@
 define(function (require) {
     var app = require('app');
-    var $ = require('jquery');
+    var titleSufix = '-Fuybooo的博客网站';
+    
+    
     //用于初始化全局的数据，仅对全局作用域起作用
     app.run(function ($state, $stateParams, $rootScope, $anchorScroll) {
+        $rootScope.titleNameMap = {
+            'home': '首页',
+            'home.land': '首页',
+            'home.landing': '首页',
+            'login': '登录',
+            'register': '注册',
+            'serviceItem': '服务条款',
+            'home.useBootstrapTable': '使用bootstrap-table',
+            'home.userBootstrapModal': '使用bootstrap-modal',
+            'home.usePopupwin': '使用popupwin',
+            'home.useEcharts': '使用echarts',
+            'home.admin': '管理系统',
+            'home.admin.index': '管理系统-首页',
+            'home.admin.user': '管理系统-人员管理',
+            'home.admin.viewResults': '管理系统-查询成绩',
+            'home.commonFunction': '通用方法',
+            'home.scroll': '滚动效果',
+            'home.codingRule': '代码规范',
+            'home.test': '测试',
+            'home.dataTimePicker': '日期选择控件'
+        };
         $anchorScroll.yOffset = 70;
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-        /*返回上一页：（当前定的打开新窗口问题太多，比如详情页面什么时机关闭，等等。。。 单页应用SPA，除非必要不应该去打开太多窗口。）
-         * 参数传递：1.rootScope变量，2事件机制。
-         * */
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-            // to be used for back button //won't work when page is reloaded.
             $rootScope.previousState_name = fromState.name;
             $rootScope.previousState_params = fromParams;
         });
-        //back button function called from back button's ng-click='back()'
-        $rootScope.back = function () {//实现返回的函数
+        $rootScope.back = function () {
             $state.go($rootScope.previousState_name, $rootScope.previousState_params);
         };
         $rootScope.$on('$stateChangeStart', function (evt, next, current) {
-            $rootScope.pageTitle = next.name;
+            // 确定当前页面的标题
+            $rootScope.pageTitle = $rootScope.titleNameMap[next.name] + titleSufix;
+            // 当前页面的样式
+            if(next.name.indexOf('.admin') !== -1){
+                $rootScope.admin = {
+                    addUser: true
+                };
+            }else{
+                $rootScope.admin = {
+                    addUser: false
+                };
+            }
+            
         });
         $rootScope.$on('$locationChangeStart', function(){
         });
@@ -43,7 +73,8 @@ define(function (require) {
                     'scripts/login/login-directive',
                     'scripts/login/login-controller',
                     'scripts/login/register-directive',
-                    'scripts/login/register-controller'
+                    'scripts/login/register-controller',
+                    'scripts/login/user-info-controller'
                 ]
             })
             // 当home为abstract时,url需要和home的url保持一致,才能正常显示
@@ -120,7 +151,11 @@ define(function (require) {
             .state('home.admin', {
                 abstract: true,
                 url: '/admin',
-                templateUrl: 'app/views/admin/admin.html'
+                templateUrl: 'app/views/admin/admin.html',
+                dependencies: [
+                    'scripts/admin/admin-directive',
+                    'scripts/admin/admin-menu-controller'
+                ]
             })
             .state('home.admin.index', {
                 url: '/index',
@@ -128,6 +163,22 @@ define(function (require) {
                 controller: 'AdminIndexController',
                 dependencies: [
                     'scripts/admin/admin-index-controller'
+                ]
+            })
+            .state('home.admin.user', {
+                url: '/user',
+                templateUrl: 'app/views/admin/admin-user.html',
+                controller: 'AdminUserController',
+                dependencies: [
+                    'scripts/admin/admin-user-controller'
+                ]
+            })
+            .state('home.admin.viewResults', {
+                url: '/user',
+                templateUrl: 'app/views/admin/admin-view-results.html',
+                controller: 'AdminViewResultsController',
+                dependencies: [
+                    'scripts/admin/admin-view-results-controller'
                 ]
             })
             .state('home.commonFunction', {

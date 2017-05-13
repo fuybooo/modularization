@@ -5,7 +5,7 @@
             <div class="col-sm-8">
                 <input type="text" name="username" ng-model="loginInfo.username" placeholder="请输入您的账号"
                        class="form-control" id="login-username"
-                       required>
+                       required ng-keydown="keyLogin($event)">
                 <span class="form-error-tip text-danger"
                       ng-show="login_form.username.$dirty && login_form.username.$invalid">账号不能为空</span>
             </div>
@@ -15,7 +15,7 @@
             <div class="col-sm-8">
                 <input type="password" name="password" ng-model="loginInfo.password" placeholder="请输入您的密码"
                        class="form-control" id="login-password"
-                       required>
+                       required ng-keydown="keyLogin($event)">
                 <span class="form-error-tip text-danger"
                       ng-show="login_form.password.$dirty && login_form.password.$invalid">密码不能为空</span>
             </div>
@@ -25,7 +25,7 @@
             <div class="col-sm-8">
                 <input type="text" name="validateCode" ng-model="loginInfo.validateCode" placeholder="请输入验证码"
                        class="form-control w_50 fl" id="login-validateCode"
-                       required>
+                       required ng-keydown="keyLogin($event)">
                 <validate-code></validate-code>
                 <span class="form-error-tip text-danger"
                       ng-show="login_form.validateCode.$dirty && login_form.validateCode.$invalid">验证码不能为空</span>
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-1 col-sm-10">
-                <button class="btn btn-primary btn-block" ng-disabled="login_form.$invalid" ng-click="runLogin()">登录</button>
+                <button type="button" class="btn btn-primary btn-block" ng-disabled="login_form.$invalid" ng-click="runLogin()">登录</button>
             </div>
         </div>
     </form>

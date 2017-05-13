@@ -320,6 +320,7 @@ define(function (require) {
             // 判断模板中是否存在form表单且form表单中是否存在button
             // 如果存在,则需要将确定按钮的状态按需置为禁用
             var $html = $(html);
+            if(!$html.length) return;
             var $form = $html[0].nodeName === 'FORM' ? $html : $html.find('form');
             if ($form.length !== 0 && $form.find('button').length === 0) {
                 var formName = $form.attr('name');

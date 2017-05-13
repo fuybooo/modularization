@@ -21,7 +21,15 @@ textarea.ng-dirty.ng-invalid:focus {
 
 /* form end */
 
+.input-xs{
+    height: auto;
+    padding: 2px 10px;
+}
+
 /* 样式简写 */
+.lh30 {
+    line-height: 30px;
+}
 .lh50 {
     line-height: 50px;
 }
@@ -87,6 +95,10 @@ textarea.ng-dirty.ng-invalid:focus {
 .fr{
     float: right;
 }
+.cb{
+    clear: both;
+}
+
 /* background-color */
 .bgc-dff0d8 {
     background-color: #dff0d8;
@@ -159,6 +171,12 @@ pre {
 
 .w480 {
     width: 480px;
+}
+.w1000{
+    width: 1000px;
+}
+.w_1{
+    width: 1%;
 }
 .w_5{
     width: 5%;
@@ -261,6 +279,9 @@ pre {
     margin-top: 10px;
 }
 
+.mt20 {
+    margin-top: 30px;
+}
 .mt30 {
     margin-top: 30px;
 }
@@ -270,6 +291,9 @@ pre {
 }
 
 /* margin-right */
+.mr15 {
+    margin-right: 15px;
+}
 .mr30 {
     margin-right: 30px;
 }
@@ -354,4 +378,13 @@ pre {
     padding-left: 356px;
 }
 
-
+.bootstrap-table .glyphicon {
+    color: #333;
+    cursor: pointer;
+}
+.bootstrap-table .glyphicon:hover {
+    color: #4A49F2;
+}
+.bootstrap-table .glyphicon + .glyphicon {
+    margin-left: 10px;
+}

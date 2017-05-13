@@ -131,6 +131,12 @@ define(function (require) {
         service.getStudentsScores = function(callback){
             get('studentsScores', callback);
         };
+        /**
+         * 处理人员信息,添加或修改
+         */
+        service.handleUser = function(params, callback){
+            post('handleUser', params, callback);
+        }
         return service;
     });
 });

@@ -1,0 +1,39 @@
+<div class="admin-user">
+    <span current-place></span>
+    <div class="panel panel-info admin-query mt20">
+        <div class="panel-heading">查询条件</div>
+        <div class="panel-body">
+            <form class="form-horizontal lh30">
+                <div class="form-group">
+                    <label class="col-sm-1 w_5">
+                        名称:
+                    </label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control input-sm" ng-model="query.username">
+                    </div>
+                    <label class="col-sm-1">
+                        出生年月:
+                    </label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control input-sm" ng-model="query.birthStart">
+                    </div>
+                    <div class="col-sm-1 w_1 mr15">
+                        到
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control input-sm" ng-model="query.birthEnd">
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-primary btn-block btn-sm">查询</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-success admin-query mt20">
+        <div class="panel-heading">查询结果</div>
+        <div class="panel-body">
+            <table id="bt-admin-user"></table>
+        </div>
+    </div>
+</div>

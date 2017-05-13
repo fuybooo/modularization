@@ -5,6 +5,7 @@ define(function(require){
         // 执行登录
         $scope.runLogin = function(){
             // 验证码
+            if(!commonService.validateCode) return;
             if (commonService.validateCode.toLowerCase() !== $scope.loginInfo.validateCode.toLowerCase()) {
                 commonService.alert('验证码不正确!', 'd');
                 return;
@@ -18,13 +19,20 @@ define(function(require){
                     sessionStorage.setItem(commonService.SESSION.userInfo, JSON.stringify(data.data));
                     $rootScope.$broadcast(commonService.EVENT.login, commonService.EVENT_KEY.success);
                     // 登录成功建立webSocket
-                    dataService.webSocket.send(data.data.user_name);
-                    dataService.webSocket.onmessage = function(evt){
-                        console.log('login:onmessage',evt.data);
-                    }
+                    // dataService.webSocket.send(data.data.user_name);
+                    // dataService.webSocket.onmessage = function(evt){
+                    //     console.log('login:onmessage',evt.data);
+                    // }
                 }
                 commonService.alert(data.msg, data.code === 0 ? 's' : 'd');
-            })
+            });
+        };
+        
+        $scope.keyLogin = function(e){
+            if(e.which === 13){
+                if($scope.login_form.$invalid) return;
+                $scope.runLogin();
+            }
         };
     });
 
