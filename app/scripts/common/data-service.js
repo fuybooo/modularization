@@ -26,7 +26,7 @@ define(function (require) {
             promise = service.getPromise(method, url, param);
             if (cb_e) {
                 promise.success(cb_s).error(cb_e);
-            } else if(cb_s){
+            } else if (cb_s) {
                 promise.success(cb_s);
             }
         };
@@ -64,7 +64,7 @@ define(function (require) {
             var options = {
                 url: url,
                 withCredentials: true
-            }
+            };
             if (type === 'GET') {
                 options.method = 'GET';
                 if (data) {
@@ -81,23 +81,23 @@ define(function (require) {
         /**
          * 建立webSocket,使用单例模式
          */
-        var createWebSocket = (function (address) {
-            var ws = null;
-            var init = function(){
-                try {
-                    // ws = new WebSocket(webSocketUrl + (address || ''));
-                }catch (e){
-
-                }
-                return ws;
-            };
-            return {
-                getInstance: function () {
-                    return ws || init();
-                }
-            };
-        })();
-        service.webSocket = createWebSocket.getInstance();
+        // var createWebSocket = (function (address) {
+        //     var ws = null;
+        //     var init = function () {
+        //         try {
+        //             // ws = new WebSocket(webSocketUrl + (address || ''));
+        //         } catch (e) {
+        //
+        //         }
+        //         return ws;
+        //     };
+        //     return {
+        //         getInstance: function () {
+        //             return ws || init();
+        //         }
+        //     };
+        // })();
+        // service.webSocket = createWebSocket.getInstance();
         
         /**
          * 获取人员信息
@@ -110,7 +110,7 @@ define(function (require) {
         /**
          * 注册
          */
-        service.doRegister = function(params, callback){
+        service.doRegister = function (params, callback) {
             post('register', params, callback);
         };
         /**
@@ -128,15 +128,24 @@ define(function (require) {
         /**
          * 获取学生分数
          */
-        service.getStudentsScores = function(callback){
+        service.getStudentsScores = function (callback) {
             get('studentsScores', callback);
         };
         /**
          * 处理人员信息,添加或修改
          */
-        service.handleUser = function(params, callback){
+        service.handleUser = function (params, callback) {
             post('handleUser', params, callback);
-        }
+        };
+        /**
+         * 快速编辑
+         * @param url
+         * @param params
+         * @param callback
+         */
+        service.quickEdit = function (url, params, callback) {
+            post(url, params, callback);
+        };
         return service;
     });
 });

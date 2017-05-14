@@ -131,6 +131,9 @@ pre {
 
 /*  5.特例：因为比较常用的关系，w表示width: 100%;等等  */
 
+.f9 {
+    font-size: 9px;
+}
 .f14 {
     font-size: 14px;
 }
@@ -376,15 +379,4 @@ pre {
 
 .pl356 {
     padding-left: 356px;
-}
-
-.bootstrap-table .glyphicon {
-    color: #333;
-    cursor: pointer;
-}
-.bootstrap-table .glyphicon:hover {
-    color: #4A49F2;
-}
-.bootstrap-table .glyphicon + .glyphicon {
-    margin-left: 10px;
 }

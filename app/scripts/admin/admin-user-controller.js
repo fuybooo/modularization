@@ -1,17 +1,17 @@
 define(function (require) {
     var app = require('app');
     var $ = require('jquery');
-    app.controller('AdminUserController', function ($rootScope, $scope, dataService, commonService) {
+    app.controller('AdminUserController', function ($rootScope, $scope, $compile, dataService, commonService) {
         console.log('AdminUserController');
         var $table = $('#bt-admin-user');
-        
+        var tableData;
         var initTable = function () {
             $table.bootstrapTable({
                 stripe: true,
                 pagination: true,
                 pageNumber: 1,
                 pageSize: 7,
-                pageList: [5, 10, 20, 50, 100],
+                pageList: [7, 10, 20, 50, 100],
                 columns: [
                     {
                         checkbox: true
@@ -25,11 +25,17 @@ define(function (require) {
                         field: 'user_email',
                         title: '邮箱',
                         sortable: true,
+                        formatter: function (value, row) {
+                            return '<span bt-col-editable class="bt-col-editable" data-id="' + row.id + '" data-value="' + (value || '') + '"></span>';
+                        }
                     },
                     {
                         field: 'user_phone_no',
                         title: '手机',
                         sortable: true,
+                        formatter: function (value, row) {
+                            return '<span bt-col-editable class="bt-col-editable" data-id="' + row.id + '" data-value="' + (value || '') + '"></span>';
+                        }
                     },
                     {
                         field: 'user_sex',
@@ -38,9 +44,9 @@ define(function (require) {
                         sortable: true,
                         formatter: function (value) {
                             var res = '-';
-                            if(value === 1){
+                            if (value === 1) {
                                 res = '女';
-                            }else if(value === 2){
+                            } else if (value === 2) {
                                 res = '男';
                             }
                             return res;
@@ -75,7 +81,13 @@ define(function (require) {
                             return _html;
                         }
                     }
-                ]
+                ],
+                onPageChange: function (number, size) {
+                    renderTable();
+                },
+                onSort: function (name, order) {
+                    renderTable();
+                }
             });
         };
         
@@ -83,7 +95,10 @@ define(function (require) {
             dataService.getUsers({}, function (res) {
                 console.log(res)
                 if (res.code === 0) {
-                    $table.bootstrapTable('load', res.data);
+                    tableData = res.data;
+                    $table.bootstrapTable('load', tableData);
+                    $compile($table)($scope);// 编译bootstrap-table代码,使其具有angular执行环境
+                    
                 }
             })
         };
@@ -92,6 +107,11 @@ define(function (require) {
         
         };
         
+        $scope.updateRow = function (index, field, value) {
+            if (tableData) {
+                tableData[index][field] = value;
+            }
+        };
         
         // 初始化表格
         initTable();

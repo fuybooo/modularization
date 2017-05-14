@@ -1,7 +1,7 @@
 define(function(require){
     var app = require('app');
     var $ = require('jquery');
-    app.factory('commonService', function($timeout){
+    app.factory('commonService', function($timeout, $compile){
         var service = {};
         /**
          * 所有的正则
@@ -156,6 +156,47 @@ define(function(require){
             }
             service.validateCode = code;
             return '<span class="validate-code" title="换一张" ng-click="refreshValidateCode($event)">' + code_span + '</span>';
+        };
+    
+        /**
+         * 打开快速编辑界面
+         */
+        service.showQuickEdit = function(options){
+            var removeEditPanel = function(){
+                $('.js-edit-panel').remove();
+            };
+            var $editPanel = $('<div class="js-edit-panel edit-panel">' +
+                '<div class="edit-panel-title bg-info">' +
+                (options.title || '修改') +
+                '<span class="js-edit-panel-close edit-panel-close">&#215;</span>' +
+                '</div>' +
+                '<div class="edit-panel-body">' +
+                '<form name="' + options.field + '_form">' +
+                    // 根据不同的type生成不同的输入框类型
+                '<input type="text" class="form-control" ng-model="' + options.field + '" name="' + options.field + '" ng-init="' + options.field + '=\'' + options.value + '\'">' +
+                '</form>' +
+                '</div>' +
+                '<div class="edit-panel-footer">' +
+                '<button class="btn btn-primary btn-sm js-sure-edit" ng-disabled="' + options.field + '_form.$pristine || ' +  options.field + '_form.$invalid' + '">确定</button>' +
+                '</div>' +
+                '</div>');
+            var target = options.target;
+            target.append($compile($editPanel)(options.scope));
+            $('.js-edit-panel-close').off('click.close').on('click.close', function(e){
+                e.stopPropagation();
+                removeEditPanel();
+                target.parent().removeClass('show');
+            });
+            $(document).off('click.close.editPanel').on('click.close.editPanel', function(e){
+                if($('.js-edit-panel').length > 0 && !$.contains($('.js-edit-panel')[0], e.target)){
+                    removeEditPanel();
+                    // 如果鼠标单击的是显示图标的td,或者是td内的元素,则不执行消失
+                    if(!(target.parent()[0] === e.target || (target.parent()[0] !== e.target && $.contains(target.parent()[0], e.target)))){
+                        target.parent().removeClass('show');
+                    }
+                }
+            });
+            $('.js-sure-edit').off('click.sure.edit').on('click.sure.edit', options.ok);
         };
     
     
