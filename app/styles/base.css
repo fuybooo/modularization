@@ -1,5 +1,7 @@
 /* 常用样式汇总 */
-
+ul{
+    list-style: none;
+}
 /* form start */
 input.ng-dirty.ng-invalid,
 select.ng-dirty.ng-invalid,
@@ -49,6 +51,10 @@ textarea.ng-dirty.ng-invalid:focus {
 
 .c-red {
     color: #f00;
+}
+
+.c-555 {
+    color: #555;
 }
 
 /* cursor */
@@ -117,6 +123,41 @@ pre {
     line-height:30px;
 }
 
+/* css计数器 */
+ul.cr{
+    counter-reset: u1;
+}
+li::before{
+    color: #8c8c8c;
+}
+ul.cr > li::before{
+    content: counter(u1)'. ';
+    counter-increment: u1;
+}
+ul.cr2{
+    counter-reset: u2;
+}
+ul.cr2 > li::before{
+    content: counter(u1)'.'counter(u2)'. ';
+    counter-increment: u2;
+}
+ul.cr3{
+    counter-reset: u3;
+}
+ul.cr3 > li::before{
+    content: counter(u1)'.'counter(u2)'.'counter(u3)'. ';
+    counter-increment: u3;
+}
+ul.cr4{
+    counter-reset: u4;
+}
+ul.cr4 > li::before{
+    content: counter(u1)'.'counter(u2)'.'counter(u3)'.'counter(u4)'. ';
+    counter-increment: u4;
+}
+
+
+
 /* css tools */
 
 /*  对于数量单位有如下规则   */
@@ -145,6 +186,9 @@ pre {
 .f20 {
     font-size: 20px;
 }
+.bold{
+    font-weight: bold;
+}
 
 /* bootstrap中已经有对应的样式了 */
 .tac {
@@ -162,6 +206,9 @@ pre {
 /* width */
 .w {
     width: 100%;
+}
+.w5 {
+    width: 5px;
 }
 
 .w18 {
@@ -229,6 +276,17 @@ pre {
 
 .h18 {
     height: 18px;
+}
+
+.h20 {
+    height: 20px;
+}
+.h20i {
+    height: 20px!important;
+}
+
+.h30 {
+    height: 30px;
 }
 
 .h50 {

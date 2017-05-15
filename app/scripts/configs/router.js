@@ -21,6 +21,7 @@ define(function (require) {
             'home.admin.user': '管理系统-人员管理',
             'home.admin.viewResults': '管理系统-查询成绩',
             'home.commonFunction': '通用方法',
+            'home.developmentNorm': '开发手册-开发规范',
             'home.scroll': '滚动效果',
             'home.codingRule': '代码规范',
             'home.test': '测试',
@@ -174,7 +175,7 @@ define(function (require) {
                 ]
             })
             .state('home.admin.viewResults', {
-                url: '/user',
+                url: '/view-results',
                 templateUrl: 'app/views/admin/admin-view-results.html',
                 controller: 'AdminViewResultsController',
                 dependencies: [
@@ -193,9 +194,14 @@ define(function (require) {
                     'scripts/common-function/scroll-controller'
                 ]
             })
-            .state('home.codingRule', {
-                url: '/codingRule',
-                templateUrl: 'app/views/codingRule.html'
+            .state('home.developmentManual', { // 使用abstract时，访问路径不能直接写abstract的访问路径，而应该写其子页面
+                abstract: true,
+                url: '/developmentManual',
+                templateUrl: 'app/views/development-manual/development-manual.html'
+            })
+            .state('home.developmentManual.norm', {
+                url: '/norm',
+                templateUrl: 'app/views/development-manual/development-norm.html'
             })
             .state('home.test', {
                 url: '/test',
