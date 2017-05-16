@@ -10,14 +10,20 @@ define(function (require) {
             // 激活点击的标签
             $(e.target).addClass('active').siblings().removeClass('active');
             
-        }
+        };
         
         var getOffsetTop = function(id){
-            return $('#' + id).parent().parent()[0].offsetTop + $('#' + id)[0].offsetTop - $(document).scrollTop()
+            return $('#' + id).parent().parent()[0].offsetTop + $('#' + id)[0].offsetTop - $(document).scrollTop();
         };
         var li_array = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8'];
         // 为body添加滚动事件
-        $(window).on('scroll', function(e){
+        $(window).on('scroll.fuybooo.common', function(e){
+            var leftSideOffsetTop = $('.js-scroll-left-side').parent()[0].offsetTop - $(document).scrollTop();
+            if(leftSideOffsetTop < 70){
+                $('.js-scroll-left-side').addClass('pf t70');
+            }else{
+                $('.js-scroll-left-side').removeClass('pf t70');
+            }
             var topValueList = [];
             for(var i=0; i<li_array.length;i++){
                 topValueList.push(getOffsetTop(li_array[i]));

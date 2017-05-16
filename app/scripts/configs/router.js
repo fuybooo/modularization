@@ -1,6 +1,7 @@
 define(function (require) {
     var app = require('app');
-    var titleSufix = '-Fuybooo的博客网站';
+    var $ = require('jquery');
+    var titleSuffix = '-Fuybooo的博客网站';
     
     
     //用于初始化全局的数据，仅对全局作用域起作用
@@ -38,8 +39,9 @@ define(function (require) {
             $state.go($rootScope.previousState_name, $rootScope.previousState_params);
         };
         $rootScope.$on('$stateChangeStart', function (evt, next, current) {
+            $(window).off('scroll.fuybooo');
             // 确定当前页面的标题
-            $rootScope.pageTitle = $rootScope.titleNameMap[next.name] + titleSufix;
+            $rootScope.pageTitle = $rootScope.titleNameMap[next.name] + titleSuffix;
             // 当前页面的样式
             if(next.name.indexOf('.admin') !== -1){
                 $rootScope.admin = {
@@ -198,8 +200,10 @@ define(function (require) {
                 abstract: true,
                 url: '/developmentManual',
                 templateUrl: 'app/views/development-manual/development-manual.html',
+                controller: 'DevelopmentController',
                 dependencies: [
-                    'scripts/development-manual/development-directive'
+                    'scripts/development-manual/development-directive',
+                    'scripts/development-manual/development-controller'
                 ]
             })
             .state('home.developmentManual.norm', {

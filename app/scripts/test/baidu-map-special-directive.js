@@ -2,14 +2,13 @@ define(function (require) {
     var app = require('app');
     var $ = require('jquery');
     var angular = require('angular');
-    // 生成form表单
     /**
-     * 根据json配置文件生成模板或者直接取模板内容
+     * 生成百度地图
      */
     app
         .directive('baiduMap', function ($window) {
             return {
-                template: '<div class="baidu-map-demo" id="baidu-map-demo"></div>',
+                template: '<div class="w1000 h600" id="baidu-map-demo"></div>',
                 link: function(scope, ele){
                     var createMap = function(){
                         var map = new BMap.Map('baidu-map-demo');

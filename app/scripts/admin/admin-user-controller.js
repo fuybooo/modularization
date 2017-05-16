@@ -1,8 +1,8 @@
 define(function (require) {
+    'use strict';
     var app = require('app');
     var $ = require('jquery');
     app.controller('AdminUserController', function ($rootScope, $scope, $compile, dataService, commonService) {
-        console.log('AdminUserController');
         var $table = $('#bt-admin-user');
         var tableData;
         var initTable = function () {
@@ -55,19 +55,19 @@ define(function (require) {
                     {
                         field: 'user_birthday',
                         title: '生日',
-                        sortable: true,
+                        sortable: true
                     },
                     {
                         field: 'user_native_place',
                         title: '籍贯',
-                        sortable: true,
+                        sortable: true
                     },
                     {
                         field: 'user_state',
                         title: '是否在职',
                         width: '5%',
                         sortable: true,
-                        formatter: function (value, row, index) {
+                        formatter: function (value) {
                             var res = value === 1 ? '在职' : '离职';
                             var cls = value === 1 ? '' : 'red';
                             return '<span class="' + cls + '">' + res + '</span>';
@@ -76,9 +76,8 @@ define(function (require) {
                     {
                         title: '操作',
                         formatter: function () {
-                            var _html = '<span class="glyphicon glyphicon-pencil"></span>' +
-                                '<span class="glyphicon glyphicon-trash"></span>';
-                            return _html;
+                            return '<span class="glyphicon glyphicon-pencil"></span>' +
+                                   '<span class="glyphicon glyphicon-trash"></span>';
                         }
                     }
                 ],
@@ -93,7 +92,6 @@ define(function (require) {
         
         var renderTable = function () {
             dataService.getUsers({}, function (res) {
-                console.log(res)
                 if (res.code === 0) {
                     tableData = res.data;
                     $table.bootstrapTable('load', tableData);

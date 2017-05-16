@@ -263,6 +263,9 @@ ul[class^="cr"] li h6{
     width: 18px;
 }
 
+.w195 {
+    width: 195px;
+}
 .w260 {
     width: 260px;
 }
@@ -273,6 +276,8 @@ ul[class^="cr"] li h6{
 .w1000{
     width: 1000px;
 }
+
+
 .w_1{
     width: 1%;
 }
@@ -317,6 +322,10 @@ ul[class^="cr"] li h6{
 .w__1_6{
     width: 16.6666666666666%;
 }
+
+.min-w1000{
+    min-width: 1000px;
+}
 /* height */
 .h {
     height: 100%;
@@ -357,8 +366,28 @@ ul[class^="cr"] li h6{
 .h400 {
     height: 400px;
 }
-
+.h600 {
+    height: 600px;
+}
+.min-h1000{
+    min-height: 600px;
+}
 /* top */
+.t50 {
+    top: 50px;
+}
+.t60 {
+    top: 60px;
+}
+.t61 {
+    top: 61px;
+}
+.t70 {
+    top: 70px;
+}
+.t100 {
+    top: 100px;
+}
 .t_50 {
     top: 50%;
 }
