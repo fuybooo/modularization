@@ -197,7 +197,10 @@ define(function (require) {
             .state('home.developmentManual', { // 使用abstract时，访问路径不能直接写abstract的访问路径，而应该写其子页面
                 abstract: true,
                 url: '/developmentManual',
-                templateUrl: 'app/views/development-manual/development-manual.html'
+                templateUrl: 'app/views/development-manual/development-manual.html',
+                dependencies: [
+                    'scripts/development-manual/development-directive'
+                ]
             })
             .state('home.developmentManual.norm', {
                 url: '/norm',
@@ -213,6 +216,15 @@ define(function (require) {
                 controller: 'DataTimePickerController',
                 dependencies: [
                     'scripts/test/data-time-picker-controller'
+                ]
+            })
+            .state('home.baiduMapSpecial', {
+                url: '/test/baiduMapSpecial',
+                templateUrl: 'app/views/test/baidu-map-special.html',
+                controller: 'BaiduMapSpecialController',
+                dependencies: [
+                    'scripts/test/baidu-map-special-controller',
+                    'scripts/test/baidu-map-special-directive'
                 ]
             })
         ;

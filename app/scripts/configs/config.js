@@ -22,6 +22,7 @@ require.config({
         'lodash':'vendor/lodash/lodash',
         'zTree':'vendor/zTree/js/jquery.ztree.all.min',
         'ECharts':'vendor/echarts/echarts-all',
+        // 'baidu-map': 'vendor/echarts/dist/extension/bmap',
         'bootstrap-datetimepicker':'vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker',
         'bootstrap-datetimepicker-zh-CN':'vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
 
@@ -140,6 +141,7 @@ require(
         'bootstrap',
         'zTree',
         'ECharts',
+        // 'baidu-map',
 
         'bootstrap-table',
         'bootstrap-select',

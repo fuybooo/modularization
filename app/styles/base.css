@@ -1,6 +1,16 @@
 /* 常用样式汇总 */
 ul{
     list-style: none;
+    padding-left: 0;
+}
+*[ng-click]{
+    cursor: pointer;
+}
+a{
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: none;
 }
 /* form start */
 input.ng-dirty.ng-invalid,
@@ -82,6 +92,10 @@ textarea.ng-dirty.ng-invalid:focus {
     overflow: hidden;
 }
 
+.oa {
+    overflow: auto;
+}
+
 /* position */
 .pa {
     position: absolute;
@@ -131,29 +145,63 @@ li::before{
     color: #8c8c8c;
 }
 ul.cr > li::before{
-    content: counter(u1)'. ';
+    content: counter(u1)' ';
     counter-increment: u1;
 }
 ul.cr2{
     counter-reset: u2;
 }
 ul.cr2 > li::before{
-    content: counter(u1)'.'counter(u2)'. ';
+    content: counter(u1)'.'counter(u2)' ';
     counter-increment: u2;
 }
 ul.cr3{
     counter-reset: u3;
 }
 ul.cr3 > li::before{
-    content: counter(u1)'.'counter(u2)'.'counter(u3)'. ';
+    content: counter(u1)'.'counter(u2)'.'counter(u3)' ';
     counter-increment: u3;
 }
 ul.cr4{
     counter-reset: u4;
 }
 ul.cr4 > li::before{
-    content: counter(u1)'.'counter(u2)'.'counter(u3)'.'counter(u4)'. ';
+    content: counter(u1)'.'counter(u2)'.'counter(u3)'.'counter(u4)' ';
     counter-increment: u4;
+}
+
+ul[class^="cr"].bh3 li::before,
+ul[class^="cr"].bh3 li h3{
+    font-size: 20px;
+}
+
+ul[class^="cr"].bh4 li::before,
+ul[class^="cr"].bh4 li h4{
+    font-size: 18px;
+}
+
+ul[class^="cr"].bh5 li::before,
+ul[class^="cr"].bh5 li h5{
+    font-size: 16px;
+}
+
+ul[class^="cr"].bh6 li::before,
+ul[class^="cr"].bh6 li h6{
+    font-size: 15px;
+}
+ul[class^="cr"] li::before{
+    font-family: 黑体 Arial black;
+}
+ul[class^="cr"] li h1,
+ul[class^="cr"] li h2,
+ul[class^="cr"] li h3,
+ul[class^="cr"] li h4,
+ul[class^="cr"] li h5,
+ul[class^="cr"] li h6{
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 1.6em;
+    margin-bottom: 1em;
 }
 
 
@@ -422,6 +470,9 @@ ul.cr4 > li::before{
 }
 .pl5{
     padding-left: 5px;
+}
+.pl20{
+    padding-left: 20px;
 }
 .pl_3 {
     padding-left: 3%;

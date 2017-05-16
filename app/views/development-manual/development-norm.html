@@ -1,75 +1,482 @@
-<h2>
-    Fuybooo-blog HTML规范
+<h2 class="bold">
+    Fuybooo-blog HTML/CSS规范
 </h2>
 <div class="dev-catalog">
-    <div class="dev-catalog-title">目录</div>
-    <ul class="dev-catalog-content cr">
-        <li>基本规范</li>
-        <li>注意事项</li>
+    <div class="dev-catalog-title"><span>目录</span></div>
+    <ul scroll-display class="dev-catalog-content cr oh">
+        <li class="catalog-parent catalog-close">
+            <a toggle-list>基本规范</a>
+            <ul class="cr2">
+                <li class="catalog-parent catalog-close">
+                    <a toggle-list>HTML/CSS通用规则</a>
+                    <ul class="cr3">
+                        <li><a ng-click="findAnchor()">编码规则</a></li>
+                        <li><a ng-click="findAnchor()">代码格式</a></li>
+                        <li><a ng-click="findAnchor()">元数据规则</a></li>
+                    </ul>
+                </li>
+                <li class="catalog-parent catalog-close">
+                    <a toggle-list>HTML风格指南</a>
+                    <ul class="cr3">
+                        <li><a ng-click="findAnchor()">HTML编码规则</a></li>
+                        <li><a ng-click="findAnchor()">HTML代码格式</a></li>
+                    </ul>
+                </li>
+                <li class="catalog-parent catalog-close">
+                    <a toggle-list>CSS风格指南</a>
+                    <ul class="cr3">
+                        <li><a ng-click="findAnchor()">CSS编码规则</a></li>
+                        <li><a ng-click="findAnchor()">CSS代码格式</a></li>
+                        <li><a ng-click="findAnchor()">CSS元数据规则</a></li>
+                    </ul>
+                </li>
+                <li><a ng-click="findAnchor()">参考EditConfig</a></li>
+            </ul>
+        </li>
+        <li class="catalog-parent catalog-close">
+            <a toggle-list>注意事项</a>
+            <ul class="cr2">
+                <li><a ng-click="findAnchor()">基本原则</a></li>
+                <li><a ng-click="findAnchor()">模块化编写实践</a></li>
+                <li><a ng-click="findAnchor()">命名注意事项</a></li>
+                <li><a ng-click="findAnchor()">CSS编写注意事项</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 <div class="dev-norm-content">
-    <ul class="cr">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+    <ul class="cr bh3">
         <li>
-            <ul class="cr2">
-                <li></li>
-                <li></li>
+            <h3>基本规范</h3>
+            <ul class="cr2 bh4">
                 <li>
-                    <ul class="cr3">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                    <h4>HTML/CSS通用规则</h4>
+                    <ul class="cr3 bh5">
                         <li>
-                            <ul class="cr4">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
+                            <h5>编码规则</h5>
+                            <ul class="cr4 bh6">
+                                <li>
+                                    <h6>省略外链资源 URL 协议部分</h6>
+                                    <p>省略外链资源（图片及其它媒体资源）URL 中的http / https 协议，使 URL 成为相对地址，避免 <a class="external-link"
+                                                                                                 href="https://developer.mozilla.org/en-US/docs/Security/MixedContent"
+                                                                                                 target="_blank">Mixed
+                                        Content</a> 问题，减小文件字节数。</p>
+                                    <strong>其他协议（ ftp 等 ）的 URL 不省略。</strong>
+                                    <pre>
+<code>
+    &lt;!--recommended--&gt;
+    &lt;script src=&quot;//apps.bdimg.com/libs/angular.js/1.5.0-beta.0/angular-animate.js&quot;&gt;&lt;/script&gt;
+    &lt;!--not recommended--&gt;
+    &lt;script src=&quot;http://apps.bdimg.com/libs/angular.js/1.5.0-beta.0/angular-animate.js&quot;&gt;&lt;/script&gt;
+    &lt;!--recommended--&gt;
+    .example {
+      background: url(//apps.bdimg.com/images/example);
+    }
+    &lt;!--not recommended--&gt;
+    .example {
+      background: url(http://apps.bdimg.com/images/example);
+    }
+</code>
+                                    </pre>
+                                    <p><strong>在同一网站中，推荐使用相对路径链接资源，并避免使用层级过深的文件夹，以提高文件查找效率、减小文件体积。</strong></p>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <h5>代码格式</h5>
+                            <ul class="cr4 bh6">
+                                <li>
+                                    <h6>缩进</h6>
+                                    <p>根据项目规范指定，推荐使用2个空格，可以避免层级过深时导致代码可读性差。目前为止我个人编码习惯是4个空格。<strong>绝对禁止使用TAB或者TAB空格混搭的写法。</strong></p>
+                                </li>
+                                <li>
+                                    <h6>一律使用小写字母</h6>
+                                    <p>i.标签、属性值、属性名均使用小写，单词之间用中划线（减号）“-”分割，无法使用中划线分割的使用下划线“_”分割。</p>
+                                    <pre>
+<code>
+    &lt;!--示例--&gt;
+    &lt;form name=&quot;my_form&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;my_name&quot; id=&quot;my-name&quot; required data-some-attr=&quot;someAttr&quot;&gt;
+        &lt;!--此处要使用属性名my_name，属性值一般情况可以使用驼峰命名myName，但是属性名必须使用全小写命名法，避免在js中取值时的不统一--&gt;
+        &lt;span ng-show=&quot;my_form.my_name.$error.required&quot;&gt;&lt;/span&gt;
+    &lt;/form&gt;
+</code>
+                                    </pre>
+                                    <p>ii.文件夹、文件名均使用小写，单词之间用中划线分割。windows系统对文件和文件夹的大小写不敏感，而linux系统却敏感，为了保证平台兼容性，保持全部小写</p>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <h5>元数据规则</h5>
+                            <ul class="cr4 bh6">
+                                <li>
+                                    <h6>文件编码</h6>
+                                    <p>使用不带 BOM 的 UTF-8 编码。</p>
+                                    <p>i.在html中指定编码<code>&lt;meta charset=&quot;utf-8&quot;&gt;</code></p>
+                                    <p>ii.无需使用 @charset 指定样式表的编码，它默认为 UTF-8 （参考<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@charset" class="external-link" target="_blank">@charset</a>）</p>
+                                    <p>iii.引用第三方 JS 文件时，标签应指明外链文件编码，以避免不同编码文件混合使用时页面乱码。<code>&lt;script charset=&quot;&quot;&gt;</code></p>
+                                </li>
+                                <li>
+                                    <h6>注释</h6>
+                                    <p><strong>根据需要尽可能解释代码。</strong></p>
+                                    <p>用注释来解释代码：它包括什么，它的目的是什么，它能做什么，为什么使用这个解决方案，还是说只是因为个人偏好，或者是能力限制（即当时只想到这个方案）？</p>
+                                    <p>本规则根据具体项目而定，主要取决于项目的复杂度（成本高低）</p>
+                                </li>
+                                <li>
+                                    <h6>未完成条目</h6>
+                                    <p><strong>用<code>TODO</code>标记待办事项和活动条目。</strong></p>
+                                    <p>用来强调待办事项的标记只使用<code>TODO</code>,不要使用其他的如<code>@</code>等</p>
+                                    <pre>
+<code>
+    &lt;!-- TODO(john.doe): revisit centering --&gt;
+    &lt;center&gt;Test&lt;/center&gt;
+
+    &lt;!-- TODO: remove optional tags --&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Apples&lt;/li&gt;
+      &lt;li&gt;Oranges&lt;/li&gt;
+    &lt;/ul&gt;
+
+</code>
+<code>
+    /* TODO: remove IE hacks */
+    .nav {
+      _width: 1%;
+    }
+</code>
+                                    </pre>
+                                </li>
+
                             </ul>
                         </li>
 
                     </ul>
                 </li>
+                <li>
+                    <h4>HTML 风格指南</h4>
+                    <ul class="cr3 bh5">
+                        <li>
+                            <h5>编码规则</h5>
+                            <ul class="cr4 bh6">
+                                <li>
+                                    <h6>文档类型（DTD）使用 HTML5 </h6>
+                                    <p><code>&lt;!DOCTYPE html&gt;</code></p>
+                                </li>
+                                <li>
+                                    <h6>语言属性</h6>
+                                    <p><strong>总是为 HTML 文档指定 lang 属性</strong>，常见属性值参考：中文：<code>&lt;html lang=&quot;zh&quot;&gt;</code>；英文：<code>&lt;html lang=&quot;en&quot;&gt;</code></p>
+                                </li>
+                                <li>
+                                    <h6>IE兼容模式设置为 Edge</h6>
+                                    <p>IE 支持通过 <meta> 标签来设置渲染前页面所应该采用的 IE 版本。除非有特殊需求，否则最好是设置为 Edge。<code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=Edge&quot;&gt;</code></p>
+                                </li>
+                                <li>
+                                    <h6>HTML有效性</h6>
+                                    <p>编写有效的 HTML 代码，能通过代码校验工具验证。使用符合 HTML5 规范的标签，不允许使用废弃的标签，如 <code>&lt;font&gt;</code>、<code>&lt;center&gt;</code>等。（部分编辑器已经对此有智能提示了，如 webStorm）</p>
+                                </li>
+                                <li>
+                                    <h6>HTML 语义化</h6>
+                                    <p>根据 HTML 各元素设计的用途使用他们。这事关可访性、重用以及代码效率，例如 h1-h6用于标题，&lt;p&gt; 用于段落，&lt;a&gt;用于链接。</p>
+                                </li>
+                                <li>
+                                    <h6>多媒体内容提供后备方案</h6>
+                                    <p>图片添加 alt 属性；视频、音频添加标题和文案说明。</p>
+                                    <p>备选内容是保障可访性的重要途径。</p>
+                                    <p>无法立即在 CSS 里设置的纯装饰图片将 alt 属性设置为空：alt=""。</p>
+                                </li>
+                                <li>
+                                    <h6>关注分离：结构、表现和行为分离</h6>
+                                    <p>严格保持结构 （标记），表现 （样式），和行为 （脚本）分离, 并尽量让三者之间的交互保持在最低限度。</p>
+                                    <p>确保文档和模板只包含 HTML 结构， 所有表现都放到样式表里，所有行为都放到脚本里；</p>
+                                    <p>尽量将脚本和样式合并到一个文件，减少外链。</p>
+                                    <p>关注分离对于可维护性至关重要，修改 HTML（结构）要比修改样式、脚本花费更多成本。</p>
+                                    <p><strong class="c-red">angular框架中的表现、行为和样式分离成本相比快捷的双向数据绑定是可以付出的。</strong></p>
+                                </li>
+                                <li>
+                                    <h6>保留可选标签，保持结构完整</h6>
+                                    <p>HTML5 规范定义了一些标签可以省略，以保持代码简洁性。但我们要求保持结构的完整，不省略可省标签，闭合所有元素，以避免不同浏览器环境下不可预知的问题出现。</p>
+                                    <p>&lt;br&gt;, &lt;hr&gt;, &lt;img&gt;, &lt;input&gt; 等自闭合（self-closing）标签都应该在结尾添加 /；</p>
+                                    <p>不要省略可选的结束标签（closing tag）（例如 &lt;/li&gt; 或 &lt;/body&gt;）。</p>
+                                </li>
+                                <li>
+                                    <h6>省略样式表和脚本的type属性</h6>
+                                    <p>使用 CSS 的样式表、使用 JavaScript 的脚本都不需要添加 type 属性。HTML5 默认按照 text/css 及 text/javascript 解析，兼容较老的浏览器。</p>
+                                </li>
+                                <li>
+                                    <h6>HTML属性顺序</h6>
+                                    <p>HTML 属性应当按照以下给出的顺序依次排列，确保代码的易读性。</p>
+                                    <p>Class 用于标识高度可复用组件，因此应该排在首位。id 用于标识具体组件，排在第二位。</p>
+                                    <ol>
+                                        <li>class</li>
+                                        <li>id, name</li>
+                                        <li>data-*</li>
+                                        <li>src, for, type, href</li>
+                                        <li>title, alt</li>
+                                        <li>aria-*, role</li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <h6>布尔值属性</h6>
+                                    <p>HTML5 规范中 <code>disabled</code>、<code>checked</code>、<code>selected</code> 等属性不用设置值。</p>
+                                    <pre>
+<code>
+    &lt;input type=&quot;text&quot; disabled&gt;
 
-            </ul>
-        </li>
+    &lt;input type=&quot;checkbox&quot; value=&quot;1&quot; checked&gt;
 
-    </ul>
-    <ul class="cr">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li>
-            <ul class="cr2">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+    &lt;select&gt;
+      &lt;option value=&quot;1&quot; selected&gt;1&lt;/option&gt;
+    &lt;/select&gt;
+</code>
+                                    </pre>
+                                    <p>如果非要赋值，不要使用 true、false，值必须是空字符串或属性的规范名称，且不要在末尾添加空格。</p>
+                                    <pre>
+<code>
+    &lt;input type=&#x27;checkbox&#x27; checked name=cheese disabled=&quot;disabled&quot;&gt;
+
+    /* or */
+
+    &lt;input type=&#x27;checkbox&#x27; checked name=cheese disabled=&quot;&quot;&gt;
+</code>
+                                    </pre>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <h5>HTML 代码格式</h5>
+                            <ul class="cr4 bh6">
+                                <li>
+                                    <h6>基本格式</h6>
+                                    <p>每个块级、列表、表格元素单独占一行，每个子元素都相对父元素缩进。</p>
+                                </li>
+                                <li>
+                                    <h6>属性值使用双引号</h6>
+                                    <p>不要省略属性值的引号，应始终添加双引号。</p>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>CSS 风格指南</h4>
+                    <ul class="cr3 bh5">
+                        <li>
+                            <h5>编码规则</h5>
+                            <ul class="cr4 bh6">
+                                <li>
+                                    <h6>CSS 代码有效性</h6>
+                                    <p>尽量使用标准定义的、有效的 CSS 代码。使用适当的 CSS 校验器进行校验</p>
+                                </li>
+                                <li>
+                                    <h6>id，class命名</h6>
+                                    <p>id，class使用语义化，通用的命名方式</p>
+                                    <ul class="pl20">
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h6>IE兼容模式设置为 Edge</h6>
+                                    <p>IE 支持通过 <meta> 标签来设置渲染前页面所应该采用的 IE 版本。除非有特殊需求，否则最好是设置为 Edge。<code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=Edge&quot;&gt;</code></p>
+                                </li>
+                                <li>
+                                    <h6>HTML有效性</h6>
+                                    <p>编写有效的 HTML 代码，能通过代码校验工具验证。使用符合 HTML5 规范的标签，不允许使用废弃的标签，如 <code>&lt;font&gt;</code>、<code>&lt;center&gt;</code>等。（部分编辑器已经对此有智能提示了，如 webStorm）</p>
+                                </li>
+                                <li>
+                                    <h6>HTML 语义化</h6>
+                                    <p>根据 HTML 各元素设计的用途使用他们。这事关可访性、重用以及代码效率，例如 h1-h6用于标题，&lt;p&gt; 用于段落，&lt;a&gt;用于链接。</p>
+                                </li>
+                                <li>
+                                    <h6>多媒体内容提供后备方案</h6>
+                                    <p>图片添加 alt 属性；视频、音频添加标题和文案说明。</p>
+                                    <p>备选内容是保障可访性的重要途径。</p>
+                                    <p>无法立即在 CSS 里设置的纯装饰图片将 alt 属性设置为空：alt=""。</p>
+                                </li>
+                                <li>
+                                    <h6>关注分离：结构、表现和行为分离</h6>
+                                    <p>严格保持结构 （标记），表现 （样式），和行为 （脚本）分离, 并尽量让三者之间的交互保持在最低限度。</p>
+                                    <p>确保文档和模板只包含 HTML 结构， 所有表现都放到样式表里，所有行为都放到脚本里；</p>
+                                    <p>尽量将脚本和样式合并到一个文件，减少外链。</p>
+                                    <p>关注分离对于可维护性至关重要，修改 HTML（结构）要比修改样式、脚本花费更多成本。</p>
+                                    <p><strong class="c-red">angular框架中的表现、行为和样式分离成本相比快捷的双向数据绑定是可以付出的。</strong></p>
+                                </li>
+                                <li>
+                                    <h6>保留可选标签，保持结构完整</h6>
+                                    <p>HTML5 规范定义了一些标签可以省略，以保持代码简洁性。但我们要求保持结构的完整，不省略可省标签，闭合所有元素，以避免不同浏览器环境下不可预知的问题出现。</p>
+                                    <p>&lt;br&gt;, &lt;hr&gt;, &lt;img&gt;, &lt;input&gt; 等自闭合（self-closing）标签都应该在结尾添加 /；</p>
+                                    <p>不要省略可选的结束标签（closing tag）（例如 &lt;/li&gt; 或 &lt;/body&gt;）。</p>
+                                </li>
+                                <li>
+                                    <h6>省略样式表和脚本的type属性</h6>
+                                    <p>使用 CSS 的样式表、使用 JavaScript 的脚本都不需要添加 type 属性。HTML5 默认按照 text/css 及 text/javascript 解析，兼容较老的浏览器。</p>
+                                </li>
+                                <li>
+                                    <h6>HTML属性顺序</h6>
+                                    <p>HTML 属性应当按照以下给出的顺序依次排列，确保代码的易读性。</p>
+                                    <p>Class 用于标识高度可复用组件，因此应该排在首位。id 用于标识具体组件，排在第二位。</p>
+                                    <ol>
+                                        <li>class</li>
+                                        <li>id, name</li>
+                                        <li>data-*</li>
+                                        <li>src, for, type, href</li>
+                                        <li>title, alt</li>
+                                        <li>aria-*, role</li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <h6>布尔值属性</h6>
+                                    <p>HTML5 规范中 <code>disabled</code>、<code>checked</code>、<code>selected</code> 等属性不用设置值。</p>
+                                    <pre>
+<code>
+    &lt;input type=&quot;text&quot; disabled&gt;
+
+    &lt;input type=&quot;checkbox&quot; value=&quot;1&quot; checked&gt;
+
+    &lt;select&gt;
+      &lt;option value=&quot;1&quot; selected&gt;1&lt;/option&gt;
+    &lt;/select&gt;
+</code>
+                                    </pre>
+                                    <p>如果非要赋值，不要使用 true、false，值必须是空字符串或属性的规范名称，且不要在末尾添加空格。</p>
+                                    <pre>
+<code>
+    &lt;input type=&#x27;checkbox&#x27; checked name=cheese disabled=&quot;disabled&quot;&gt;
+
+    /* or */
+
+    &lt;input type=&#x27;checkbox&#x27; checked name=cheese disabled=&quot;&quot;&gt;
+</code>
+                                    </pre>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <h5>HTML 代码格式</h5>
+                            <ul class="cr4 bh6">
+                                <li>
+                                    <h6>基本格式</h6>
+                                    <p>每个块级、列表、表格元素单独占一行，每个子元素都相对父元素缩进。</p>
+                                </li>
+                                <li>
+                                    <h6>属性值使用双引号</h6>
+                                    <p>不要省略属性值的引号，应始终添加双引号。</p>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </li>
 
     </ul>
 </div>
+<h2 class="bold">
+    Fuybooo-blog JavaScript规范
+</h2>
+<div class="dev-catalog">
+    <div class="dev-catalog-title"><span>目录</span></div>
+    <ul scroll-display class="dev-catalog-content cr oh">
+        <li class="catalog-parent catalog-close">
+            <a toggle-list>基本规范</a>
+            <ul class="cr2">
+                <li>
+                    <a ng-click="findAnchor()">文件编码规范</a>
+                </li>
+                <li class="catalog-parent catalog-close">
+                    <a toggle-list>JavaScript语言规范</a>
+                    <ul class="cr3">
+                        <li><a ng-click="findAnchor()">使用严格模式</a></li>
+                        <li><a ng-click="findAnchor()">语句的结尾总是使用分号</a></li>
+                        <li><a ng-click="findAnchor()">变量使用前必须声明</a></li>
+                        <li><a ng-click="findAnchor()">异常</a></li>
+                        <li><a ng-click="findAnchor()">自定义异常</a></li>
+                        <li><a ng-click="findAnchor()">标准特性总是优于非标准特性</a></li>
+                        <li><a ng-click="findAnchor()">不要封装基本类型</a></li>
+                        <li><a ng-click="findAnchor()">this</a></li>
+                        <li><a ng-click="findAnchor()">不要在Array上使用for-in循环</a></li>
+                        <li><a ng-click="findAnchor()">不要使用关联数组</a></li>
+                        <li><a ng-click="findAnchor()">用字面量代替Array和Object构造函数</a></li>
+                        <li><a ng-click="findAnchor()">类方法的定义</a></li>
+                        <li><a ng-click="findAnchor()">禁止修改内置对象的原型</a></li>
+                        <li><a ng-click="findAnchor()">闭包</a></li>
+                        <li><a ng-click="findAnchor()">eval</a></li>
+                        <li><a ng-click="findAnchor()">不要使用with语句</a></li>
+                        <li><a ng-click="findAnchor()">不要给setInterval/setTimeout传递字符串</a></li>
+                        <li><a ng-click="findAnchor()">拼接字符串</a></li>
+                    </ul>
+                </li>
+                <li class="catalog-parent catalog-close">
+                    <a toggle-list>JavaScript编码风格</a>
+                    <ul class="cr3">
+                        <li><a ng-click="findAnchor()">命名</a></li>
+                        <li><a ng-click="findAnchor()">自定义toString()方法</a></li>
+                        <li><a ng-click="findAnchor()">变量延迟初始化</a></li>
+                        <li><a ng-click="findAnchor()">明确作用域</a></li>
+                        <li><a ng-click="findAnchor()">代码格式</a></li>
+                        <li><a ng-click="findAnchor()">圆括号</a></li>
+                        <li><a ng-click="findAnchor()">字符串</a></li>
+                        <li><a ng-click="findAnchor()">对象</a></li>
+                        <li><a ng-click="findAnchor()">注释</a></li>
+                    </ul>
+                </li>
+                <li class="catalog-parent catalog-close">
+                    <a toggle-list>CSS风格指南</a>
+                    <ul class="cr3">
+                        <li><a ng-click="findAnchor()">CSS编码规则</a></li>
+                        <li><a ng-click="findAnchor()">CSS代码格式</a></li>
+                        <li><a ng-click="findAnchor()">CSS元数据规则</a></li>
+                    </ul>
+                </li>
+                <li><a ng-click="findAnchor()">参考EditConfig</a></li>
+            </ul>
+        </li>
+        <li>
+            <a>代码质量控制工具</a>
+        </li>
+        <li>
+            <a>jquery使用规范</a>
+        </li>
+        <li>
+            <a>代码格式</a>
+        </li>
+        <li class="catalog-parent catalog-close">
+            <a toggle-list>命名规范</a>
+            <ul class="cr2">
+                <li><a ng-click="findAnchor()">基本原则</a></li>
+                <li><a ng-click="findAnchor()">HTML data API</a></li>
+                <li><a ng-click="findAnchor()">JavaScript</a></li>
+            </ul>
+        </li>
+        <li>
+            <a>接口命名规范</a>
+        </li>
+        <li class="catalog-parent catalog-close">
+            <a toggle-list>注释规范</a>
+            <ul class="cr2">
+                <li><a ng-click="findAnchor()">总原则</a></li>
+                <li><a ng-click="findAnchor()">什么时候需要添加注释</a></li>
+                <li><a ng-click="findAnchor()">注释书写规范</a></li>
+            </ul>
+        </li>
+        <li class="catalog-parent catalog-close">
+            <a toggle-list>文档规范</a>
+            <ul class="cr2">
+                <li><a ng-click="findAnchor()">README.md</a></li>
+                <li><a ng-click="findAnchor()">HISTORY.md</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="dev-norm-content">
+</div>
+<script>
+    $('pre code').each(function (i, block) {
+        hljs.highlightBlock(block);
+    });
+</script>
