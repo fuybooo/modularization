@@ -10,6 +10,14 @@
 a::after{
     font-family: 'FontAwesome';
 }
+/*html{*/
+    /*font-size: 62.5%;!* 设置字体大小，以便使用rem单位：1rem = 10px *!*/
+/*}*/
+html, body{
+    min-width:890px;
+    font-size: 14px; /* 兼容低版本 */
+    /*font-size: 1.4rem; !* 兼容支持rem单位的浏览器 *!*/
+}
 .app-header {
     width: 100%;
     position: fixed;
@@ -48,16 +56,69 @@ a::after{
 
 .app-container {
     padding-top: 70px;
-    min-height: 710px;
+    min-height: 800px;
 }
+
+/*@media (max-height: 560px) {*/
+    /*.app-container{*/
+        /*min-height: 400px;*/
+    /*}*/
+/*}*/
+/*@media (max-height: 600px) {*/
+    /*.app-container{*/
+        /*min-height: 440px;*/
+    /*}*/
+/*}*/
+/*@media (max-height: 720px) {*/
+    /*.app-container{*/
+        /*min-height: 560px;*/
+    /*}*/
+/*}*/
+/*@media (max-height: 960px) {*/
+    /*.app-container{*/
+        /*min-height: 800px;*/
+    /*}*/
+/*}*/
+
 
 .app-footer {
-    text-align: center;
-    font-size: 16px;
-    height: 40px;
-    line-height: 40px;
+    padding: 30px 0 15px;
+    background-color: #555;
+    color: #999;
 }
-
+.app-footer-logo{
+    float: left;
+    display: inline-block;
+    width: 190px;
+    height: 48px;
+    padding-left: 55px;
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight:bold;
+    background: url("../images/logo48-48.png") no-repeat;
+}
+.app-footer-logo,
+.app-footer-logo:hover{
+    color: #d5d5d5;
+}
+.app-footer-links{
+    padding-left: 10px;
+}
+.app-footer-links,
+.app-footer-links li,
+.app-footer-links li a{
+    display: inline-block;
+    height: 48px;
+    line-height: 48px;
+}
+.app-footer-links li a{
+    color: #999;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.app-footer-links li a:hover{
+    color: #999;
+}
 .logo {
     background-image: url("../images/logo48-48.png");
     display: inline-block;
@@ -195,7 +256,7 @@ a::after{
     padding-top: 0;
 }
 
-.admin-user-form label.col-sm-1 {
+.admin-user-form label.col-xs-1 {
     padding-right: 0;
     padding-left: 0;
     text-align: right;
@@ -396,3 +457,39 @@ td.show .bt-col-editable .glyphicon{
     margin-left: 3px;
     margin-right: 2px;
 }
+.dev-return-top{
+    position: fixed;
+    bottom: 92px;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 25px;
+    border: 1px solid transparent;
+    border-radius: 100%;
+    background-color: #f5f5f5;
+    opacity: .6;
+    cursor: pointer;
+    z-index: 1000;
+}
+.dev-return-top:hover{
+    opacity:1;
+}
+@media (min-width: 768px){
+    .dev-return-top{
+        margin-left: 520px;
+    }
+}
+@media (min-width: 992px){
+    .dev-return-top{
+        margin-left: 720px;
+    }
+}
+@media (min-width: 1200px){
+    .dev-return-top{
+        margin-left: 920px;
+    }
+}
+
+

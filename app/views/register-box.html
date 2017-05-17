@@ -1,8 +1,8 @@
 <div class="register-box" ng-controller="RegisterController">
     <form class="form-horizontal" role="form" name="register_form" novalidate>
         <div class="form-group">
-            <label for="register-username" class="col-sm-3 control-label">账号</label>
-            <div class="col-sm-9">
+            <label for="register-username" class="col-xs-3 control-label">账号</label>
+            <div class="col-xs-9">
                 <!-- 唯一性验证，只能包含中文/字母/数字/.@|_- -->
                 <input type="text" name="username" ng-model="registerInfo.username" placeholder="请输入"
                        class="form-control" id="register-username"
@@ -18,8 +18,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="register-password" class="col-sm-3 control-label">密码</label>
-            <div class="col-sm-9">
+            <label for="register-password" class="col-xs-3 control-label">密码</label>
+            <div class="col-xs-9">
                 <input type="password" name="password" ng-model="registerInfo.password" placeholder="请输入您的密码"
                        class="form-control" id="register-password"
                        required>
@@ -28,8 +28,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="register-validateCode" class="col-sm-3 control-label">验证码</label>
-            <div class="col-sm-9">
+            <label for="register-validateCode" class="col-xs-3 control-label">验证码</label>
+            <div class="col-xs-9">
                 <input type="text" name="validateCode" ng-model="registerInfo.validateCode" placeholder="请输入验证码"
                        class="form-control" id="register-validateCode"
                        required>
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
+            <div class="col-xs-offset-3 col-xs-9">
                 <button class="btn btn-primary btn-block" ng-disabled="register_form.$invalid">登录</button>
             </div>
         </div>

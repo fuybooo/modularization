@@ -56,6 +56,9 @@ define(function (require) {
         });
         $rootScope.$on('$locationChangeStart', function(){
         });
+        $rootScope.$on('$viewContentLoaded', function(){
+        });
+
     });
     //配置信息
     app.config(['RestangularProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', '$logProvider', function (RestangularProvider, $stateProvider, $urlRouterProvider, $httpProvider, $logProvider) {

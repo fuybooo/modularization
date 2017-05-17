@@ -198,6 +198,7 @@ define(function (require) {
         /**
          * 验证码指令
          */
+
         .directive('validateCode', function ($compile, commonService) {
             return {
                 restrict: 'EA',
@@ -208,6 +209,17 @@ define(function (require) {
                     $(ele).click(function () {
                         $(this).replaceWith($compile('<validate-code></validate-code>')(scope));
                     });
+                }
+            }
+        })
+        /**
+         * 评论模块
+         */
+        .directive('commentsModule', function(){
+            return {
+                templateUrl: 'app/views/comments-module.html',
+                link: function(scope, ele){
+
                 }
             }
         })

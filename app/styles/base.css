@@ -88,6 +88,10 @@ textarea.ng-dirty.ng-invalid:focus {
     display: inline-flex;
 }
 
+.dib {
+    display: inline-block;
+}
+
 .oh {
     overflow: hidden;
 }
