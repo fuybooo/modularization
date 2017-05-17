@@ -433,6 +433,9 @@ ul[class^="cr"] li h6{
 }
 
 /* margin-right */
+.mr2 {
+    margin-right: 2px;
+}
 .mr15 {
     margin-right: 15px;
 }
@@ -448,6 +451,9 @@ ul[class^="cr"] li h6{
     margin-bottom: 20px;
 }
 /* margin-left */
+.ml3 {
+    margin-left: 3px;
+}
 .ml100 {
     margin-left: 100px;
 }

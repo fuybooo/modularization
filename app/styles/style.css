@@ -492,4 +492,25 @@ td.show .bt-col-editable .glyphicon{
     }
 }
 
+/* 评论 */
+.comments-info{
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.comments-count-box{
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 5px;
+}
+.comments-info-sort a{
+    margin-left: 20px;
+    color: #FF7359;
+}
+.comments-info-sort a.active,
+.comments-info-sort a:hover{
+    font-weight:bold;
+    color: #ff1d30;
+}
+
+
 
