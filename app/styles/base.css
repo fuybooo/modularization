@@ -1,17 +1,21 @@
 /* 常用样式汇总 */
-ul{
+ul {
     list-style: none;
     padding-left: 0;
 }
-*[ng-click]{
+
+*[ng-click] {
     cursor: pointer;
 }
-a{
+
+a {
     cursor: pointer;
 }
-a:hover{
+
+a:hover {
     text-decoration: none;
 }
+
 /* form start */
 input.ng-dirty.ng-invalid,
 select.ng-dirty.ng-invalid,
@@ -33,7 +37,7 @@ textarea.ng-dirty.ng-invalid:focus {
 
 /* form end */
 
-.input-xs{
+.input-xs {
     height: auto;
     padding: 2px 10px;
 }
@@ -42,6 +46,7 @@ textarea.ng-dirty.ng-invalid:focus {
 .lh30 {
     line-height: 30px;
 }
+
 .lh50 {
     line-height: 50px;
 }
@@ -71,7 +76,8 @@ textarea.ng-dirty.ng-invalid:focus {
 .cp {
     cursor: pointer;
 }
-.cd{
+
+.cd {
     cursor: default;
 }
 
@@ -112,14 +118,17 @@ textarea.ng-dirty.ng-invalid:focus {
 .pf {
     position: fixed;
 }
+
 /* float */
-.fl{
+.fl {
     float: left;
 }
-.fr{
+
+.fr {
     float: right;
 }
-.cb{
+
+.cb {
     clear: both;
 }
 
@@ -136,79 +145,87 @@ pre {
     max-height: 340px;
 }
 
-.middle-text-30{
-    height:30px;
-    line-height:30px;
+.middle-text-30 {
+    height: 30px;
+    line-height: 30px;
 }
 
 /* css计数器 */
-ul.cr{
+ul.cr {
     counter-reset: u1;
 }
-li::before{
+
+li::before {
     color: #8c8c8c;
 }
-ul.cr > li::before{
-    content: counter(u1)' ';
+
+ul.cr > li::before {
+    content: counter(u1) ' ';
     counter-increment: u1;
 }
-ul.cr2{
+
+ul.cr2 {
     counter-reset: u2;
 }
-ul.cr2 > li::before{
-    content: counter(u1)'.'counter(u2)' ';
+
+ul.cr2 > li::before {
+    content: counter(u1) '.' counter(u2) ' ';
     counter-increment: u2;
 }
-ul.cr3{
+
+ul.cr3 {
     counter-reset: u3;
 }
-ul.cr3 > li::before{
-    content: counter(u1)'.'counter(u2)'.'counter(u3)' ';
+
+ul.cr3 > li::before {
+    content: counter(u1) '.' counter(u2) '.' counter(u3) ' ';
     counter-increment: u3;
 }
-ul.cr4{
+
+ul.cr4 {
     counter-reset: u4;
 }
-ul.cr4 > li::before{
-    content: counter(u1)'.'counter(u2)'.'counter(u3)'.'counter(u4)' ';
+
+ul.cr4 > li::before {
+    content: counter(u1) '.' counter(u2) '.' counter(u3) '.' counter(u4) ' ';
     counter-increment: u4;
 }
 
 ul[class^="cr"].bh3 li::before,
-ul[class^="cr"].bh3 li h3{
+ul[class^="cr"].bh3 li h3 {
     font-size: 20px;
 }
 
 ul[class^="cr"].bh4 li::before,
-ul[class^="cr"].bh4 li h4{
+ul[class^="cr"].bh4 li h4 {
     font-size: 18px;
 }
 
 ul[class^="cr"].bh5 li::before,
-ul[class^="cr"].bh5 li h5{
+ul[class^="cr"].bh5 li h5 {
     font-size: 16px;
 }
 
 ul[class^="cr"].bh6 li::before,
-ul[class^="cr"].bh6 li h6{
+ul[class^="cr"].bh6 li h6 {
     font-size: 15px;
 }
-ul[class^="cr"] li::before{
+
+ul[class^="cr"] li::before {
     font-family: 黑体 Arial black;
 }
+
 ul[class^="cr"] li h1,
 ul[class^="cr"] li h2,
 ul[class^="cr"] li h3,
 ul[class^="cr"] li h4,
 ul[class^="cr"] li h5,
-ul[class^="cr"] li h6{
+ul[class^="cr"] li h6 {
     display: inline-block;
     font-weight: bold;
     margin-top: 1.6em;
     margin-bottom: 1em;
 }
-
-
 
 /* css tools */
 
@@ -227,6 +244,7 @@ ul[class^="cr"] li h6{
 .f9 {
     font-size: 9px;
 }
+
 .f14 {
     font-size: 14px;
 }
@@ -238,7 +256,8 @@ ul[class^="cr"] li h6{
 .f20 {
     font-size: 20px;
 }
-.bold{
+
+.bold {
     font-weight: bold;
 }
 
@@ -259,8 +278,17 @@ ul[class^="cr"] li h6{
 .w {
     width: 100%;
 }
+
 .w5 {
     width: 5px;
+}
+
+.w10 {
+    width: 10px;
+}
+
+.w11 {
+    width: 11px;
 }
 
 .w18 {
@@ -270,6 +298,7 @@ ul[class^="cr"] li h6{
 .w195 {
     width: 195px;
 }
+
 .w260 {
     width: 260px;
 }
@@ -277,23 +306,31 @@ ul[class^="cr"] li h6{
 .w480 {
     width: 480px;
 }
-.w1000{
+
+.w1000 {
     width: 1000px;
 }
 
-
-.w_1{
+.w_1 {
     width: 1%;
 }
-.w_5{
+
+.w_5 {
     width: 5%;
 }
-.w_10{
-    width:10%;
+
+.w_10 {
+    width: 10%;
 }
-.w_20{
+
+.w_11 {
+    width: 11%;
+}
+
+.w_20 {
     width: 20%;
 }
+
 .w_40 {
     width: 40%;
 }
@@ -322,14 +359,16 @@ ul[class^="cr"] li h6{
 .w_90 {
     width: 90%;
 }
+
 /* 1/6 */
-.w__1_6{
+.w__1_6 {
     width: 16.6666666666666%;
 }
 
-.min-w1000{
+.min-w1000 {
     min-width: 1000px;
 }
+
 /* height */
 .h {
     height: 100%;
@@ -342,8 +381,9 @@ ul[class^="cr"] li h6{
 .h20 {
     height: 20px;
 }
+
 .h20i {
-    height: 20px!important;
+    height: 20px !important;
 }
 
 .h30 {
@@ -361,37 +401,48 @@ ul[class^="cr"] li h6{
 .h100 {
     height: 100px;
 }
+
 .h200 {
     height: 200px;
 }
+
 .h300 {
     height: 300px;
 }
+
 .h400 {
     height: 400px;
 }
+
 .h600 {
     height: 600px;
 }
-.min-h1000{
+
+.min-h1000 {
     min-height: 600px;
 }
+
 /* top */
 .t50 {
     top: 50px;
 }
+
 .t60 {
     top: 60px;
 }
+
 .t61 {
     top: 61px;
 }
+
 .t70 {
     top: 70px;
 }
+
 .t100 {
     top: 100px;
 }
+
 .t_50 {
     top: 50%;
 }
@@ -409,9 +460,11 @@ ul[class^="cr"] li h6{
 .l100 {
     left: 100px;
 }
-.m0{
-    margin:0;
+
+.m0 {
+    margin: 0;
 }
+
 /* margin-top */
 .mt0 {
     margin-top: 0;
@@ -424,6 +477,7 @@ ul[class^="cr"] li h6{
 .mt20 {
     margin-top: 30px;
 }
+
 .mt30 {
     margin-top: 30px;
 }
@@ -436,9 +490,11 @@ ul[class^="cr"] li h6{
 .mr2 {
     margin-right: 2px;
 }
+
 .mr15 {
     margin-right: 15px;
 }
+
 .mr30 {
     margin-right: 30px;
 }
@@ -447,13 +503,16 @@ ul[class^="cr"] li h6{
 .mb0 {
     margin-bottom: 0;
 }
-.mb20{
+
+.mb20 {
     margin-bottom: 20px;
 }
+
 /* margin-left */
 .ml3 {
     margin-left: 3px;
 }
+
 .ml100 {
     margin-left: 100px;
 }
@@ -465,11 +524,16 @@ ul[class^="cr"] li h6{
 .ml356 {
     margin-left: 356px;
 }
-/* padding */
-.p0{
-    padding:0;
+.ml_11{
+    margin-left: 11%;
 }
-.p05{
+
+/* padding */
+.p0 {
+    padding: 0;
+}
+
+.p05 {
     padding: 0 5px;
 }
 
@@ -485,12 +549,14 @@ ul[class^="cr"] li h6{
 /* pr已经被占用，这时加上第二个字母以示区分 */
 
 /* padding-right */
-.pri0{
+.pri0 {
     padding-right: 0;
 }
-.pri5{
+
+.pri5 {
     padding-right: 5px;
 }
+
 .pri15 {
     padding-right: 15px;
 }
@@ -504,15 +570,18 @@ ul[class^="cr"] li h6{
 }
 
 /* padding-left */
-.pl0{
-    padding-left:0;
+.pl0 {
+    padding-left: 0;
 }
-.pl5{
+
+.pl5 {
     padding-left: 5px;
 }
-.pl20{
+
+.pl20 {
     padding-left: 20px;
 }
+
 .pl_3 {
     padding-left: 3%;
 }

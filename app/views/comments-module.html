@@ -1,11 +1,93 @@
 <div class="comments-wrap container-fluid">
-    <div class="row comments-info">
+    <div class="row comments-info no-padding-row">
         <div class="col-xs-6">
             <span class="comments-count-box">共<span class="ml3 mr2 text-danger bold">108</span>条评论</span>
             <span class="comments-count-box">共<span class="ml3 mr2 text-danger bold">91</span>条新浪微博</span>
         </div>
-        <div class="col-xs-6 comments-info-sort ">
+        <div class="col-xs-6 comments-info-sort">
             <a href="" class="active">最新</a><a href="">最早</a><a href="">最热</a>
         </div>
     </div>
+    <!--评论展示区-->
+    <div class="row no-padding-row">
+        <div class="col-xs-2 comments-user-box w_11">
+            <a class="comments-user-head">
+                <img src="app/images/noavatar_default.png" alt="默认头像">
+            </a>
+        </div>
+        <div class="col-xs-10">
+            <h4 class="comments-username" gradient-text-normal>5夜U0</h4>
+            <p class="comments-content">我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！</p>
+            <p class="comments-toolbar-operate">
+                <span>2017年05月18日</span>
+                <a class="common-icon common-icon-reply" ng-click="showCommentsPost=!showCommentsPost">回复</a>
+                <a class="common-icon common-icon-thumb">点赞</a>
+                <a class="common-icon common-icon-share">转发</a>
+                <a class="common-icon common-icon-trash">删除</a>
+                <a class="common-icon common-icon-report">举报</a>
+            </p>
+            <div comments-module-post ng-show="showCommentsPost"></div>
+        </div>
+    </div>
+    <div class="row no-padding-row">
+        <div class="col-xs-2 comments-user-box w_11">
+            <a class="comments-user-head">
+                <img src="app/images/noavatar_default.png" alt="默认头像">
+            </a>
+        </div>
+        <div class="col-xs-10">
+            <h4 class="comments-username comments-username-level-1" gradient-text>5夜U0</h4>
+            <p class="comments-content">我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！</p>
+            <p class="comments-toolbar-operate">
+                <span>2017年05月18日</span>
+                <a class="common-icon common-icon-reply" ng-click="showCommentsPost=!showCommentsPost">回复</a>
+                <a class="common-icon common-icon-thumb">点赞</a>
+                <a class="common-icon common-icon-share">转发</a>
+                <a class="common-icon common-icon-trash">删除</a>
+                <a class="common-icon common-icon-report">举报</a>
+            </p>
+            <div comments-module-post ng-show="showCommentsPost"></div>
+        </div>
+    </div>
+    <!--登录区-->
+    <div class="row no-padding-row">
+        <div class="col-xs-2 w_11">
+            <p>社交账号登录：</p>
+        </div>
+        <div class="col-xs-10 login-social-box">
+            <div class="row">
+                <div class="col-xs-1">
+                    <span class="login-social login-wechat">微信</span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="login-social login-weibo">微博</span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="login-social login-qq">QQ</span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="login-social login-baidu">百度</span>
+                </div>
+                <div class="col-xs-2">
+                    <a href="" ng-click="showMoreSocial=!showMoreSocial"><span ng-show="!showMoreSocial">更多</span><span ng-show="showMoreSocial">收起</span>&nbsp;&gt;&gt;</a>
+                </div>
+            </div>
+            <div class="row login-social-more" ng-show="showMoreSocial">
+                <div class="col-xs-1">
+                    <span class="login-social login-douban">豆瓣</span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="login-social login-renren">人人</span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="login-social login-kaixin">开心</span>
+                </div>
+                <div class="col-xs-1">
+                    <span class="login-social login-google">谷歌</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--发表评论区-->
+    <div comments-module-post></div>
 </div>
