@@ -260,77 +260,43 @@ define(function (require) {
                         return backgroundImage;
                     };
                     $(ele).css('background-image', getBackgroundImage());
-                    if(MAX > 2) {
-                        setInterval(function () {
-                            $(ele).css('background-image', getBackgroundImage());
-                        }, 4000);
-                    }
-
                 }
             }
         })
         /**
-         * 使文字渐变（兼容所有浏览器）
+         * 使文字渐变（兼容所有浏览器） --- 未完成
          */
         .directive('gradientTextNormal', function () {
             return {
                 link: function (scope, ele, attrs) {
+                    var textArray = $(ele).text();
+                    var l = textArray.length;
+                    var get256Num = function(number){
+                        return number % 256;
+                    };
+                    var c = function(){
+                        return Math.floor(Math.random() * 256);
+                    };
+                    // 获取文字颜色数组
+                    var colorArray = [];
+                    for(var i=0;i<l;i++){
+                        colorArray.push({
+                            r: c(),
+                            g: c(),
+                            b: c()
+                        });
+                    }
+                    var _r = 1, _g = 1, _b = 1;
                     var getGradientText = function(){
                         var spans = '';
-                        var textArray = $(ele).text();
-                        var l = textArray.length;
-                        var c = function () {
-                            return {
-                                r: Math.floor(Math.random() * 256),
-                                g: Math.floor(Math.random() * 256),
-                                b: Math.floor(Math.random() * 256)
-                            };
-                        };
-                        var color = c();
-                        var MIN_SPACE = 4;
-                        var getSpace = function(rgb){
-                            return Math.floor((255 - rgb) / l) - MIN_SPACE;
-                        };
-                        var getNumber255 = function(number){
-                            return Math.floor(number % 255);
-                        };
-                        var getRandom3 = function(){
-                            return Math.floor(Math.random() * 3 + 1);
-                        }
-                        var space_r = getSpace(color.r); // 小于等于0说明该颜色值较大，应该递减，否则递增
-                        var space_g = getSpace(color.g);
-                        var space_b = getSpace(color.b);
-                        var randomRgb = getRandom3();
                         for(var i=0;i<l;i++){
                             var t = textArray[i];
-                            spans += '<span style="color: rgb(' + getNumber255(color.r) + ',' + getNumber255(color.g) + ',' + getNumber255(color.b) + ')">' + t + '</span>';
-                            if(randomRgb === 1){
-                                if(space_r <= 0){
-                                    color.r -= MIN_SPACE;
-                                }else{
-                                    color.r += MIN_SPACE;
-                                }
-                            }
-                            if(randomRgb === 2){
-                                if(space_g <= 0){
-                                    color.g -= MIN_SPACE;
-                                }else{
-                                    color.g += MIN_SPACE;
-                                }
-                            }
-                            if(randomRgb === 3){
-                                if(space_b <= 0){
-                                    color.b -= MIN_SPACE;
-                                }else{
-                                    color.b += MIN_SPACE;
-                                }
-                            }
+                            var color = colorArray[i];
+                            spans += '<span style="color: rgb(' + get256Num(color.r) + ',' + get256Num(color.g) + ',' + get256Num(color.b) + ')">' + t + '</span>';
                         }
-                        console.log(spans);
                         $(ele).html(spans);
                     };
                     getGradientText();
-                    setInterval(getGradientText, 200);
 
                 }
             }

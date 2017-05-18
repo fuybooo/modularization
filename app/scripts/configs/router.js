@@ -234,6 +234,10 @@ define(function (require) {
                     'scripts/test/baidu-map-special-directive'
                 ]
             })
+            .state('home.gradientSpecial', {
+                url: '/test/gradientSpecial',
+                templateUrl: 'app/views/test/gradient-special.html'
+            })
         ;
         $urlRouterProvider.otherwise('');
     }]);

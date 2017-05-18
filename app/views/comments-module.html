@@ -9,38 +9,20 @@
         </div>
     </div>
     <!--评论展示区-->
-    <div class="row no-padding-row">
+    <div class="row no-padding-row mb20">
         <div class="col-xs-2 comments-user-box w_11">
             <a class="comments-user-head">
                 <img src="app/images/noavatar_default.png" alt="默认头像">
             </a>
         </div>
         <div class="col-xs-10">
-            <h4 class="comments-username" gradient-text-normal>5夜U0</h4>
+            <h4 class="comments-username gradient-fluid-time-30 gradient-fluid-text" data-level="11" gradient-text>5夜U0</h4>
             <p class="comments-content">我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！</p>
             <p class="comments-toolbar-operate">
                 <span>2017年05月18日</span>
-                <a class="common-icon common-icon-reply" ng-click="showCommentsPost=!showCommentsPost">回复</a>
-                <a class="common-icon common-icon-thumb">点赞</a>
-                <a class="common-icon common-icon-share">转发</a>
-                <a class="common-icon common-icon-trash">删除</a>
-                <a class="common-icon common-icon-report">举报</a>
-            </p>
-            <div comments-module-post ng-show="showCommentsPost"></div>
-        </div>
-    </div>
-    <div class="row no-padding-row">
-        <div class="col-xs-2 comments-user-box w_11">
-            <a class="comments-user-head">
-                <img src="app/images/noavatar_default.png" alt="默认头像">
-            </a>
-        </div>
-        <div class="col-xs-10">
-            <h4 class="comments-username comments-username-level-1" gradient-text>5夜U0</h4>
-            <p class="comments-content">我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！我认为写的不错，辛苦了，楼主！</p>
-            <p class="comments-toolbar-operate">
-                <span>2017年05月18日</span>
-                <a class="common-icon common-icon-reply" ng-click="showCommentsPost=!showCommentsPost">回复</a>
+                <a class="common-icon common-icon-reply" ng-click="showCommentsPost=!showCommentsPost">
+                    <span ng-show="!showCommentsPost">回复</span><span ng-show="showCommentsPost">收起回复</span>
+                </a>
                 <a class="common-icon common-icon-thumb">点赞</a>
                 <a class="common-icon common-icon-share">转发</a>
                 <a class="common-icon common-icon-trash">删除</a>
@@ -50,7 +32,7 @@
         </div>
     </div>
     <!--登录区-->
-    <div class="row no-padding-row">
+    <div class="row no-padding-row mb20">
         <div class="col-xs-2 w_11">
             <p>社交账号登录：</p>
         </div>
