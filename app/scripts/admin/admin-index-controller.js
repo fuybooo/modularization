@@ -3,10 +3,7 @@ define(function (require) {
     var $ = require('jquery');
     app.controller('AdminIndexController', function ($rootScope, $scope, $location,$anchorScroll) {
         console.log('AdminIndexController');
-        $rootScope.hides = {
-            appHeader:true,
-            appFooter:true
-        };
+        
 
 
     });

@@ -1,9 +1,9 @@
 <!--导航部分-->
-<div class="app-header" home-nav></div>
+<div class="app-header" home-nav ng-hide="isFuyboooMall"></div>
 <!--内容部分-->
-<section class="app-container" ui-view=""></section>
+<section class="app-container" ng-class="{pt52i: isLanding, pt0i:isFuyboooMall}" ui-view=""></section>
 <!--底部-->
-<footer class="app-footer" ng-hide="hides.appFooter">
+<footer class="app-footer" ng-hide="isAdmin || isFuyboooMall">
     <div class="container">
         <div class="row">
             <div class="col-xs-8">

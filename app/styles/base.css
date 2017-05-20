@@ -136,7 +136,10 @@ textarea.ng-dirty.ng-invalid:focus {
 .bgc-dff0d8 {
     background-color: #dff0d8;
 }
-
+/* border-radius */
+.br0i{
+    border-radius: 0 !important;
+}
 pre {
     padding: 0px;
     margin: 0;
@@ -538,10 +541,21 @@ ul[class^="cr"] li h6 {
 }
 
 /* padding-top */
+.pt0i {
+    padding-top: 0 !important;
+}
+.pt32 {
+    padding-top: 32px;
+}
+.pt32i {
+    padding-top: 32px !important;
+}
 .pt40 {
     padding-top: 40px;
 }
-
+.pt52i {
+    padding-top: 52px !important;
+}
 .pt100 {
     padding-top: 100px;
 }

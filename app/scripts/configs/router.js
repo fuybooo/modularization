@@ -1,7 +1,7 @@
 define(function (require) {
     var app = require('app');
     var $ = require('jquery');
-    var titleSuffix = '-Fuybooo的博客网站';
+    var titleSuffix = 'Fuybooo的博客网站';
     
     
     //用于初始化全局的数据，仅对全局作用域起作用
@@ -41,16 +41,23 @@ define(function (require) {
         $rootScope.$on('$stateChangeStart', function (evt, next, current) {
             $(window).off('scroll.fuybooo');
             // 确定当前页面的标题
-            $rootScope.pageTitle = $rootScope.titleNameMap[next.name] + titleSuffix;
+            var title;
+            $rootScope.pageTitle = ((title = $rootScope.titleNameMap[next.name]) ? (title + '-') : '')  + titleSuffix;
             // 当前页面的样式
             if(next.name.indexOf('.admin') !== -1){
-                $rootScope.admin = {
-                    addUser: true
-                };
+                $rootScope.isAdmin = true;
             }else{
-                $rootScope.admin = {
-                    addUser: false
-                };
+                $rootScope.isAdmin = false;
+            }
+            if(next.name.indexOf('.fuyboooMall') !== -1){
+                $rootScope.isFuyboooMall = true;
+            }else{
+                $rootScope.isFuyboooMall = false;
+            }
+            if(next.name.indexOf('.land') !== -1){
+                $rootScope.isLanding = true;
+            }else{
+                $rootScope.isLanding = false;
             }
             
         });
@@ -237,6 +244,53 @@ define(function (require) {
             .state('home.gradientSpecial', {
                 url: '/test/gradientSpecial',
                 templateUrl: 'app/views/test/gradient-special.html'
+            })
+            .state('home.fuyboooMall', {
+                abstract: true,
+                url: '/fuybooo-mall',
+                templateUrl: 'app/views/fuybooo-mall/fuybooo-mall.html',
+                dependencies: [
+                    'scripts/fuybooo-mall/fm-ad-controller',
+                    'scripts/fuybooo-mall/fm-banner-controller',
+                    'scripts/fuybooo-mall/fm-header-controller',
+                    'scripts/fuybooo-mall/fm-menu-controller',
+                    'scripts/fuybooo-mall/fm-nav-controller',
+                    'scripts/fuybooo-mall/fm-second-kill-controller',
+                    'scripts/fuybooo-mall/fm-service-controller'
+                ]
+            })
+            .state('home.fuyboooMall.home', {
+                url: '/home',
+                views: {
+                    'fm-ad':{
+                        templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-ad.html',
+                        controller: 'FmAdController'
+                    },
+                    'fm-banner':{
+                        templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-banner.html',
+                        controller: 'FmBannerController'
+                    },
+                    'fm-header':{
+                        templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-header.html',
+                        controller: 'FmHeaderController'
+                    },
+                    'fm-menu':{
+                        templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-menu.html',
+                        controller: 'FmMenuController'
+                    },
+                    'fm-nav':{
+                        templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-nav.html',
+                        controller: 'FmNavController'
+                    },
+                    'fm-second-kill':{
+                        templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-second-kill.html',
+                        controller: 'FmSecondKillController'
+                    },
+                    'fm-service':{
+                        templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-service.html',
+                        controller: 'FmServiceController'
+                    }
+                }
             })
         ;
         $urlRouterProvider.otherwise('');
