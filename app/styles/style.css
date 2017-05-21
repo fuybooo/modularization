@@ -16,6 +16,7 @@ a::after {
 /*font-size: 62.5%;!* 设置字体大小，以便使用rem单位：1rem = 10px *!*/
 /*}*/
 html, body {
+    cursor: default;
     min-width: 890px;
     font-size: 14px; /* 兼容低版本 */
     /*font-size: 1.4rem; !* 兼容支持rem单位的浏览器 *!*/
@@ -99,7 +100,7 @@ html, body {
     padding-top: 10px;
     font-size: 20px;
     font-weight: bold;
-    background: url("../images/logo48-48.png") no-repeat;
+    background: url("../images/logo_48.png") no-repeat;
 }
 
 .app-footer-logo,
@@ -130,7 +131,7 @@ html, body {
 }
 
 .logo {
-    background-image: url("../images/logo48-48.png");
+    background-image: url("../images/logo_48.png");
     display: inline-block;
     width: 48px;
     height: 48px;
@@ -879,15 +880,18 @@ td.show .bt-col-editable .glyphicon {
     border-radius: 0;
     transition: background-color .3s ease-out,border-color .3s ease-out;
 }
-.fm-ad-container{
-    width: 100%;
-    background-color: #f94f6a;
-    position: absolute;
-}
-.fm-ad-wrap{
+
+/* 商城 */
+
+.fm-center{
     width: 1200px;
     margin: 0 auto;
     position: relative;
+}
+
+/* ad */
+.fm-ad-container{
+    background-color: #f94f6a;
 }
 .fm-ad-img{
     display: block;
@@ -913,6 +917,9 @@ td.show .bt-col-editable .glyphicon {
     background-color: #F93559;
 }
 .hide-fm-ad{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     animation-name: fm-hide;
     animation-duration: 1s;
     /* 动画结束后保持结束时的状态 */
@@ -932,3 +939,219 @@ td.show .bt-col-editable .glyphicon {
         top: -80px;
     }
 }
+/* ad end */
+
+/* nav */
+.fm-nav-container{
+    border-bottom: 1px solid #ddd;
+    background-color: #e3e4e5;
+}
+.fm-nav-container ul > li > ul{
+    margin: 0;
+}
+.fm-nav-wrap{
+    font-size: 12px;
+    color: #777;
+    height: 30px;
+}
+.fm-nav-wrap > li{
+    float: left;
+}
+.fm-nav-link{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 7px;
+    color: #555;
+}
+.fm-nav-register{
+    color: #ff2330;
+}
+a.fm-nav-link:hover{
+    color: #d81e06;
+}
+.fm-nav-parent{
+    border: 1px solid transparent;
+}
+.fm-nav-parent::after{
+    font-family: "FontAwesome";
+    content: "\f107";
+    margin-left: 5px;
+}
+.hover .fm-nav-parent{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid transparent;
+}
+
+li.hover .fm-nav-white-spacer {
+    padding-bottom: 1px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    width: 100%;
+    background-color: #fff;
+    z-index: 2;
+    position: absolute;
+}
+
+.fm-nav-logo{
+    width: 170px;
+    height: 170px!important;
+    background: #f8fff7 url("../images/FM_logo_red_200.png") no-repeat;
+    background-size: cover;
+    box-shadow: 0 -12px 10px rgba(0,0,0,.2);
+}
+.fm-nav-position::before{
+    font-family: "FontAwesome";
+    content: "\f041";
+    color: #d81e06;
+    margin-left: 180px;
+    margin-right: 5px;
+    font-size: 14px;
+}
+.fm-nav .spacer{
+    height: 10px;
+    width: 1px;
+    background-color: #ccc;
+    margin: 11px 5px 0;
+}
+.fm-nav-dropdown{
+    position: absolute;
+    display: none;
+    border: 1px solid #ccc;
+    box-shadow: 1px 2px 1px rgba(0,0,0,.2);
+}
+.hover .fm-nav-dropdown{
+    display: block;
+}
+.fm-nav-dropdown-my-fm,
+.fm-nav-dropdown-customer-service{
+    width: 202px;
+}
+.fm-nav-dropdown-my-fm li,
+.fm-nav-dropdown-customer-service li{
+    float: left;
+    width: 100px;
+}
+.fm-nav-dropdown-my-fm li.divider,
+.fm-nav-dropdown-customer-service li.divider
+{
+    width: 202px;
+    height: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #eee;
+}
+.fm-nav-dropdown-title{
+    width: 202px!important;
+    font-weight:bold;
+}
+.fm-nav-dropdown-web-nav{
+    left: 0;
+    width: 1200px;
+    box-sizing: border-box; /* 为元素设置border之后,元素的宽高不会加上border的宽度 */
+    background-color: #fff;
+}
+.fm-nav-dropdown-web-nav>li{
+    float: left;
+    width: 258px;
+}
+.fm-nav-dropdown-web-nav>li.divider{
+    width: 1px;
+    height: 180px;
+    margin-left: 5px;
+    margin-right: 20px;
+    background-color: #eee;
+}
+
+.fm-nav-dropdown-web-nav-item li{
+    float: left;
+    width: 86px;
+}
+.fm-nav-dropdown-web-nav-item .fm-nav-dropdown-title{
+    height: 30px;
+    width: 258px;
+    line-height:30px;
+    padding-left: 7px;
+    font-weight: bold;
+}
+.fm-nav-dropdown-web-nav>li.fm-nav-dropdown-web-nav-special{
+    width: 344px;
+}
+.fm-nav-dropdown-web-nav-special .fm-nav-dropdown-title{
+    width: 344px!important;
+}
+/* nav end */
+
+/* header */
+
+.fm-header-container{
+    width: 860px;
+    margin: 0 auto;
+}
+.fm-header-search-input{
+    width: 100%;
+    border:1px solid #d81e06;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    padding-right: 100px;
+    outline: none;
+}
+.fm-header-camera::before{
+    display: block;
+    font-family: "FontAwesome";
+    content: "\f030";
+    color: #000;
+    opacity: .4;
+    padding-left: 25px;
+    font-size: 22px;
+    margin-top: 5px;
+}
+.fm-header-camera{
+    position: absolute;
+    top: 0;
+    right: 60px;
+    width: 56px;
+    height: 40px;
+    cursor: pointer;
+}
+.fm-header-search-btn::before{
+    display: block;
+    font-family: "FontAwesome";
+    content: "\f002";
+    color: #fff;
+    padding-left: 19px;
+    font-size: 22px;
+    margin-top: 4px;
+}
+.fm-header-search-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 56px;
+    height: 40px;
+    background-color: #d81e06;
+    cursor: pointer;
+}
+.fm-header-hot-words-link{
+    display: block;
+    color: #999;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 7px;
+    font-size: 12px;
+}
+.fm-header-hot-words-link.first-item{
+    padding-left: 0;
+    color: #ff2330;
+}
+.fm-header-hot-words-link.last-item{
+    padding-right: 0;
+}
+.fm-header-hot-words-link:hover{
+    color: #d81e06;
+}
+/* header end */
+
+/* 商城 end */

@@ -115,6 +115,10 @@ textarea.ng-dirty.ng-invalid:focus {
     position: relative;
 }
 
+.pri {
+    position: relative!important;
+}
+
 .pf {
     position: fixed;
 }
@@ -123,8 +127,22 @@ textarea.ng-dirty.ng-invalid:focus {
 .fl {
     float: left;
 }
+.fli {
+    float: left!important;
+}
+
+ul.ul-li-fl > li {
+    float: left;
+}
 
 .fr {
+    float: right;
+}
+.fri {
+    float: right!important;
+}
+
+ul.ul-li-fr > li {
     float: right;
 }
 
@@ -136,10 +154,12 @@ textarea.ng-dirty.ng-invalid:focus {
 .bgc-dff0d8 {
     background-color: #dff0d8;
 }
+
 /* border-radius */
-.br0i{
+.br0i {
     border-radius: 0 !important;
 }
+
 pre {
     padding: 0px;
     margin: 0;
@@ -468,9 +488,17 @@ ul[class^="cr"] li h6 {
     margin: 0;
 }
 
+.m0i {
+    margin: 0 !important;
+}
+
 /* margin-top */
 .mt0 {
     margin-top: 0;
+}
+
+.mt0i {
+    margin-top: 0 !important;
 }
 
 .mt10 {
@@ -507,6 +535,10 @@ ul[class^="cr"] li h6 {
     margin-bottom: 0;
 }
 
+.mb0i {
+    margin-bottom: 0 !important;
+}
+
 .mb20 {
     margin-bottom: 20px;
 }
@@ -520,6 +552,10 @@ ul[class^="cr"] li h6 {
     margin-left: 100px;
 }
 
+.ml260 {
+    margin-left: 260px;
+}
+
 .ml298 {
     margin-left: 298px;
 }
@@ -527,7 +563,8 @@ ul[class^="cr"] li h6 {
 .ml356 {
     margin-left: 356px;
 }
-.ml_11{
+
+.ml_11 {
     margin-left: 11%;
 }
 
@@ -544,18 +581,23 @@ ul[class^="cr"] li h6 {
 .pt0i {
     padding-top: 0 !important;
 }
+
 .pt32 {
     padding-top: 32px;
 }
+
 .pt32i {
     padding-top: 32px !important;
 }
+
 .pt40 {
     padding-top: 40px;
 }
+
 .pt52i {
     padding-top: 52px !important;
 }
+
 .pt100 {
     padding-top: 100px;
 }
@@ -565,6 +607,9 @@ ul[class^="cr"] li h6 {
 /* padding-right */
 .pri0 {
     padding-right: 0;
+}
+.pri0i {
+    padding-right: 0!important;
 }
 
 .pri5 {
