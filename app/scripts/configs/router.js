@@ -37,6 +37,9 @@ define(function (require) {
             $rootScope.previousState_name = fromState.name;
             $rootScope.previousState_params = fromParams;
         });
+        /**
+         * 实现自定义返回按钮：ng-click="back()"
+         */
         $rootScope.back = function () {
             $state.go($rootScope.previousState_name, $rootScope.previousState_params);
         };
@@ -66,6 +69,33 @@ define(function (require) {
         $rootScope.$on('$locationChangeStart', function(){
         });
         $rootScope.$on('$viewContentLoaded', function(){
+            var $navLi = $('.js-app-header').find('.navbar-nav li');
+            var $navA = $navLi.find('a');
+            // 刷新页面时保持选中状态
+            var state = $state.current.name === 'home.land' ? 'home.landing' : $state.current.name;
+            $navLi.removeClass('active');
+            $navA.each(function () {
+                if ($(this).attr('ui-sref') === state) {
+                    $(this).parent().addClass('active');
+                    var dropDown = $(this).parent().parent().parent();
+                    if (dropDown.hasClass('dropdown')) {
+                        dropDown.addClass('active');
+                    }
+                }
+            });
+            $navA.off('click.hn').on('click.hn', function () {
+                var target = $(this).parent();
+                if (!target.hasClass('dropdown')) { // 点击的是下拉菜单时,不做任何事情,否则
+                    // 清除所有的active
+                    $navLi.removeClass('active');
+                    // 改变导航栏样式
+                    if ($(this).parent().parent().hasClass('dropdown-menu')) {
+                        target = $(this).parent().parent().parent();
+                        $(this).parent().addClass('active');
+                    }
+                    target.addClass('active');
+                }
+            });
         });
 
     });
@@ -81,7 +111,6 @@ define(function (require) {
                 abstract: true,
                 url: '',
                 templateUrl: 'app/views/home.html',
-                // support to load more controllers, services, filters, ...
                 dependencies: [
                     'scripts/home/home-directive', // 提供了home-nav的指令
                     'scripts/home/home-controller',
@@ -92,7 +121,7 @@ define(function (require) {
                     'scripts/login/user-info-controller'
                 ]
             })
-            // 当home为abstract时,url需要和home的url保持一致,才能正常显示
+            // // 当home为abstract时,url需要和home的url保持一致,才能正常显示
             .state('home.land', {
                 url: '',
                 templateUrl: 'app/views/landing.html',

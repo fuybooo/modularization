@@ -818,6 +818,19 @@ td.show .bt-col-editable .glyphicon {
     background-repeat: no-repeat;
     position: relative;
 }
+
+@media (max-height: 965px) {
+    .landing-banner{
+        height: 965px;
+    }
+}
+
+@media (max-height: 810px) {
+    .landing-banner{
+        height: 810px;
+    }
+}
+
 .landing-banner-1{
     background-image: url("../images/banner_yellow.jpg");
 }

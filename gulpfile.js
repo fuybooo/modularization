@@ -135,6 +135,13 @@ gulp.task('clean:views', function () {
         }))
         .pipe($.clean());
 });
+// 生成template 缓存模块
+gulp.task('template', function(){
+    return gulp.src('./app/views/**/*.html')
+        .pipe($.angularTemplatecache())
+        .pipe(gulp.dest('./app/scripts/template-cache'))
+});
+
 var copyA2B = function (A, B) {
     var dirs = ['images', 'json', 'scripts', 'styles', 'vendor', 'views'];
     for (var i = 0, l = dirs.length; i < l; i++) {
@@ -194,6 +201,7 @@ gulp.task("bak", ['clean:temp'], function () {
     return copyA2B('app', '.temp');
 });
 
+// 进入release模式之前，需要先进行template的缓存，（再修改部分代码？）如何用gulp执行
 // copy dist -- 进入release模式
 gulp.task('replace', ['clean:app'], function () {
     return copyA2B('dist', 'app');
