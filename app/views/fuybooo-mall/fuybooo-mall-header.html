@@ -1,4 +1,4 @@
-<div class="fm-header-container cb container-fluid">
+<div class="fm-header-container cb pr container-fluid">
     <div class="row no-padding-row">
         <div class="col-xs-8 col-xs-offset-2 mt30">
             <input class="fm-header-search-input" type="text" placeholder="小米空气净化器">
@@ -18,7 +18,7 @@
             <li><a href="" class="fm-header-hot-words-link last-item">插座面板</a></li>
         </ul>
     </div>
-    <div class="row no-padding-row">
+    <div class="row no-padding-row mt20">
         <ul class="col-xs-10 col-xs-offset-1 fm-header-nav ul-li-fl">
             <li><a href="" class="fm-header-link">秒杀</a></li>
             <li><a href="" class="fm-header-link">优惠券</a></li>
@@ -32,11 +32,13 @@
         </ul>
     </div>
 
-    <div class="fm-header-cart">
+    <div class="fm-header-cart" ng-class="{hover:fmHoverCart}" ng-mouseenter="fmHoverCart=true" ng-mouseleave="fmHoverCart=false">
         <a href="">我的购物车</a>
-        <dl class="fm-header-cart-detail">
-            <dd></dd>
-            <dt></dt>
-        </dl>
+        <span class="fm-header-cart-count">8</span>
+        <div class="fm-white-spacer"></div>
+        <div class="fm-header-cart-detail cart-empty" ng-show="fmHoverCart">
+            <i class="cart-empty-img"></i>
+            购物车中还没有商品，赶紧选购吧！
+        </div>
     </div>
 </div>
