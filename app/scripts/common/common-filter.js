@@ -1,6 +1,6 @@
 define(function(require){
     var app = require('app');
-    app.filter('filter', function(data){
+    app.filter('languageFilter', function(data){
 
     });
 

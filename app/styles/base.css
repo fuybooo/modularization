@@ -85,6 +85,9 @@ textarea.ng-dirty.ng-invalid:focus {
 .dn {
     display: none;
 }
+.di {
+    display: inline;
+}
 
 .db {
     display: block;
@@ -316,6 +319,14 @@ ul[class^="cr"] li h6 {
 
 .w18 {
     width: 18px;
+}
+
+.w70 {
+    width: 70px;
+}
+
+.w90 {
+    width: 90px;
 }
 
 .w195 {
@@ -578,9 +589,12 @@ ul[class^="cr"] li h6 {
 .p10{
     padding: 10px;
 }
-
+/* 简写两个值的情况 0为特殊情况，可以不用加下划线*/
 .p05 {
     padding: 0 5px;
+}
+.p5_10{
+    padding: 5px 10px;
 }
 
 /* padding-top */

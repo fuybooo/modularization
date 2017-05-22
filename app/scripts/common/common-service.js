@@ -14,7 +14,8 @@ define(function(require){
          * 所有的sessionStorage
          */
         service.SESSION = {
-            userInfo: 'userInfo'
+            userInfo: 'userInfo',
+            localLanguage: 'localLanguage'
         };
         /**
          * 所有的事件
@@ -29,6 +30,14 @@ define(function(require){
             success: 'success',
             logout: 'logout'
         };
+
+        // /**
+        //  * language 多语言转换 translateLanguage
+        //  * @type {null}
+        //  */
+        // service.TL = function(key){
+        //     $translate.instant(key);
+        // };
         
         var timeout = null;
         /**

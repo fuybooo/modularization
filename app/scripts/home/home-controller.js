@@ -1,7 +1,7 @@
 define(function (require) {
     var app = require('app');
     var $ = require('jquery');
-    app.controller('HomeController', function ($rootScope, $scope, $state, commonService) {
+    app.controller('HomeController', function ($rootScope, $scope, $state,$translate, commonService) {
         console.log('HomeController');
         $rootScope.$on(commonService.EVENT.login, function (e, d) {
             if (d === commonService.EVENT_KEY.success || d === commonService.EVENT_KEY.logout) {
@@ -36,7 +36,14 @@ define(function (require) {
         $scope.toggleUserMenu = function () {
             $scope.isUserMenu = !$scope.isUserMenu;
         };
-
+        /**
+         * 切换语言
+         */
+        $scope.language = localStorage.getItem(commonService.SESSION.localLanguage) || 'cn';
+        $scope.changeLanguage = function(language){
+            $translate.use(language);
+            localStorage.setItem(commonService.SESSION.localLanguage, language);
+        }
 
         // $('.js-nav-user').off('click').on('click', function(){
         //     // 会直接更新视图,不需要手动触发$digest

@@ -1,4 +1,4 @@
-<div class="navbar navbar-default br0i min-w890i" ng-class="{'navbar-inverse': isLanding}" role="navigation">
+<div class="navbar un-responsive navbar-default br0i min-w890i" ng-class="{'navbar-inverse': isLanding}" role="navigation">
     <div class="navbar-header nav-header mr30">
         <a href="" class="navbar-brand nav-logo"><span class="logo"></span></a>
     </div>
@@ -33,9 +33,17 @@
         </li>
         <li><a ui-sref="home.fuyboooMall.home">Fuybooo-Mall</a></li>
     </ul>
+    <div class="language-box">
+        <label>选择语言</label>
+        <select class="form-control input-xs w90 di" ng-model="language" ng-change="changeLanguage(language)">
+            <!--超过两个option则使用ng-repeat-->
+            <option value="cn">中文</option>
+            <option value="en">English</option>
+        </select>
+    </div>
     <div class="login-register-box">
-        <span ng-hide="isLoggedIn"><span class="cp text-default" pop-login>登录</span><em
-                class="border"></em><span class="cp text-default" pop-register>注册</span></span>
+        <span ng-hide="isLoggedIn"><span class="cp text-default" pop-login translate="login"></span><em
+                class="border"></em><span class="cp text-default" pop-register translate="register"></span></span>
         <span ng-show="isLoggedIn"><span>欢迎您，</span><span class="cp js-nav-user" ng-click="toggleUserMenu()">{{username}}<span
                 class="caret"></span><ul class="list-unstyled nav-user-ul js-nav-user-li" ng-show="isUserMenu">
                 <li pop-edit-user>修改资料</li>

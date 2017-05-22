@@ -1,7 +1,7 @@
 <div class="admin-article-detail">
     <span current-place></span>
     <div class="panel panel-info mt20">
-        <div class="panel-heading">{{subTitle}}</div>
+        <div class="panel-heading p5_10">{{subTitle}}</div>
         <div class="panel-body p10">
             <form class="form-horizontal form-common" name="topic_form" novalidate>
                 <div class="form-group">
@@ -10,7 +10,10 @@
                         <input class="form-control input-sm" type="text" name="title" ng-model="topic.title" required ng-minlength="2" ng-maxlength="50" unique-title sensitive-word>
                         <span validate-generator data-custom-validate="unique-title:文章标题已经存在 , sensitive-word:标题不能包含敏感字"></span>
                     </div>
-
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-1">文章内容</label>
+                    <div class="col-xs-10 ueditor" ng-model="topic.content"></div>
                 </div>
             </form>
         </div>

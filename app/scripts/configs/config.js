@@ -25,7 +25,14 @@ require.config({
         // 'baidu-map': 'vendor/echarts/dist/extension/bmap',
         'bootstrap-datetimepicker':'vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker',
         'bootstrap-datetimepicker-zh-CN':'vendor/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN',
+        'angular-translate': 'vendor/angular-translate/angular-translate.min',
+        'angular-translate-loader-static-files': 'vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.min',
 
+        'ueditor-config': 'vendor/ueditor/ueditor.config',
+        'ueditor-all': 'vendor/ueditor/ueditor.all',
+        'angular-ueditor': 'vendor/angular-ueditor/dist/angular-ueditor',
+
+        'templates': 'scripts/template-cache/templates',
         // app文件
         'app': 'scripts/configs/app',
         'router': 'scripts/configs/router',
@@ -73,6 +80,15 @@ require.config({
         'angular-async-loader':{
             deps:['angular'],
             exports:'angular-async-loader'
+        },
+        'angular-translate':{
+            deps:['angular']
+        },
+        'angular-translate-loader-static-files':{
+            deps:['angular']
+        },
+        'angular-ueditor':{
+            deps:['angular']
         },
         'bootstrap':{
             deps:['jquery']
@@ -137,7 +153,11 @@ require(
         'angular-touch',
         'angular-bootstrap',
         'restangular',
-
+        'angular-translate',
+        'angular-translate-loader-static-files',
+        'ueditor-config',
+        'ueditor-all',
+        'angular-ueditor',
         'bootstrap',
         'zTree',
         'ECharts',
@@ -149,7 +169,7 @@ require(
 
         'bootstrap-table-zh-CN',
         'bootstrap-datetimepicker-zh-CN',
-
+        'templates',
         'app',
         'router',
         'commonService',

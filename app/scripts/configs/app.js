@@ -10,26 +10,34 @@ define(
         //console.info("创建angular项目启动模块app,初始化依赖项有'ui.router','ui.load','restangular','ngSanitize','ngAnimate','ngTouch','ui.bootstrap'...");
         /*var angular = require('angular');
          var asyncLoader = require('angular-async-loader');*/
-        var app = angular.module('app', ['ui.router', 'ui.load', 'restangular', 'ngSanitize', 'ngAnimate', 'ngTouch', 'ui.bootstrap']);
+        var app = angular.module('app', ['ui.router', 'ui.load', 'restangular', 'ngSanitize', 'ngAnimate', 'ngTouch', 'ui.bootstrap','pascalprecht.translate'/* 国际化 */, 'templates'/* 模板缓存 */,'ng.ueditor'/* angular-ueditor */]);
         //配置APP
         app.config(configure);
         app.constant('baseRequestUrl', 'http://127.0.0.1:3003/');
         app.constant('webSocketUrl', 'ws://127.0.0.1:3004');
         app.constant('baseStaticUrl', 'app/');
         //注入参数
-        configure.$inject = ['$stateProvider', '$locationProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider'];
+        configure.$inject = ['$stateProvider', '$locationProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider','$translateProvider'];
         // initialze app module for async loader
         asyncLoader.configure(app);
         //返回  app模块的引用
         module.exports = app;
         //外部引入
-        function configure($stateProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider) {
+        function configure($stateProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider, $translateProvider) {
             app.registerStateProvider = $stateProvider.state;
             app.registerController = $controllerProvider.register;
             app.registerDirective = $compileProvider.directive;
             app.registerFilter = $filterProvider.register;
             app.registerFactory = $provide.factory;
             app.registerService = $provide.service;
+
+            // 配置国际化
+            var lang = localStorage.getItem('localLanguage') || 'cn';
+            $translateProvider.useStaticFilesLoader({
+                prefix: 'app/json/i18n/',
+                suffix: '.json'
+            });
+            $translateProvider.preferredLanguage(lang);
 
             // Use x-www-form-urlencoded Content-Type
             $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
