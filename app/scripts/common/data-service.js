@@ -146,6 +146,14 @@ define(function (require) {
         service.quickEdit = function (url, params, callback) {
             post(url, params, callback);
         };
+        /**
+         * 验证敏感字
+         * @param value
+         * @param callback
+         */
+        service.validateSensitiveWord = function(value, callback){
+            post('sensitiveWord', {value: value, action: 'validate'}, callback);
+        };
         return service;
     });
 });

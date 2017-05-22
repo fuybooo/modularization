@@ -20,7 +20,9 @@ define(function (require) {
             'home.admin': '管理系统',
             'home.admin.index': '管理系统-首页',
             'home.admin.user': '管理系统-人员管理',
-            'home.admin.viewResults': '管理系统-查询成绩',
+            'home.admin.viewResults': '管理系统-成绩管理-查询成绩',
+            'home.admin.article': '管理系统-文章管理',
+            'home.admin.articleDetail': '管理系统-文章管理',
             'home.commonFunction': '通用方法',
             'home.developmentNorm': '开发手册-开发规范',
             'home.scroll': '滚动效果',
@@ -192,6 +194,23 @@ define(function (require) {
                 controller: 'AdminViewResultsController',
                 dependencies: [
                     'scripts/admin/admin-view-results-controller'
+                ]
+            })
+            .state('home.admin.article', {
+                url: '/article',
+                templateUrl: 'app/views/admin/admin-article.html',
+                controller: 'AdminArticleController',
+                dependencies: [
+                    'scripts/admin/admin-article-controller'
+                ]
+            })
+            .state('home.admin.articleDetail', {
+                url: '/article-detail?flag',
+                params: {flag: ''},
+                templateUrl: 'app/views/admin/admin-article-detail.html',
+                controller: 'AdminArticleDetailController',
+                dependencies: [
+                    'scripts/admin/admin-article-detail-controller'
                 ]
             })
             .state('home.commonFunction', {

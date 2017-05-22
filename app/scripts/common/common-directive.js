@@ -2,11 +2,12 @@ define(function (require) {
     var app = require('app');
     var $ = require('jquery');
     var angular = require('angular');
-    // 生成form表单
-    /**
-     * 根据json配置文件生成模板或者直接取模板内容
-     */
-    app.directive('formGenerator', function (commonService) {
+
+    app
+        /**
+         * 根据json配置文件生成模板或者直接取模板内容
+         */
+        .directive('formGenerator', function (commonService) {
         /**
          * 生成json模板或者通过html路径获取模板内容
          * @param tElement
@@ -115,7 +116,7 @@ define(function (require) {
                                 '<div class="col-' + colType + '-' + rightCol + '">' +
                                 labelStart + 'name="' + item.name + '" ng-model="' + item.model + '" placeholder="' + item.placeholder + item.label + '"' +
                                 'class="form-control" ' + (item.id ? 'id="' + item.id + '"' : '') + ruleString + labelEnd +
-                                '<span class="text-danger"' +
+                                '<span class="text-danger" ' +
                                 'ng-show="' + formName + '.' + item.name + '.$dirty && ' + formName + '.' + item.name + '.$invalid">' +
                                 validArea.join('') +
                                 '</span>' +
@@ -174,9 +175,89 @@ define(function (require) {
             template: template
         };
     })
-    /**
-     * 验证码控件指令，生成一个表单控件（只支持一个控件占一行的情况）
-     */
+        /**
+         * 生成验证规则
+         */
+        .directive('validateGenerator', function (commonService) {
+            return {
+                replace: true,
+                template: function (tEle, tAttr) {
+                    // 获取生成验证规则的目标
+                    var $target = tAttr.validateGenerator ? $('#' + tAttr.validateGenerator) : $(tEle).prev();
+                    // 找到验证规则，自定义验证规则需要在span标签上写明：data-custom-validate="custom-a:已经存在,custom-b:包含敏感字"；以中划线拼接
+                    var validates = [];
+                    // 添加angular内置验证规则
+                    var type = $target.attr('type');
+                    if (type === 'email') {
+                        validates.push({name: 'email', desc: '邮箱格式不正确'});
+                    } else if (type === 'number') {
+                        validates.push({name: 'number', desc: '数字格式不正确'});
+                    } else if (type === 'url') {
+                        validates.push({name: 'url', desc: 'url格式不正确'});
+                    }
+                    var ngValidates = [
+                        {name: 'required', desc: '必填项不能为空'},
+                        {name: 'ng-minlength', desc: '最少字符限制'},
+                        {name: 'ng-maxlength', desc: '最大字符限制'},
+                        {name: 'ng-pattern', desc: '输入不符合规范'}
+                    ];
+                    for (var i = 0, l = ngValidates.length; i < l; i++) {
+                        var item = ngValidates[i];
+                        if (item.name in $target[0].attributes) {
+                            var suffix = '';
+                            if (item.name === 'ng-minlength' || item.name === 'ng-maxlength') {
+                                suffix = $target.attr(item.name) + '位';
+                            }
+                            validates.push({name: item.name.replace('ng-', ''), desc: item.desc + suffix});
+                        }
+                    }
+                    // 添加自定义验证规则
+                    validates = validates.concat(tAttr.customValidate ?
+                        tAttr.customValidate.split(',').map(function (item) {
+                            return {name: item.split(':')[0].trim(), desc: item.split(':')[1].trim()};
+                        }).filter(function (item) {
+                            return item.name in $target[0].attributes;
+                        }).map(function(item){
+                            return {name: commonService.transformString(item.name), desc: item.desc};
+                        }) : []);
+                    // 获取formName
+                    var formName = tAttr.form || $(commonService.findParentNode(tEle[0], 'form')).attr('name');
+                    if (!formName) {
+                        throw new Error('Cannot find form!');
+                    }
+                    var _ngShowArr = [];
+                    var ngShowArr = [];
+                    var validateHtml = [];
+                    // 根据验证规则生成html
+                    angular.forEach(validates, function (rule) {
+                        _ngShowArr.push(formName + '.' + $target[0].name + '.$error.' + rule.name);
+                        validateHtml.push('<span ng-show="%%ngShow%%">' + rule.desc + '</span>');
+                    });
+                    // 处理ngShow,使得提示信息只显示一种
+                    var ngShow = '';
+                    for (i = 0; i < _ngShowArr.length; i++) {
+                        ngShow += '!' + _ngShowArr[i];
+                        if (i < _ngShowArr.length - 1) {
+                            ngShow += ' && ';
+                        }
+                    }
+                    for (i = 0; i < _ngShowArr.length; i++) {
+                        var _ngShow = ngShow;
+                        for (var j = i + 1; j < _ngShowArr.length; j++) {
+                            _ngShow = _ngShow.replace(' && !' + _ngShowArr[j], '');
+                        }
+                        ngShowArr[i] = _ngShow.replace('!' + _ngShowArr[i], _ngShowArr[i]);
+                    }
+                    for (i = 0; i < validateHtml.length; i++) {
+                        validateHtml[i] = validateHtml[i].replace('%%ngShow%%', ngShowArr[i]);
+                    }
+                    return '<span ng-show="!' + formName + '.'  + $target[0].name + '.$pristine &&!' + formName + '.'  + $target[0].name + '.$valid" class="text-danger">' + validateHtml.join('') + '</span>';
+                }
+            }
+        })
+        /**
+         * 验证码控件指令，生成一个表单控件（只支持一个控件占一行的情况）
+         */
         .directive('validateCodeControl', function () {
             return {
                 replace: true,
@@ -184,10 +265,10 @@ define(function (require) {
                     return '<div class="form-group">' +
                         '<label ' + (tAttrs.id ? 'for="' + tAttrs.id + '"' : '') + ' class="col-' + tAttrs.coltype + '-' + tAttrs.labelcol + ' control-label"><span class="c-red">*</span>验证码</label>' +
                         '<div class="col-' + tAttrs.coltype + '-' + tAttrs.rightcol + '">' +
-                        '<input type="text" name="' + tAttrs.name + '" ng-model="' + tAttrs.model + '" placeholder="请输入验证码"' +
+                        '<input type="text" name="' + tAttrs.name + '" ng-model="' + tAttrs.model + '" placeholder="请输入验证码" ' +
                         'class="form-control w_50 fl" ' + (tAttrs.id ? 'id="' + tAttrs.id + '"' : '') + 'required>' +
                         '<validate-code></validate-code>' +
-                        '<span class="form-error-tip text-danger"' +
+                        '<span class="form-error-tip text-danger" ' +
                         'ng-show="' + tAttrs.formname + '.' + tAttrs.name + '.$dirty && ' + tAttrs.formname + '.' + tAttrs.name + '.$invalid">验证码不能为空</span>' +
                         '</div>' +
                         '</div>';
@@ -198,13 +279,12 @@ define(function (require) {
         /**
          * 验证码指令
          */
-
         .directive('validateCode', function ($compile, commonService) {
             return {
                 restrict: 'EA',
                 replace: true,
                 template: commonService.getValidateCode,
-                link: function (scope, ele, attrs) {
+                link: function (scope, ele) {
                     // 点击刷新验证码
                     $(ele).click(function () {
                         $(this).replaceWith($compile('<validate-code></validate-code>')(scope));
@@ -244,8 +324,8 @@ define(function (require) {
                     var c = function () {
                         return 'rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ')';
                     };
-                    var getBackgroundImage = function(){
-                        if(MAX <= 2){
+                    var getBackgroundImage = function () {
+                        if (MAX <= 2) {
                             return '-webkit-gradient(linear, left top, right bottom, from(' + c() + '), to(' + c() + '))';
                         }
                         var backgroundImage = '-webkit-linear-gradient(left, ';
@@ -268,28 +348,27 @@ define(function (require) {
          */
         .directive('gradientTextNormal', function () {
             return {
-                link: function (scope, ele, attrs) {
+                link: function (scope, ele) {
                     var textArray = $(ele).text();
                     var l = textArray.length;
-                    var get256Num = function(number){
+                    var get256Num = function (number) {
                         return number % 256;
                     };
-                    var c = function(){
+                    var c = function () {
                         return Math.floor(Math.random() * 256);
                     };
                     // 获取文字颜色数组
                     var colorArray = [];
-                    for(var i=0;i<l;i++){
+                    for (var i = 0; i < l; i++) {
                         colorArray.push({
                             r: c(),
                             g: c(),
                             b: c()
                         });
                     }
-                    var _r = 1, _g = 1, _b = 1;
-                    var getGradientText = function(){
+                    var getGradientText = function () {
                         var spans = '';
-                        for(var i=0;i<l;i++){
+                        for (var i = 0; i < l; i++) {
                             var t = textArray[i];
                             var color = colorArray[i];
                             spans += '<span style="color: rgb(' + get256Num(color.r) + ',' + get256Num(color.g) + ',' + get256Num(color.b) + ')">' + t + '</span>';
@@ -298,6 +377,26 @@ define(function (require) {
                     };
                     getGradientText();
 
+                }
+            }
+        })
+        /**
+         * 提示敏感字
+         */
+        .directive('sensitiveWord', function($timeout, dataService){
+            return {
+                require: 'ngModel',
+                link: function(scope,element,attrs,c){
+                    var timeout = null;
+                    scope.$watch(attrs.ngModel, function(n){
+                        if(!n)return;
+                        if(timeout) $timeout.cancel();
+                        timeout = $timeout(function(){
+                            dataService.validateSensitiveWord(c.$modelValue, function(res){
+                                c.$setValidity('sensitiveWord', res.code === 0);
+                            });
+                        }, 300);
+                    })
                 }
             }
         })

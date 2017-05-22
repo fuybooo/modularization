@@ -198,6 +198,21 @@ define(function(require){
             });
             $('.js-sure-edit').off('click.sure.edit').on('click.sure.edit', options.ok);
         };
+        /**
+         * 查找指定父节点
+         * @param ele 元素 dom对象
+         * @param nodeName 指定元素名称
+         * @desc 比如在如下结构中：<form><div><div><input>,查找input元素的父级form元素var form = findParentNode(inputElement, 'form');
+         */
+        service.findParentNode = function(ele, nodeName){
+            var parent = ele.parentNode;
+            if(!parent) return null;
+            if(parent.nodeName.toLowerCase() === nodeName.toLowerCase()){
+                return parent;
+            }else{
+                return service.findParentNode(parent, nodeName);
+            }
+        };
     
     
         return service;

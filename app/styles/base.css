@@ -391,6 +391,9 @@ ul[class^="cr"] li h6 {
 .min-w1000 {
     min-width: 1000px;
 }
+.min-w890i {
+    min-width: 890px!important;
+}
 
 /* height */
 .h {
@@ -571,6 +574,9 @@ ul[class^="cr"] li h6 {
 /* padding */
 .p0 {
     padding: 0;
+}
+.p10{
+    padding: 10px;
 }
 
 .p05 {

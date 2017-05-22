@@ -14,6 +14,11 @@ define(function (require) {
                 $('.dev-side').removeClass('pf t70');
                 $('.js-dev-return-top').addClass('dn');
             }
-        })
+        });
+
+        $scope.postComment = function(){
+            console.log('发送评论')
+        };
+
     });
 });
