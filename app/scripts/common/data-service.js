@@ -154,6 +154,23 @@ define(function (require) {
         service.validateSensitiveWord = function(value, callback){
             post('sensitiveWord', {value: value, action: 'validate'}, callback);
         };
+        /**
+         * 保存topic（修改/新增）
+         * @param params
+         * @param callback
+         */
+        service.saveTopic = function(params, callback){
+            post('topic', params, callback);
+        };
+        /**
+         * 查询topic
+         * @param params
+         * @param callback
+         */
+        service.getTopics = function(params, callback){
+            get('topic', params, callback);
+        };
+
         return service;
     });
 });

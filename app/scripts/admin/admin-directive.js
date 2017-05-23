@@ -15,8 +15,7 @@ define(function (require) {
                         $(this).addClass('active');
                     }
                 });
-                
-                $(ele).find('a').click(function () {
+                $(ele).find('a').off('click.admin.menu').on('click.admin.menu', function () {
                     if ($(this).parent().hasClass('active')) {
                         return;
                     }

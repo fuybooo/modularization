@@ -1,0 +1,64 @@
+<div class="admin-topic-detail">
+    <span current-place></span>
+    <div class="panel panel-info mt20">
+        <div class="panel-heading p5_10">{{subTitle}}</div>
+        <div class="panel-body p10">
+            <form class="form-horizontal form-common" name="topic_form" novalidate>
+                <div class="form-group">
+                    <label class="col-xs-1"><span class="c-red">*</span>文章类别</label>
+                    <div class="col-xs-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="type" ng-model="topic.type" value="1">系统
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type" ng-init="topic.type=1" ng-model="topic.type" value="2">日志
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-1"><span class="c-red">*</span>文章标题</label>
+                    <div class="col-xs-10">
+                        <input class="form-control input-sm" type="text" name="title" ng-model="topic.title"
+                               placeholder="标题不可超过50字符" required ng-minlength="2" ng-maxlength="50" unique-title
+                               sensitive-word>
+                        <!--生成验证信息-->
+                        <span validate-generator
+                              data-custom-validate="unique-title:文章标题已经存在,sensitive-word:标题不能包含敏感字"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-1">文章描述</label>
+                    <div class="col-xs-10">
+                        <textarea class="form-control" name="desc" ng-model="topic.desc" placeholder="描述不可超过250字符"
+                                  ng-maxlength="250"></textarea>
+                        <!--生成验证信息-->
+                        <span validate-generator></span>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="topic.type==2">
+                    <label class="col-xs-1">文章内容</label>
+                    <div class="col-xs-10 ueditor" ng-model="topic.content"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-2 col-xs-offset-1">
+                        <button type="reset" class="btn btn-info btn-block btn-sm"
+                                ng-click="back()">返回
+                        </button>
+                    </div>
+                    <div class="col-xs-2 col-xs-offset-1">
+                        <button type="reset" class="btn btn-info btn-block btn-sm"
+                                ng-disabled="topic_form.$pristine || !topic_form.$dirty">重置
+                        </button>
+                    </div>
+                    <div class="col-xs-2 col-xs-offset-1">
+                        <button class="btn btn-success btn-block btn-sm"
+                                ng-disabled="topic_form.$pristine || topic_form.$invalid"
+                                ng-click="saveTopic(topic)">提交
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

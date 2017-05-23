@@ -338,6 +338,7 @@ span.current-place {
     text-align: right;
 }
 
+/* bootstrap-table下的操作列中的按钮样式 */
 .bootstrap-table .glyphicon {
     color: #333;
     cursor: pointer;
@@ -1009,7 +1010,7 @@ td.show .bt-col-editable .glyphicon {
     border-right: 1px solid #ccc;
     width: 100%;
     background-color: #fff;
-    z-index: 2;
+    z-index: 5; /* 需要高与dropdown元素 */
     position: absolute;
 }
 
@@ -1039,7 +1040,8 @@ td.show .bt-col-editable .glyphicon {
     display: none;
     border: 1px solid #ccc;
     box-shadow: 1px 2px 1px rgba(0,0,0,.2);
-    z-index: 2;
+    background-color: #fff;
+    z-index: 4; /* 需要高于header中的元素 */
 }
 .hover .fm-nav-dropdown{
     display: block;
@@ -1253,12 +1255,11 @@ td.show .bt-col-editable .glyphicon {
 
 /* 商城 end */
 /* 表单 */
-.form-common .form-group{
-    line-height: 30px;
-}
 .form-common [class^=col-]{
     padding-right: 0;
 }
-.form-common label{
+.form-common label[class^=col-]{
     text-align: right;
+    margin-bottom: 0px;
+    padding-top: 5px;
 }

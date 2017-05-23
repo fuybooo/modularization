@@ -24,17 +24,26 @@
                         <input type="text" class="form-control input-sm" ng-model="query.postDateEnd">
                     </div>
                     <div class="col-xs-1">
-                        <button class="btn btn-primary btn-block btn-sm">查询</button>
+                        <button class="btn btn-primary btn-block btn-sm" ng-click="getTopics()">查询</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <div class="panel panel-success admin-query mt20">
-        <div class="panel-heading">查询结果</div>
+        <div class="panel-heading">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-1 pl0i">
+                        查询结果
+                    </div>
+                    <div class="col-xs-1 col-xs-offset-9"><button class="btn btn-danger btn-xs btn-block" ng-click="delTopic()">批量删除</button></div>
+                    <div class="col-xs-1"><button class="btn btn-info btn-xs btn-block" ng-click="addTopic()">新增</button></div>
+                </div>
+            </div>
+        </div>
         <div class="panel-body">
             <table id="bt-admin-topic"></table>
         </div>
     </div>
-    <button class="btn btn-info btn-block btn-sm" ng-click="addArticle()">新增文章</button>
 </div>

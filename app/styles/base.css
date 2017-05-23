@@ -176,6 +176,16 @@ pre {
     line-height: 30px;
 }
 
+.table-layout-fixed{
+    table-layout: fixed; /* 表格固定布局，配合表格中的文本裁剪使用 */
+}
+.td-ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+}
+
 /* css计数器 */
 ul.cr {
     counter-reset: u1;
@@ -651,6 +661,9 @@ ul[class^="cr"] li h6 {
 /* padding-left */
 .pl0 {
     padding-left: 0;
+}
+.pl0i {
+    padding-left: 0!important;
 }
 
 .pl5 {

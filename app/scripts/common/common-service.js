@@ -30,6 +30,14 @@ define(function(require){
             success: 'success',
             logout: 'logout'
         };
+        /**
+         * 所有状态
+         */
+        service.STATUS = {
+            NOT_LOGGED_IN: -1,
+            SUCCESS: 0,
+            ERROR: 1
+        };
 
         // /**
         //  * language 多语言转换 translateLanguage
@@ -48,17 +56,17 @@ define(function(require){
         service.alert = function(text, state){
             if(arguments.length === 0){
                 text = '操作成功！';
-                state = 's';
+                state = 0;
             }
 
             var cls = 'success';
-            if(state === 's' || !state){
+            if(state === 's' || state === undefined || state === 0){
                 cls = 'success';
-            }else if(state === 'i'){
+            }else if(state === 'i' || state === 2){
                 cls = 'info';
-            }else if(state === 'w'){
+            }else if(state === 'w' || state === 3){
                 cls = 'warning';
-            }else if(state === 'd'){
+            }else if(state === 'd' || state === 1){
                 cls = 'danger';
             }else{
                 cls = 'danger';
