@@ -3,5 +3,6 @@ define(function (require) {
     var $ = require('jquery');
     app.controller('FmBannerController', function ($scope) {
         console.log('FmBannerController');
+        
     });
 });

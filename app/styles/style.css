@@ -64,14 +64,16 @@ html, body {
 
 .language-box{
     position: absolute;
-    right: 20%;
+    right: 0;
     height: 50px;
-    width: 150px;
     padding-top: 13px;
 }
-.language-box label{
-    color: #9d9d9d;
-    font-weight:normal;
+.language-box select{
+    padding: 2px;
+    width: 64px;
+    display: inline-block;
+    font-size: 9px;
+    height: initial;
 }
 
 .app-container {
@@ -907,6 +909,7 @@ td.show .bt-col-editable .glyphicon {
     margin: 0 auto;
     position: relative;
 }
+.fm-center a:hover,
 .fm-nav a:hover,
 .fm-header a:hover{
     color: #d81e06;
@@ -1252,6 +1255,50 @@ td.show .bt-col-editable .glyphicon {
 }
 
 /* header end */
+
+/* 左侧menu */
+.fm-menu{
+    width: 170px;
+    height: 480px;
+    padding: 16px 0;
+    float: left;
+    background-color: #6e6568;
+}
+.fm-menu-item{
+    height: 28px;
+    line-height: 28px;
+    padding-left: 12px;
+    overflow: hidden;
+    font-size: 0; /* 父元素设置font-size为0,避免元素排列之间的间距? */
+}
+.fm-menu-item:hover{
+    background-color: #999395;
+}
+.fm-menu-link,
+.fm-menu-line{
+    font-size: 14px;
+    color: #fff;
+}
+.fm-menu-line{
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.fm-banner{
+    width: 790px;
+    height: 480px;
+    float: left;
+    margin-left: 20px;
+}
+.fm-banner-slider-main{
+    height: 340px;
+    overflow: hidden;
+    position: relative;
+}
+
+/*.fm-menu-link:hover{*/
+    /*color: #fff;*/
+/*}*/
 
 /* 商城 end */
 /* 表单 */

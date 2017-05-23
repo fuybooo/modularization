@@ -345,7 +345,10 @@ define(function (require) {
                     },
                     'fm-banner': {
                         templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-banner.html',
-                        controller: 'FmBannerController'
+                        controller: 'FmBannerController',
+                        dependencies: [
+                            'scripts/fuybooo-mall/fm-banner-directive'
+                        ]
                     },
                     'fm-header': {
                         templateUrl: 'app/views/fuybooo-mall/fuybooo-mall-header.html',
