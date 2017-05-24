@@ -1,5 +1,5 @@
-<div class="fm-banner-slider-main">
-    <ul class="fm-banner-slider-list" slider-list>
+<div class="fm-banner-slider-main" slider-list ng-class="{hover: isSliderHover}" ng-mouseenter="isSliderHover=true" ng-mouseleave="isSliderHover=false">
+    <ul class="fm-banner-slider-list">
         <li class="fm-banner-slider-item">
             <a href="" class="fm-banner-slider-item-link">
                 <img src="../app/images/fm-slider-1.jpg" alt="" class="fm-banner-slider-item-img">
@@ -41,6 +41,16 @@
             </a>
         </li>
     </ul>
-    <span class="fm-banner-slider-btn fm-banner-slider-btn-prev icon-font-awesome"></span>
-    <span class="fm-banner-slider-btn fm-banner-slider-btn-next icon-font-awesome"></span>
+    <span class="fm-banner-slider-btn fm-banner-slider-btn-prev common-icon"></span>
+    <span class="fm-banner-slider-btn fm-banner-slider-btn-next common-icon"></span>
+    <div class="fm-banner-slider-indicator">
+        <span class="fm-banner-slider-indicator-item first-item active"></span>
+        <span class="fm-banner-slider-indicator-item"></span>
+        <span class="fm-banner-slider-indicator-item"></span>
+        <span class="fm-banner-slider-indicator-item"></span>
+        <span class="fm-banner-slider-indicator-item"></span>
+        <span class="fm-banner-slider-indicator-item"></span>
+        <span class="fm-banner-slider-indicator-item"></span>
+        <span class="fm-banner-slider-indicator-item last-item"></span>
+    </div>
 </div>
