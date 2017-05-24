@@ -10,15 +10,17 @@ define(function (require) {
             action = 'add';
         }
         $scope.saveTopic = function(topic){
+            var isAdd = arguments[1];
+
             // 防止digest循环
             var _topic = $.extend(true, {}, topic);
             _topic.action = action;
             dataService.saveTopic(_topic, function(res){
-                console.log('保存topic:res', res);
-                if(res.code === 0){
-                    $state.go('home.admin.topic');
+                if(!isAdd) {
+                    if (res.code === 0) {
+                        $state.go('home.admin.topic');
+                    }
                 }
-                commonService.alert(res.msg, res.code);
             });
         };
         $scope.back = function(){

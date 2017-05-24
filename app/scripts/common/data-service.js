@@ -1,7 +1,7 @@
 define(function (require) {
     var app = require('app');
     var angular = require('angular');
-    app.factory('dataService', function ($http, baseRequestUrl, baseStaticUrl, webSocketUrl) {
+    app.factory('dataService', function ($http,$injector, baseRequestUrl, baseStaticUrl, webSocketUrl) {
         var service = {};
         /**
          * 请求资源
@@ -24,16 +24,29 @@ define(function (require) {
             });
             
             promise = service.getPromise(method, url, param);
-            if (cb_e) {
-                promise.success(cb_s).error(cb_e);
-            } else if (cb_s) {
-                promise.success(cb_s);
-            }
+
+            //
+            var commonService = $injector.get('commonService');
+            promise.success(function(res){
+                if(method !== 'GET'){
+                    if(res.msg){
+                        commonService.alert(res.msg, res.code);
+                    }
+                }
+                if(cb_s){
+                    cb_s(res);
+                }
+            }).error(function(res){
+                commonService.alert(res,msg, res.code);
+                if(cb_e){
+                    cb_e(res);
+                }
+            });
         };
-        var get = function () {
+        service.get = function () {
             request('GET', arguments);
         };
-        var post = function () {
+        service.post = function () {
             request('POST', arguments);
         };
         
@@ -105,37 +118,37 @@ define(function (require) {
          * @param callback
          */
         service.getUsers = function (params, callback) {
-            get('user', params, callback);
+            service.get('user', params, callback);
         };
         /**
          * 注册
          */
         service.doRegister = function (params, callback) {
-            post('register', params, callback);
+            service.post('register', params, callback);
         };
         /**
          * 登录
          */
         service.doLogin = function (params, callback) {
-            post('login', params, callback);
+            service.post('login', params, callback);
         };
         /**
          * 退出
          */
         service.doLogout = function () {
-            get('logout');
+            service.get('logout');
         };
         /**
          * 获取学生分数
          */
         service.getStudentsScores = function (callback) {
-            get('studentsScores', callback);
+            service.get('studentsScores', callback);
         };
         /**
          * 处理人员信息,添加或修改
          */
         service.handleUser = function (params, callback) {
-            post('handleUser', params, callback);
+            service.post('handleUser', params, callback);
         };
         /**
          * 快速编辑
@@ -144,7 +157,7 @@ define(function (require) {
          * @param callback
          */
         service.quickEdit = function (url, params, callback) {
-            post(url, params, callback);
+            service.post(url, params, callback);
         };
         /**
          * 验证敏感字
@@ -152,15 +165,17 @@ define(function (require) {
          * @param callback
          */
         service.validateSensitiveWord = function(value, callback){
-            post('sensitiveWord', {value: value, action: 'validate'}, callback);
+            service.post('sensitiveWord', {value: value, action: 'validate'}, callback);
         };
+
+        /*============================================= 从下面可以看出，一个模块只需要两个请求接口即可—— postXXX getXXX =============================================*/
         /**
          * 保存topic（修改/新增）
          * @param params
          * @param callback
          */
         service.saveTopic = function(params, callback){
-            post('topic', params, callback);
+            service.post('topic', params, callback);
         };
         /**
          * 查询topic
@@ -168,9 +183,21 @@ define(function (require) {
          * @param callback
          */
         service.getTopics = function(params, callback){
-            get('topic', params, callback);
+            service.get('topic', params, callback);
         };
 
+        service.delTopic = function(params, callback){
+            service.post('topic', params, callback);
+        };
+        /*============================================= 按照上述结论进行修改 =============================================*/
+        /*============================================= 1.只需要使用post和get即可 =============================================*/
+        /*============================================= 2.是否有必要封装一般情况下的callback =============================================*/
+        /*============================================= 3.是否有必要将所有的请求路径保存在一个对象中 =============================================*/
+        /*============================================= 4.此方案从topic开始使用 =============================================*/
+
+        service.url = {
+            topic: 'topic'
+        };
         return service;
     });
 });

@@ -1,13 +1,17 @@
 define(function (require) {
     var app = require('app');
     var $ = require('jquery');
-    app.controller('AdminTopicController', function ($rootScope, $scope, $state, $compile, dataService, commonService) {
+    app.controller('AdminTopicController', function ($rootScope, $scope, $state, $compile, dataService, commonService, Popupwin) {
+        // 监听登录事件，登录之后查询数据
         $rootScope.$on(commonService.EVENT.login, function (e, d) {
             if (d === commonService.EVENT_KEY.success) {
-                $scope.getTopics();
+                if($state.current.name === 'home.admin.topic'){
+                    $scope.getTopics();
+                }
             }
         });
-
+        // 页面中的缓存信息
+        var cache = {};
         $scope.query = {};
         var $table = $('#bt-admin-topic');
         // initTable
@@ -80,9 +84,9 @@ define(function (require) {
                     title: '操作',
                     align: 'center',
                     formatter: function(value,row){
-                        return '<span class="glyphicon glyphicon-list-alt" title="查看" ng-click="viewTopic(' + row.id + ')"></span>' +
-                            '<span class="glyphicon glyphicon-pencil" title="修改" ng-click="editTopic(' + row.id + ')"></span>' +
-                            '<span class="glyphicon glyphicon-trash" title="删除" ng-click="delTopic(' + row.id + ')"></span>';
+                        return '<span class="glyphicon glyphicon-list-alt" title="查看" ng-click="viewTopic(\'' + row.id + '\')"></span>' +
+                            '<span class="glyphicon glyphicon-pencil" title="修改" ng-click="editTopic(\'' + row.id + '\')"></span>' +
+                            '<span class="glyphicon glyphicon-trash" title="删除" ng-click="delTopic(\'' + row.id + '\')"></span>';
                     }
                 }
             ]
@@ -110,5 +114,39 @@ define(function (require) {
                 flag: 'add'
             });
         };
+        $scope.delTopic = function(id){
+            // 快捷弹出删除提示框，无需其他配置项
+            // Popupwin.create(function(){
+            //     // 放弃老的请求方法
+            //     // dataService.delTopic({
+            //     //     action: 'del',
+            //     //     ids: id
+            //     // }, function(res){
+            //     //     commonService.alert(res.msg, res.code);
+            //     //     Popupwin.close();
+            //     // });
+            //     // 使用最新的请求方法
+            //     dataService.post(dataService.url.topic, {
+            //         action: 'del',
+            //         ids: id
+            //     }, Popupwin.close);
+            // });
+            var ids = id || '';
+            if(!id){
+                var selections = $table.bootstrapTable('getSelections');
+                for(var i=0,l=selections.length;i<l;i++){
+                    ids += selections[i].id;
+                    if(i < l - 1){
+                        ids += ',';
+                    }
+                }
+            }
+            Popupwin.create(id?'确定删除该项？':'确定删除选中项？', function(){
+                dataService.post(dataService.url.topic, {
+                    action: 'del',
+                    ids: ids
+                }, Popupwin.close);
+            });
+        }
     });
 });

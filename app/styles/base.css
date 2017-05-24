@@ -281,6 +281,10 @@ ul[class^="cr"] li h6 {
     font-size: 9px;
 }
 
+.f12 {
+    font-size: 12px;
+}
+
 .f14 {
     font-size: 14px;
 }
@@ -412,7 +416,7 @@ ul[class^="cr"] li h6 {
     width: 90%;
 }
 
-/* 1/6 */
+/* 配合栅格系统使用 .w__1_6代表 1/6 */
 .w__1_6 {
     width: 16.6666666666666%;
 }
@@ -594,6 +598,14 @@ ul[class^="cr"] li h6 {
 
 .ml356 {
     margin-left: 356px;
+}
+
+/* 配合栅格系统使用 ml__1_36代表1/36 */
+.ml__1_18{
+    margin-left: 5.5555555555%;
+}
+.ml__1_36{
+    margin-left: 2.7777777777%;
 }
 
 .ml_11 {

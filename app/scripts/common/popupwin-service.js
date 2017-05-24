@@ -65,13 +65,17 @@ define(function (require) {
             // 如果没有参数，弹出一个没有任何事件的提示框,默认提示语为DEF.text
             // 如果参数是一个字符串，弹出一个没有任何事件，提示语为传入的字符串的提示框
             // 如果传如的参数是一个函数，则提示语变为‘确认删除吗？’，函数为点击确认时的回调 这是最常用的用法，即弹出一个是否删除的提示
-            // 如果需要改变提示语，则传入一个对象，有两个属性，一个是text，一个是ok，这是次常用的用法
+            // 如果需要改变提示语，则传入一个对象，有两个属性，一个是text，一个是ok，这是次常用的用法---该用法没有传两个参数方便2017-05-24
+            // 如果传日两个参数，第一个是字符串，第二个是函数，则，执行上述做法
             if (typeof options === 'object') {
                 this.options = options;
             } else if (typeof options === 'function') {
                 this.options = {text: DEF.defaultText, ok: options};
             } else if (typeof options === 'string') {
                 this.options = {text: options};
+                if(arguments[1]){
+                    this.options.ok = arguments[1];
+                }
             } else if (typeof options === 'undefined') {
                 this.options = {};
             }
@@ -83,9 +87,9 @@ define(function (require) {
          * 创建遮罩层，调用时不需要显式使用new关键字
          * @param {Object} options
          */
-        PopupWin.create = function (options) {
+        PopupWin.create = function () {
             PopupWin._count++;
-            return new PopupWin(options);
+            return new PopupWin(arguments[0], arguments[1]);
         };
         /**
          * 关闭最上层的弹框

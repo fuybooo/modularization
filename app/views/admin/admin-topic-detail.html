@@ -6,7 +6,7 @@
             <form class="form-horizontal form-common" name="topic_form" novalidate>
                 <div class="form-group">
                     <label class="col-xs-1"><span class="c-red">*</span>文章类别</label>
-                    <div class="col-xs-10">
+                    <div class="col-xs-10 f12">
                         <label class="radio-inline">
                             <input type="radio" name="type" ng-model="topic.type" value="1">系统
                         </label>
@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label class="col-xs-1">文章描述</label>
                     <div class="col-xs-10">
-                        <textarea class="form-control" name="desc" ng-model="topic.desc" placeholder="描述不可超过250字符"
+                        <textarea class="form-control input-sm" name="desc" ng-model="topic.desc" placeholder="描述不可超过250字符"
                                   ng-maxlength="250"></textarea>
                         <!--生成验证信息-->
                         <span validate-generator></span>
@@ -45,15 +45,21 @@
                                 ng-click="back()">返回
                         </button>
                     </div>
-                    <div class="col-xs-2 col-xs-offset-1">
-                        <button type="reset" class="btn btn-info btn-block btn-sm"
+                    <div class="col-xs-2 col-xs-offset-1 ml__1_18">
+                        <button type="reset" class="btn btn-warning btn-block btn-sm"
                                 ng-disabled="topic_form.$pristine || !topic_form.$dirty">重置
                         </button>
                     </div>
-                    <div class="col-xs-2 col-xs-offset-1">
+                    <div class="col-xs-2 col-xs-offset-1 ml__1_18">
                         <button class="btn btn-success btn-block btn-sm"
                                 ng-disabled="topic_form.$pristine || topic_form.$invalid"
-                                ng-click="saveTopic(topic)">提交
+                                ng-click="saveTopic(topic)">保存
+                        </button>
+                    </div>
+                    <div class="col-xs-2 col-xs-offset-1 ml__1_18">
+                        <button class="btn btn-success btn-block btn-sm"
+                                ng-disabled="topic_form.$pristine || topic_form.$invalid"
+                                ng-click="saveTopic(topic, true)">保存并新增
                         </button>
                     </div>
                 </div>
