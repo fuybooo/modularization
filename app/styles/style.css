@@ -1296,9 +1296,71 @@ td.show .bt-col-editable .glyphicon {
     position: relative;
 }
 
-/*.fm-menu-link:hover{*/
-    /*color: #fff;*/
-/*}*/
+.fm-banner-slider-btn{
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    height: 50px;
+    width: 30px;
+    background-color: #0f0f0f;
+    transition: opacity .15s linear;
+    opacity: 0;
+    text-align: center;
+    cursor: pointer;
+}
+.hover .fm-banner-slider-btn{
+    opacity: .2;
+}
+.fm-banner-slider-btn::before {
+    color: #fff;
+    font-size: 30px;
+    padding-top: 10px;
+}
+.hover .fm-banner-slider-btn:hover{
+    opacity: 0.5;
+}
+.fm-banner-slider-btn-prev{
+    left: 0;
+    border-radius: 0 5px 5px 0;
+}
+.fm-banner-slider-btn-prev::before{
+    content: "\f104";
+}
+.fm-banner-slider-btn-next{
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+.fm-banner-slider-btn-next::before{
+    content: "\f105";
+}
+.fm-banner-slider-indicator{
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    margin-left: -91px;
+    width: 182px;
+    border-radius: 10px;
+    background-color: rgba(191,191,191,.3);
+}
+.fm-banner-slider-indicator-item{
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 100%;
+    margin: 0 4px;
+    width: 10px;
+    font-size: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+.fm-banner-slider-indicator-item.active{
+    background-color: #d81e06;
+}
+.fm-banner-slider-indicator-item.first-item{
+    margin-left:10px;
+}
+.fm-banner-slider-indicator-item.last-item{
+    margin-right:10px;
+}
 
 /* 商城 end */
 /* 表单 */
