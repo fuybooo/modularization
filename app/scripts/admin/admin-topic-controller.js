@@ -11,6 +11,11 @@ define(function (require) {
             }
         });
         // 页面中的缓存信息
+        // 缓存第一次从后台获取的数据，如果不刷新页面，不跳转页面，该缓存一致存在，且之后操作的所有数据都是来自该缓存
+        // 如，增删改记录，需要修改该缓存中的数据，并且向后台发送请求。
+        // 查询也是从该缓存中过滤进行查询
+        // ----------------------------
+        // 目前只适用与前端分页的情况
         var cache = {};
         $scope.query = {};
         var $table = $('#bt-admin-topic');
@@ -104,14 +109,52 @@ define(function (require) {
                 postDateStart: $scope.query.postDateStart,
                 postDateEnd: $scope.query.postDateEnd
             }, function(res){
-                renderTable(res.data || []);
+                cache.data = res.data || [];
+                cache.origin = commonService.deepClone(cache.data);
+                renderTable(cache.data);
             });
         };
         $scope.getTopics();
-
+        $scope.searchTopics = function(){
+            cache.data = cache.origin.filter(function(item){
+                var title = $scope.query.title;
+                var isTitleMatch = false;
+                if(item.topic_title.indexOf(title) !== -1){
+                    isTitleMatch = true;
+                }
+                var isDateMatch = false;
+                var dateStr = item.topic_date.slice(0, 19).replace('T', ' ');
+                if(dateStr >= $scope.query.postDateStart && dateStr <= $scope.query.postDateEnd){
+                    isDateMatch = true;
+                }
+                return isTitleMatch && isDateMatch;
+            });
+            renderTable(cache.data);
+        };
+        var getDataById = function(id){
+            for(var i=0,l=cache.origin.length;i<l;i++){
+                if(cache.origin[i].id === id){
+                    return cache.origin[i];
+                }
+            }
+        };
         $scope.addTopic = function(){
             $state.go('home.admin.topicDetail', {
                 flag: 'add'
+            });
+        };
+        $scope.editTopic = function(id){
+            $rootScope.topic = $rootScope.topic || {};
+            $rootScope.topic.record = getDataById(id);
+            $state.go('home.admin.topicDetail', {
+                flag: 'edit'
+            });
+        };
+        $scope.viewTopic = function(id){
+            $rootScope.topic = $rootScope.topic || {};
+            $rootScope.topic.record = getDataById(id);
+            $state.go('home.admin.topicDetail', {
+                flag: 'view'
             });
         };
         $scope.delTopic = function(id){
@@ -145,8 +188,12 @@ define(function (require) {
                 dataService.post(dataService.url.topic, {
                     action: 'del',
                     ids: ids
-                }, Popupwin.close);
+                }, function(){
+                    commonService.ADU.del(cache.data, ids.split(','));
+                    Popupwin.close();
+                });
             });
-        }
+        };
+
     });
 });

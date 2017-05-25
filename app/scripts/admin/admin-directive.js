@@ -2,7 +2,7 @@ define(function (require) {
     var app = require('app');
     var $ = require('jquery');
     /**
-     * 显示table1
+     * admin menu
      */
     app.directive('adminMenu', function ($state) {
         return {
@@ -29,6 +29,9 @@ define(function (require) {
             }
         }
     })
+    /**
+     * 当前位置
+     */
         .directive('currentPlace', function () {
             return {
                 template: '<span class="current-place"><span class="little-strip"></span>{{currentPlaceString}}</span>',
@@ -37,6 +40,9 @@ define(function (require) {
                 }
             }
         })
+        /**
+         * bootstrap-table可编辑的列
+         */
         .directive('btColEditable', function(commonService,dataService){
             return {
                 template: function(tEle, tAttrs){
@@ -94,6 +100,26 @@ define(function (require) {
                     
                 }
             }
+        })
+        .directive('uniqueTitle', function($timeout, dataService){
+            return {
+                require: 'ngModel',
+                link: function(scope, ele, attrs, c){
+                    var timeout = null;
+                    scope.$watch(attrs.ngModel, function(n){
+                        if(!n) return;
+                        if(timeout){
+                            $timeout.cancel();
+                        }
+                        timeout = $timeout(function(){
+                            dataService.get('topic', {value:c.$modelValue, action: 'validateUniqueTitle'}, function(res){
+                                c.$setValidity('uniqueTitle', res.code === 0);
+                            });
+                        }, 300);
+                    });
+
+                }
+            };
         })
     ;
 });
