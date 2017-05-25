@@ -1283,12 +1283,12 @@ td.show .bt-col-editable .glyphicon {
     padding-left: 2px;
     padding-right: 2px;
 }
-
+/* banner start */
 .fm-banner{
     width: 790px;
     height: 480px;
     float: left;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .fm-banner-slider-main{
     height: 340px;
@@ -1360,6 +1360,14 @@ td.show .bt-col-editable .glyphicon {
 }
 .fm-banner-slider-indicator-item.last-item{
     margin-right:10px;
+}
+/* banner end */
+
+.fm-service{
+    width: 240px;
+    height: 480px;
+    float: right;
+    background-color: #0f0f0f;
 }
 
 /* 商城 end */
