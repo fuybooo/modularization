@@ -100,13 +100,16 @@ define(function (require) {
         //
         // let [first, ...rest] = [1,2,3,4];
         // console.log('first:', first, '  rest:', rest);
+
+
         // // 对象解构
-        var o = {
+        let o = {
             a: 1,
             b: 2,
             c: 'fu'
         };
-        var a = o.a, b = o.b;
+        let {a, b} = o;
+
         // ({a, b} = {a: 'fu', b: 101})
     });
 });

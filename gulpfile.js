@@ -192,14 +192,22 @@ gulp.task('watch', function () {
 
 });
 gulp.task('watch:ts', function(){
-    gulp.watch('./tss/**/*.ts', ['ts']);
+    gulp.watch('./app/scripts/research/*.ts', ['ts']);
 });
+// gulp.task('watch:ts', function(){
+//     gulp.watch('./tss/**/*.ts', ['ts']);
+// });
 
 var tsProject = $.typescript.createProject('tsconfig.json')
-// typescript 任务
+// typescript 任务 // es6 任务
+// gulp.task('ts', function(){
+//     return tsProject.src().pipe(tsProject()).pipe(gulp.dest('ts-dist'));
+// });
 gulp.task('ts', function(){
-    return tsProject.src().pipe(tsProject()).pipe(gulp.dest('ts-dist'));
+    return tsProject.src().pipe(tsProject()).pipe(gulp.dest('app/scripts/research'));
 });
+
+
 
 
 // 组合任务build
