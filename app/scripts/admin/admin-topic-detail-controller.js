@@ -4,13 +4,24 @@ define(function (require) {
     app.controller('AdminTopicDetailController', function ($rootScope, $scope, $state, $stateParams, dataService, commonService) {
         $scope.topic = {};
         var reviewTopic = function(){
-            $scope.topic = {
-                title: $rootScope.topic.record.topic_title,
-                desc: $rootScope.topic.record.topic_desc,
-                date: $rootScope.topic.record.topic_date,
-                type: $rootScope.topic.record.topci_type,
-                content: $rootScope.topic.record.topci_content
-            };
+            var id = $stateParams.id;
+            if(id) {
+                dataService.get(dataService.url.topic, {action: 'findById', id: id}, function (res) {
+                    if (res.code === 0) {
+                        var topicData = res.data[0];
+                        $scope.topic = {
+                            id: topicData.id,
+                            title: topicData.topic_title,
+                            desc: topicData.topic_desc,
+                            date: topicData.topic_date,
+                            type: topicData.topic_type,
+                            content: topicData.topic_content
+                        };
+                    }
+                });
+            }else{
+                commonService.alert('请重新查看此页面', 'd');
+            }
         };
         var action = '';
         if($stateParams.flag === 'add'){

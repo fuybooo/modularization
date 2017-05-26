@@ -144,17 +144,15 @@ define(function (require) {
             });
         };
         $scope.editTopic = function(id){
-            $rootScope.topic = $rootScope.topic || {};
-            $rootScope.topic.record = getDataById(id);
             $state.go('home.admin.topicDetail', {
-                flag: 'edit'
+                flag: 'edit',
+                id: id
             });
         };
         $scope.viewTopic = function(id){
-            $rootScope.topic = $rootScope.topic || {};
-            $rootScope.topic.record = getDataById(id);
             $state.go('home.admin.topicDetail', {
-                flag: 'view'
+                flag: 'view',
+                id: id
             });
         };
         $scope.delTopic = function(id){

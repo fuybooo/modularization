@@ -112,7 +112,7 @@ define(function (require) {
                             $timeout.cancel();
                         }
                         timeout = $timeout(function(){
-                            dataService.get('topic', {value:c.$modelValue, action: 'validateUniqueTitle'}, function(res){
+                            dataService.get(dataService.url.topic, {value:c.$modelValue, action: 'validateUniqueTitle'}, function(res){
                                 c.$setValidity('uniqueTitle', res.code === 0);
                             });
                         }, 300);

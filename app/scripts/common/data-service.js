@@ -37,7 +37,7 @@ define(function (require) {
                     cb_s(res);
                 }
             }).error(function(res){
-                commonService.alert(res,msg, res.code);
+                commonService.alert(res.msg || '发生严重错误！', res.code);
                 if(cb_e){
                     cb_e(res);
                 }

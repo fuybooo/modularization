@@ -263,8 +263,8 @@ define(function (require) {
                 ]
             })
             .state('home.admin.topicDetail', {
-                url: '/topic-detail?flag',
-                params: {flag: ''},
+                url: '/topic-detail?flag&id',
+                params: {flag: '', id: ''},
                 templateUrl: 'app/views/admin/admin-topic-detail.html',
                 controller: 'AdminTopicDetailController',
                 dependencies: [
@@ -321,6 +321,14 @@ define(function (require) {
             .state('home.gradientSpecial', {
                 url: '/test/gradientSpecial',
                 templateUrl: 'app/views/test/gradient-special.html'
+            })
+            .state('home.es6', {
+                url: '/es6',
+                templateUrl: 'app/views/research/es6.html',
+                controller: 'ES6Controller',
+                dependencies: [
+                    'scripts/research/es6-controller'
+                ]
             })
             .state('home.fuyboooMall', {
                 abstract: true,

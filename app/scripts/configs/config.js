@@ -85,7 +85,7 @@ require.config({
             deps:['angular']
         },
         'angular-translate-loader-static-files':{
-            deps:['angular']
+            deps:['angular-translate', 'angular']
         },
         'angular-ueditor':{
             deps:['angular']

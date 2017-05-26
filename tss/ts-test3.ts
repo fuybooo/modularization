@@ -1,0 +1,1 @@
+var num2: number = 2;

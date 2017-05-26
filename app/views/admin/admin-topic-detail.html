@@ -3,10 +3,10 @@
     <div class="panel panel-info mt20">
         <div class="panel-heading p5_10">{{subTitle}}</div>
         <div class="panel-body p10">
-            <form class="form-horizontal form-common" name="topic_form" novalidate ng-disabled="isOnlyView">
+            <form class="form-horizontal form-common" name="topic_form" novalidate>
                 <div class="form-group">
-                    <label class="col-xs-1"><span class="c-red">*</span>文章类别</label>
-                    <div class="col-xs-10 f12">
+                    <label class="col-xs-1"><span class="c-red" ng-show="!isOnlyView">*</span>文章类别</label>
+                    <div class="col-xs-10 f12" ng-show="!isOnlyView">
                         <label class="radio-inline">
                             <input type="radio" name="type" ng-model="topic.type" value="1">系统
                         </label>
@@ -14,10 +14,13 @@
                             <input type="radio" name="type" ng-model="topic.type" value="2">日志
                         </label>
                     </div>
+                    <div class="col-xs-10" ng-show="isOnlyView">
+                        <span class="lh30">{{topic.type === 1 ? "系统" : "日志"}}</span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-xs-1"><span class="c-red">*</span>文章标题</label>
-                    <div class="col-xs-10">
+                    <label class="col-xs-1"><span class="c-red" ng-show="!isOnlyView">*</span>文章标题</label>
+                    <div class="col-xs-10" ng-show="!isOnlyView">
                         <input class="form-control input-sm" type="text" name="title" ng-model="topic.title"
                                placeholder="标题不可超过50字符" required ng-minlength="2" ng-maxlength="50" unique-title
                                sensitive-word>
@@ -25,19 +28,26 @@
                         <span validate-generator
                               data-custom-validate="unique-title:文章标题已经存在,sensitive-word:标题不能包含敏感字"></span>
                     </div>
+                    <div class="col-xs-10" ng-show="isOnlyView">
+                        <span class="lh30">{{topic.title}}</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="col-xs-1">文章描述</label>
-                    <div class="col-xs-10">
+                    <div class="col-xs-10" ng-show="!isOnlyView">
                         <textarea class="form-control input-sm" name="desc" ng-model="topic.desc" placeholder="描述不可超过250字符"
                                   ng-maxlength="250"></textarea>
                         <!--生成验证信息-->
                         <span validate-generator></span>
                     </div>
+                    <div class="col-xs-10" ng-show="isOnlyView">
+                        <span class="lh30">{{topic.desc}}</span>
+                    </div>
                 </div>
                 <div class="form-group" ng-if="topic.type==2">
                     <label class="col-xs-1">文章内容</label>
-                    <div class="col-xs-10 ueditor" ng-model="topic.content"></div>
+                    <div class="col-xs-10 ueditor" ng-model="topic.content" ng-show="!isOnlyView"></div>
+                    <div class="col-xs-10" ng-show="isOnlyView">{{topic.content}}</div>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-2 col-xs-offset-1">

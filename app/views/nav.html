@@ -32,7 +32,13 @@
             </ul>
         </li>
         <li><a ui-sref="home.fuyboooMall.home">Fuybooo-Mall</a></li>
-        <li><a href="//www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html" target="_blank">汤姆大叔的博客</a></li>
+        <li>
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">研究院<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a ui-sref="home.es6">ES6语法练习</a></li>
+                <li><a href="//www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html" target="_blank">汤姆大叔的博客</a></li>
+            </ul>
+        </li>
     </ul>
     <div class="language-box">
         <select class="form-control" ng-model="language" ng-change="changeLanguage(language)">

@@ -191,6 +191,17 @@ gulp.task('watch', function () {
     gulp.watch('./app/views/**/*.html', ['views']);
 
 });
+gulp.task('watch:ts', function(){
+    gulp.watch('./tss/**/*.ts', ['ts']);
+});
+
+var tsProject = $.typescript.createProject('tsconfig.json')
+// typescript 任务
+gulp.task('ts', function(){
+    return tsProject.src().pipe(tsProject()).pipe(gulp.dest('ts-dist'));
+});
+
+
 // 组合任务build
 gulp.task('build', function () {
     gulp.start('clean:dist', 'images', 'json', 'scripts', 'styles', 'vendor', 'views');
@@ -217,4 +228,4 @@ gulp.task('dev', ['clean:app'], function () {
 
 // 默认组合任务
 // gulp.task('default', ['serve', 'watch']);
-gulp.task('default', ['serve']);
+gulp.task('default', ['serve', 'watch:ts']);
