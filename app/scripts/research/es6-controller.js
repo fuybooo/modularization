@@ -2,6 +2,7 @@ define(function (require) {
     var app = require('app');
     var $ = require('jquery');
     app.controller('ES6Controller', function (dataService) {
+        var _this = this;
         // dataService.get('es6');
         console.log('===============================正式开始typescript,同时也包含ES6==========');
         {
@@ -322,11 +323,11 @@ define(function (require) {
         {
             // ES6提供的新的字符串的方法
             var s = 'fuybooo';
-            var sw = s.startsWith('f'); // typescript不支持？
-            var ew = s.endsWith('b', 4);
-            var includes = s.includes('oo');
-            var rs = s.repeat(2);
-            console.log(sw);
+            // let sw = s.startsWith('f'); // typescript不支持？
+            // let ew = s.endsWith('b', 4);
+            // let includes = s.includes('oo');
+            // let rs = s.repeat(2);
+            // console.log(sw);
         }
         {
             // 模板字符串
@@ -405,6 +406,187 @@ define(function (require) {
             restricted();
         }
         {
+            // rest 参数
+            var push = function (array) {
+                var rest = [];
+                for (var _i = 1; _i < arguments.length; _i++) {
+                    rest[_i - 1] = arguments[_i];
+                }
+                rest.forEach(function (item) {
+                    array.push(item);
+                });
+            };
+            var _arr = [];
+            push(_arr, 1, 2, 3);
+            console.log(_arr);
+        }
+        {
+            // 扩展运算符 spread ... rest参数的逆运算,将数组转换为逗号分隔的参数序列
+            console.log('==================================扩展运算符');
+            console.log.apply(console, [1, 2, 3]);
+            // 扩展运算符主要用于函数调用,替代数组的apply方法
+            // 比如
+            var push = function (array) {
+                var rest = [];
+                for (var _i = 1; _i < arguments.length; _i++) {
+                    rest[_i - 1] = arguments[_i];
+                }
+                // rest.forEach(function(item){
+                //     array.push(item);
+                // });
+                array.push.apply(array, rest);
+            };
+            // 这个push函数将rest参数push进入array,但是,现在要讲一个数组let arr = [1,2,3,4];push进入
+            var array = [1];
+            var _array = [2, 3, 4, 5];
+            push.apply(void 0, [array].concat(_array));
+            console.log('使用spread运算符:', array);
+            push(array, 10);
+            // 用途
+            // 思考下面两个问题,如何求一个数组的最大值?如何将一个数组的每一项添加到另一个数组中去?
+            Math.max.apply(Math, [1, 2, 3, 4]);
+            [].push.apply([], [1, 2, 3]);
+            // 合并数组
+            var concatArray = [1, 2, 3].concat([2222, 3333, 4444], [1, 2]);
+            // 解构赋值
+            var ____ = [1, 2, 3, 4];
+            // es5
+            var _first = ____[0];
+            var _rest = ____.slice(1);
+            // es6
+            var first = ____[0], rest = ____.slice(1);
+            // 扩展运算字符串
+            var _str = 'abc'.slice(); // 不能随意使用
+            console.log(typeof _str); // string
+        }
+        {
+            console.log('============================================================箭头函数');
+            // 箭头函数的意思
+            var f = function (v) { return v; }; // var f = function (v) { return v; };
+            // 理解:
+            // 箭头前 : 参数部分 一个参数时省略圆括号,0个或一个以上的参数需要括号
+            // 箭头后 : 函数体 -- 返回值  如果函数体只有一条语句,则不需要大括号和return,否则需要
+            // 示例:
+            var f1 = function () { return 5; };
+            var f2 = function (a) { return a; };
+            var f3 = function (a, b) { return a + b; };
+            var f4 = function (a, b, c) {
+                return a + b - c;
+            };
+            // 如果返回值是一个对象字面量,则需要将对象字面量用圆括号包起来(如果没有return的话)
+            var f5 = function (a, b) {
+                return { a: a, b: b };
+            };
+            var f6 = function (a, b) { return ({ a: a, b: b }); };
+            // 箭头函数与解构赋值
+            var f7 = function (_a) {
+                var first = _a.first, second = _a.second;
+                return first + ' ' + second;
+            };
+            // 使用箭头函数表现几个有意义的函数
+            var isOdd = function (n) { return n % 2; };
+            var square = function (n) { return n * n; };
+            // 简化回调
+            var data = [1, 2, 3, 4];
+            data.map(function (item) { return item * 2; });
+            // 注意事项
+            // 1.函数体内的this对象,就是定义时所在的对象,而不是运行时所在的对象
+            // 2.不可以当做构造函数使用,也就是不能使用new命令
+            // 3.不可以使用arguments对象,该对象不存在,es6中有rest参数来替代
+            // 4.不可以使用yield命令,即不可以当做Generator函数使用
+            // 尤其要注意第一点
+            // 示例
+            var fn1 = function () {
+                setTimeout(function () {
+                    console.log(_this.id);
+                }, 10);
+            };
+            // fn1.call({id: 1}); // 编译出来之后,打印undefined
+            // 这个例子没有达到检测目的
+            // 再看一个例子
+            function Timer() {
+                var _this = this;
+                this.s1 = 0;
+                this.s2 = 0;
+                // 箭头函数
+                setInterval(function () { return _this.s1++; }, 1000); // this指向定义时所在的作用域,即Timer
+                // 普通函数
+                setInterval(function () {
+                    this.s2++;
+                }, 1000);
+            }
+            // let timer = new Timer();
+            // setTimeout(() => console.log('s1: ', timer.s1), 3100);
+            // setTimeout(() => console.log('s2: ', timer.s2), 3100);
+            var fn2 = function () {
+                var _this = this;
+                this.id = 1;
+                return function () {
+                    return function () {
+                        return function () {
+                            return function () {
+                                return function () {
+                                    console.log(_this.id);
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            fn2();
+        }
+        {
+            console.log('==============================嵌套函数管道机制');
+            // 嵌套函数,管道机制
+            // 考察如下函数
+            var f1 = function (a) { return ({ f2: function () { return ({ f3: function () { return ({ f4: function () { return a; } }); } }); } }); };
+            console.log(f1(1).f2().f3().f4());
+            // 管道函数 前一个函数的输出结果是后一个函数的输入结果
+            var pipeline = function () {
+                var funcs = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    funcs[_i] = arguments[_i];
+                }
+                return function (val) { return funcs.reduce(function (a, b) { return b(a); }, val); };
+            };
+            // 使用管道函数计算斐波拉契数列
+            // .. 并不会写
+        }
+        {
+            // 尾调用优化
+            // 尾调用就是函数的最后一步是调用另一个函数
+            var a_1 = function (x) { return x; };
+            var b = function (x) { return a_1(x); }; // 这就是尾调用
+            // 测试一下我的想法
+            var f1 = function () { return console.log('f1'); };
+            var f2 = function () { return console.log('f2'); };
+            // 阶乘
+            var factorial1_1 = function (n) {
+                if (n === 1)
+                    return 1;
+                return factorial1_1(n - 1) * n;
+            };
+            // 阶乘优化
+            var factorial_1 = function (n, t) {
+                if (t === void 0) { t = 1; }
+                if (n === 1)
+                    return t;
+                return factorial_1(n - 1, n * t);
+            };
+            var res = factorial_1(6);
+            console.log(res);
+            // 斐波那契数列
+            var fibonacci_1 = function (n, next, nextNext) {
+                if (next === void 0) { next = 1; }
+                if (nextNext === void 0) { nextNext = 1; }
+                if (n <= 1)
+                    return nextNext;
+                return fibonacci_1(n - 1, nextNext, next + nextNext);
+            };
+            var result = fibonacci_1(100);
+            console.log(result);
+            // 感觉这样的方法我一辈子也写不出来啊,太玄奥了!
+            // 函数式编程 kelihua
         }
         var _y, _0;
     });
