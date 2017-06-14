@@ -20,20 +20,24 @@ define(function (require) {
         };
         // 初始化用户信息的显示
         initUserInfo();
-        /**
-         * 给document绑定事件，使打开的隐藏菜单隐藏
-         */
-        $(document).off('click.toggleUserMenu').on('click.toggleUserMenu', function (e) {
-            // 在非angular的上下文环境改变$scope的属性,不会被更新到视图上去,需要使用$apply封装一下
-            $scope.$apply(function () {
-                if (e && e.whith === 3) return;
-                if ($('.js-nav-user-li').is(':hidden')) return;
-                if ($(e.target).hasClass('js-nav-user')) return;
-                $scope.isUserMenu = false;
-            });
-        });
 
+        var toggleCount = 0; // 用来判断是否是第一次切换用户菜单，如果是第一次切换，则为document绑定事件
         $scope.toggleUserMenu = function () {
+            if(toggleCount === 0){
+                /**
+                 * 给document绑定事件，使打开的隐藏菜单隐藏
+                 */
+                $(document).off('click.toggleUserMenu').on('click.toggleUserMenu', function (e) {
+                    // 在非angular的上下文环境改变$scope的属性,不会被更新到视图上去,需要使用$apply封装一下
+                    $scope.$apply(function () {
+                        if (e && e.whith === 3) return;
+                        if ($('.js-nav-user-li').is(':hidden')) return;
+                        if ($(e.target).hasClass('js-nav-user')) return;
+                        $scope.isUserMenu = false;
+                    });
+                });
+            }
+            toggleCount ++;
             $scope.isUserMenu = !$scope.isUserMenu;
         };
         /**

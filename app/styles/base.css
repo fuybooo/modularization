@@ -85,6 +85,9 @@ textarea.ng-dirty.ng-invalid:focus {
 .dn {
     display: none;
 }
+.dni{
+    display: none !important;
+}
 .di {
     display: inline;
 }
@@ -582,6 +585,9 @@ ul[class^="cr"] li h6 {
 /* margin-left */
 .ml3 {
     margin-left: 3px;
+}
+.ml10{
+    margin-left: 10px;
 }
 
 .ml100 {

@@ -350,6 +350,73 @@ define(function (require) {
                 }
             });
         };
+        /**
+         * 格式化时间
+         */
+        service.dateTimeFormatter = function(){
+            var date = new Date(), formatter = 'yyyy-MM-dd';
+            var len = arguments.length;
+            if(len === 1){
+                if(typeof arguments[0] === 'object'){
+                    date = arguments[0];
+                }
+                if(typeof arguments[0] === 'string'){
+                    formatter = arguments[0];
+                }
+            }
+            if(len === 2){
+                if(typeof arguments[0] === 'object' && typeof arguments[1] === 'string'){
+                    date = arguments[0];
+                    formatter = arguments[1];
+                }else if(typeof arguments[1] === 'object' && typeof arguments[0] === 'string'){
+                    date = arguments[1];
+                    formatter = arguments[0];
+                }
+            }
+
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+            var formatDate;
+            switch(formatter){
+                case 'yyyy-MM-dd':
+                    formatDate = year + '-' + ('0' + month).slice(-2) + '-' + ('0' + day).slice(-2);
+                    break;
+            }
+            return formatDate;
+        };
+
+        /**
+         * 定义一个只会被执行一次的函数
+         * @param fn
+         * @param isClear 是否重新执行 默认为undefined，不重新执行
+         */
+        service.once = (function(){
+            var memory = {};
+            var _key = 0;
+            return function(fn){
+                var isClear = arguments[1];
+                if(isClear !== true) {
+                    for (var key in memory) {
+                        if (!Object.hasOwnProperty(key)) {
+                            // 判断函数是否在memory中
+                            if (memory[key].fn === fn || memory[key].fn.toString() === fn.toString()) {
+                                return memory[key].result;
+                            }
+                        }
+                    }
+                }
+                var result = fn();
+                memory[_key] = {
+                    fn: fn,
+                    result: result
+                };
+                return result;
+            }
+        })();
 
 
         return service;

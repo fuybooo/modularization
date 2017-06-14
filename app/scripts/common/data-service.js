@@ -196,7 +196,8 @@ define(function (require) {
         /*============================================= 4.此方案从topic开始使用 =============================================*/
 
         service.url = {
-            topic: 'topic'
+            topic: 'topic',
+            user: 'user'
         };
         return service;
     });

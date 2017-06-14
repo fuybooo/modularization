@@ -1379,3 +1379,6 @@ td.show .bt-col-editable .glyphicon {
     margin-bottom: 0px;
     padding-top: 5px;
 }
+.text-tip{
+    color: #888;
+}

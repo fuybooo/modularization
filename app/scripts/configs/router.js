@@ -50,7 +50,9 @@ define(function (require) {
         //     window.history.back();
         // };
         $rootScope.$on('$stateChangeStart', function (evt, next, current) {
+            // 移除一些绑定在document，window上的事件
             $(window).off('scroll.fuybooo');
+            $(document).off('click.toggleUserMenu');
             // 确定当前页面的标题
             var title;
             $rootScope.pageTitle = ((title = $rootScope.titleNameMap[next.name]) ? (title + '-') : '') + titleSuffix;
@@ -321,6 +323,22 @@ define(function (require) {
             .state('home.gradientSpecial', {
                 url: '/test/gradientSpecial',
                 templateUrl: 'app/views/test/gradient-special.html'
+            })
+            .state('home.photoClip', {
+                url: '/test/photoClip',
+                templateUrl: 'app/views/test/photo-clip.html',
+                controller: 'PhotoClipController',
+                dependencies: [
+                    'scripts/test/photo-clip-controller'
+                ]
+            })
+            .state('home.endlessScroll', {
+                url: '/test/endlessScroll',
+                templateUrl: 'app/views/test/endless-scroll.html',
+                controller: 'EndlessScrollController',
+                dependencies: [
+                    'scripts/test/endless-scroll-controller'
+                ]
             })
             .state('home.es6', {
                 url: '/es6',

@@ -63,5 +63,38 @@ define(function (require) {
         $scope.getSelectValue = function(){
             console.log('获取下拉框默认值', $scope.social);
         }
+
+        // display 为inline-block
+
+        $scope.spans = [
+            {
+                name: '敏感词1'
+            },
+            {
+                name: '敏感词1'
+            },
+            {
+                name: '敏感词1'
+            },
+            {
+                name: '敏感词1'
+            },
+            {
+                name: '敏感词1'
+            },
+            {
+                name: '敏感词1'
+            },
+            {
+                name: '敏感词1'
+            },
+            {
+                name: '敏感词1'
+            },
+            {
+                name: '敏感词1'
+            }
+        ];
+
     });
 });

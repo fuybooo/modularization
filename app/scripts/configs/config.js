@@ -39,6 +39,7 @@ require.config({
         'commonService': 'scripts/common/common-service',
         'dataService': 'scripts/common/data-service',
         'popupwinService': 'scripts/common/popupwin-service',
+        'bootstrapTableDirective': 'scripts/common/bootstrap-table-directive',
         'commonDirective': 'scripts/common/common-directive'
     },
     shim : {
@@ -175,6 +176,7 @@ require(
         'commonService',
         'dataService',
         'popupwinService',
+        'bootstrapTableDirective',
         'commonDirective',
 
         'require',

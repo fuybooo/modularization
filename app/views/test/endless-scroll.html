@@ -1,0 +1,34 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1>滚动加载示例!</h1>
+    </div>
+</div>
+<div class="container test-endless-scroll">
+    <div class="row">
+        <div class="col-xs-8">
+            <p class="h50 lh50">本地数据懒加载示例</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 h300 oa js-es-wrap">
+            <table class="table-layout-fixed w js-es-content">
+                <tr ng-repeat="t in texts track by $index">
+                    <td>{{t.name}}</td>
+                    <td>{{t.level}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-4"><div class="btn btn-primary btn-block" ng-click="addData()">增加一页数据</div></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8">
+            <p class="h50 lh50">服务器数据懒加载示例，前端使用bootstrap-table插件</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8">
+            <table bt-user></table>
+        </div>
+    </div>
+</div>
+
