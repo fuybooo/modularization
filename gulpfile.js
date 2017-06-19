@@ -210,9 +210,13 @@ gulp.task('ts', function(){
 
 
 
-// 组合任务build
-gulp.task('build', function () {
+// 组合任务build，老任务，没有使用template
+gulp.task('build:old', function () {
     gulp.start('clean:dist', 'images', 'json', 'scripts', 'styles', 'vendor', 'views');
+});
+// 组合任务build，使用template 2017-6-19
+gulp.task('build', function () {
+    gulp.start('clean:dist', 'images', 'json', 'scripts', 'styles', 'vendor', 'template');
 });
 
 // copy app -- 备份app
@@ -237,3 +241,7 @@ gulp.task('dev', ['clean:app'], function () {
 // 默认组合任务
 // gulp.task('default', ['serve', 'watch']);
 gulp.task('default', ['serve', 'watch:ts']);
+
+// 在服务器上运行：只需要启动服务即可
+gulp.tast('start', ['serve']);
+
