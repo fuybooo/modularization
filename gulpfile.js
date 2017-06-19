@@ -243,5 +243,5 @@ gulp.task('dev', ['clean:app'], function () {
 gulp.task('default', ['serve', 'watch:ts']);
 
 // 在服务器上运行：只需要启动服务即可
-gulp.tast('start', ['serve']);
+gulp.task('start', ['serve']);
 
