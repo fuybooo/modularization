@@ -177,6 +177,7 @@ gulp.task('jshint', function () {
 // 静态服务
 gulp.task('serve', function () {
     browserSync.init({
+        // open: false,
         server: './'
     });
     gulp.watch(['app/**/*.*', 'test/private-test/*.html']).on('change', browserSync.reload);

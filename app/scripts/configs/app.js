@@ -13,8 +13,12 @@ define(
         var app = angular.module('app', ['ui.router', 'ui.load', 'restangular', 'ngSanitize', 'ngAnimate', 'ngTouch', 'ui.bootstrap','pascalprecht.translate'/* 国际化 */, 'templates'/* 模板缓存 */,'ng.ueditor'/* angular-ueditor */]);
         //配置APP
         app.config(configure);
-        app.constant('baseRequestUrl', 'http://127.0.0.1:3003/');
-        app.constant('webSocketUrl', 'ws://127.0.0.1:3004');
+        var ip = '127.0.0.1';
+        // var ip = '47.94.0.247';
+        var port = 3003;
+        var wsPort = 3004;
+        app.constant('baseRequestUrl', 'http://' + ip + port + '/');
+        app.constant('webSocketUrl', 'ws://' + ip + wsPort);
         app.constant('baseStaticUrl', 'app/');
         //注入参数
         configure.$inject = ['$stateProvider', '$locationProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider','$translateProvider'];
