@@ -17,8 +17,8 @@ define(
         var ip = '47.94.0.247';// 服务器上的ip
         var port = 3003;
         var wsPort = 3004;
-        app.constant('baseRequestUrl', 'http://' + ip + port + '/');
-        app.constant('webSocketUrl', 'ws://' + ip + wsPort);
+        app.constant('baseRequestUrl', 'http://' + ip + ':' + port + '/');
+        app.constant('webSocketUrl', 'ws://' + ip + ':' + wsPort);
         app.constant('baseStaticUrl', 'app/');
         //注入参数
         configure.$inject = ['$stateProvider', '$locationProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider','$translateProvider'];
