@@ -197,7 +197,8 @@ define(function (require) {
 
         service.url = {
             topic: 'topic',
-            user: 'user'
+            user: 'user',
+            poll: 'poll'
         };
         return service;
     });

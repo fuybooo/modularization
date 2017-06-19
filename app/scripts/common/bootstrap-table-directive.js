@@ -9,12 +9,7 @@ define(function (require) {
      */
         .directive('btUser', function (commonService, dataService){
             return {
-                controller: function($scope, commonService, dataService){
-                    console.log('controller',$scope);
-
-                },
                 link: function(scope, ele, attrs){
-                    console.log('link',scope);
                     // 初始化表格
                     var table = $(ele);
                     table.bootstrapTable({

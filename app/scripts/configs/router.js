@@ -320,6 +320,14 @@ define(function (require) {
                     'scripts/test/baidu-map-special-directive'
                 ]
             })
+            .state('home.pollingSpecial', {
+                url: '/test/pollingSpecial',
+                templateUrl: 'app/views/test/polling-special.html',
+                controller: 'PollingSpecialController',
+                dependencies: [
+                    'scripts/test/polling-special-controller',
+                ]
+            })
             .state('home.gradientSpecial', {
                 url: '/test/gradientSpecial',
                 templateUrl: 'app/views/test/gradient-special.html'
