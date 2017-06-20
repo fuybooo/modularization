@@ -150,7 +150,7 @@ gulp.task('template', function(){
         .pipe($.angularTemplatecache({
             root: 'app/views/'
         }))
-        .pipe(gulp.dest('app/scripts/template-cache'))
+        .pipe(gulp.dest('dist/scripts/template-cache'))
 });
 
 var copyA2B = function (A, B) {
