@@ -5,19 +5,28 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     browserSync = require('browser-sync');
 // 压缩vendor
-gulp.task('vendor', ['clean:vendor'], function () {
-    var filterJS = $.filter('app/vendor/**/*.js', {restore: true});
-    var filterCss = $.filter('app/vendor/**/*.css', {restore: true});
+// gulp.task('vendor', ['clean:vendor'], function () {
+//     var filterJS = $.filter('**/*.js', {restore: true});
+//     var filterCss = $.filter('**/*.css', {restore: true});
+//     return gulp.src('app/vendor/**/*.*')
+//         .pipe(filterJS)
+//         .pipe($.uglify())
+//         .pipe(filterJS.restore)
+//         .pipe(filterCss)
+//         .pipe($.cleanCss())
+//         .pipe(filterCss.restore)
+//         .pipe(gulp.dest('dist/vendor'))
+//         .pipe($.notify({message: 'vendor task complete'}));
+// });
+
+gulp.task('vendor', function(){
     return gulp.src('app/vendor/**/*.*')
-        .pipe(filterJS)
-        .pipe($.uglify())
-        .pipe(filterJS.restore)
-        .pipe(filterCss)
-        .pipe($.cleanCss())
-        .pipe(filterCss.restore)
-        .pipe(gulp.dest('dist/vendor'))
-        .pipe($.notify({message: 'vendor task complete'}));
+        .pipe(gulp.dest('dist/vendor'));
 });
+
+
+
+
 // 清除dist/vendor
 gulp.task('clean:vendor', function () {
     return gulp.src(['dist/vendor/**/*.*'], {read: false})
@@ -37,11 +46,10 @@ gulp.task('scripts', ['clean:scripts'], function () {
         //     }
         // }))
         .pipe($.ngAnnotate())
-        .pipe($.uglify())
+        .pipe($.uglify({output:{max_line_len: 120000}}))
         .pipe(gulp.dest('dist/scripts'))
         .pipe($.notify({message: 'scripts task complete'}));
 });
-
 
 // 清除dist/scripts
 gulp.task('clean:scripts', function () {
@@ -154,6 +162,8 @@ var copyA2B = function (A, B) {
             .pipe($.notify({message: 'copy ' + dir + ' complete'}));
     }
 };
+
+
 // clean app
 gulp.task('clean:app', function () {
     return gulp.src(['app/**/*.*'], {read: false})
