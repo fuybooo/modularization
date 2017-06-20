@@ -1,4 +1,4 @@
-define(['require'],function(require) {
+define(function(require) {
     let app = require('app');
     let $ = require('jquery');
     app.controller('ES6Controller', function (dataService) {

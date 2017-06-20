@@ -1,4 +1,4 @@
-define(['require'],function(require) {
+define(function(require) {
     var app = require('app'),
         $ = require('jquery');
     app.directive('sliderList', function () {

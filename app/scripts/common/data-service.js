@@ -1,4 +1,4 @@
-define(['require'],function(require) {
+define(function(require) {
     var app = require('app');
     var angular = require('angular');
     app.factory('dataService', function ($http,$injector, baseRequestUrl, baseStaticUrl, webSocketUrl) {

@@ -134,6 +134,24 @@ require.config({
                 'angular-bootstrap'
             ]
         },
+        'router': {
+            deps:['app']
+        },
+        'commonService': {
+            deps:['app']
+        },
+        'dataService': {
+            deps:['app']
+        },
+        'popupwinService': {
+            deps:['app']
+        },
+        'bootstrapTableDirective': {
+            deps:['app']
+        },
+        'commonDirective': {
+            deps:['app']
+        },
         'bootstrap-datetimepicker':{
             deps:['jquery', 'bootstrap']
         },

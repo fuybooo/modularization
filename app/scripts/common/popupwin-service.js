@@ -4,7 +4,7 @@
  * @date 2017-04-15
  *
  */
-define(['require'],function(require) {
+define(function(require) {
     var $ = require('jquery');
     var app = require('app');
     app.factory('Popupwin', function ($http, $compile) {

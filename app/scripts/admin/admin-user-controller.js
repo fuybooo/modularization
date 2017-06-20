@@ -1,4 +1,4 @@
-define(['require'],function(require) {
+define(function(require) {
     'use strict';
     var app = require('app');
     var $ = require('jquery');

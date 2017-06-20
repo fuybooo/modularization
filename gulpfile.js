@@ -147,12 +147,14 @@ gulp.task('clean:views', function () {
 // 生成template 缓存模块
 gulp.task('template', function(){
     return gulp.src('app/views/**/*.html')
-        .pipe($.angularTemplatecache())
+        .pipe($.angularTemplatecache({
+            root: 'app/views/'
+        }))
         .pipe(gulp.dest('app/scripts/template-cache'))
 });
 
 var copyA2B = function (A, B) {
-    var dirs = ['images', 'json', 'scripts', 'styles', 'vendor', 'views'];
+    var dirs = ['images', 'json', 'scripts', 'styles', 'views'];
     for (var i = 0, l = dirs.length; i < l; i++) {
         var dir = dirs[i],
             start = '' + A + '/' + dir + '/**/*.*',
@@ -230,9 +232,15 @@ gulp.task('build:old', function () {
 });
 // 组合任务build，使用template 2017-6-19
 gulp.task('build', function () {
-    gulp.start('template', 'images', 'json', 'scripts', 'styles', 'vendor');
+    gulp.start('template', 'images', 'json', 'scripts', 'styles');
 });
 
+// release步骤 更新时间： 2017-06-20
+// 1.gulp clean:dist
+// 2.gulp build
+// 3.gulp replace
+// 4.vendor文件夹的复制 -- 如果有问题的话
+// 5.template.js的修改，加上,[]
 
 // copy app -- 备份app
 gulp.task('bak', ['clean:temp'], function () {

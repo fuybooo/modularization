@@ -1,4 +1,4 @@
-define(['require'],function(require){
+define(function(require){
     var app = require('app');
     app.controller('RegisterController', function($scope, $state, commonService, dataService,Popupwin){
         console.log('RegisterController');

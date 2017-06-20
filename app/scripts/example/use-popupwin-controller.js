@@ -1,4 +1,4 @@
-define(['require'],function(require) {
+define(function(require) {
     var app = require('app');
     app.controller('UsePopupwinController', function ($scope, Popupwin) {
         /**
