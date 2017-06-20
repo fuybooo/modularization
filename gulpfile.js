@@ -232,7 +232,7 @@ gulp.task('build:old', function () {
 });
 // 组合任务build，使用template 2017-6-19
 gulp.task('build', function () {
-    gulp.start('template', 'images', 'json', 'scripts', 'styles');
+    gulp.start('template', 'images', 'json', 'scripts', 'styles', 'views');
 });
 
 // release步骤 更新时间： 2017-06-20
