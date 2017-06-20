@@ -1,4 +1,4 @@
-define(function (require) {
+define(['require'],function (require) {
     var app = require('app');
     var $ = require('jquery');
     var titleSuffix = 'Fuybooo的博客网站';

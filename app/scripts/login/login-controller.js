@@ -1,4 +1,4 @@
-define(function(require){
+define(['require'],function(require){
     var app = require('app');
     var $ = require('jquery');
     app.controller('LoginController', function($rootScope,$scope, $state,$compile, commonService, dataService, Popupwin){

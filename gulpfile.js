@@ -230,12 +230,9 @@ gulp.task('build:old', function () {
 });
 // 组合任务build，使用template 2017-6-19
 gulp.task('build', function () {
-    gulp.start('clean:dist', 'images', 'json', 'scripts', 'styles', 'vendor', 'template');
+    gulp.start('template', 'images', 'json', 'scripts', 'styles', 'vendor');
 });
 
-gulp.task('build_2', function () {
-    gulp.start('images', 'json', 'scripts', 'styles', 'vendor', 'template');
-});
 
 // copy app -- 备份app
 gulp.task('bak', ['clean:temp'], function () {
