@@ -38,7 +38,7 @@ gulp.task('clean:vendor', function () {
         .pipe($.clean());
 });
 // 压缩scripts
-gulp.task('scripts', ['clean:scripts'], function () {
+gulp.task('scripts', function () {
     return gulp.src('app/scripts/**/*.js')
         // .pipe($.plumber({
         //     errorHandler: function (error) {
@@ -62,7 +62,7 @@ gulp.task('clean:scripts', function () {
         .pipe($.clean());
 });
 // 压缩json
-gulp.task('json', ['clean:json'], function () {
+gulp.task('json', function () {
     return gulp.src('app/json/**/*.json')
         .pipe(gulp.dest('dist/json'))
         .pipe($.notify({message: 'json task complete'}));
@@ -78,7 +78,7 @@ gulp.task('clean:json', function () {
         .pipe($.clean());
 });
 // 压缩styles
-gulp.task('styles', ['clean:styles'], function () {
+gulp.task('styles', function () {
     return gulp.src('app/styles/**/*.css')
         .pipe($.autoprefixer())
         .pipe($.csscomb())
@@ -97,7 +97,7 @@ gulp.task('clean:styles', function () {
         .pipe($.clean());
 });
 // 压缩images
-gulp.task('images', ['clean:images'], function () {
+gulp.task('images', function () {
     return gulp.src('app/images/*.*')
         // .pipe($.plumber({
         //     errorHandler: function (error) {
@@ -119,7 +119,7 @@ gulp.task('clean:images', function () {
         .pipe($.clean());
 });
 // 压缩views
-gulp.task('views', ['clean:views'], function () {
+gulp.task('views', function () {
     return gulp.src('app/views/**/*.html')
         .pipe($.htmlmin({
             collapseWhitespace: true,
@@ -189,9 +189,11 @@ gulp.task('jshint', function () {
 gulp.task('serve', function () {
     browserSync.init({
         open: false,
-        server: ''
+        server: {
+            baseDir: './'
+        }
     });
-    gulp.watch(['app/**/*.*', 'test/private-test/*.html']).on('change', browserSync.reload);
+    gulp.watch(['app/**/*.*']).on('change', browserSync.reload);
 });
 // 监听任务
 gulp.task('watch', function () {
@@ -229,6 +231,10 @@ gulp.task('build:old', function () {
 // 组合任务build，使用template 2017-6-19
 gulp.task('build', function () {
     gulp.start('clean:dist', 'images', 'json', 'scripts', 'styles', 'vendor', 'template');
+});
+
+gulp.task('build_2', function () {
+    gulp.start('images', 'json', 'scripts', 'styles', 'vendor', 'template');
 });
 
 // copy app -- 备份app

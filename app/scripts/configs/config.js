@@ -118,6 +118,9 @@ require.config({
         'jquery-ui-timepicker-zh_CN':{
             deps:['jquery-timepicker-addon']
         },
+        'templates': {
+            deps:['angular']
+        },
         'app':{
             deps:[
                 'angular',
