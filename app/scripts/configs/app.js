@@ -7,14 +7,15 @@ define(
         'module'
     ],
     function (angular, asyncLoader, require, exports, module) {
+        console.log(asyncLoader);
         //console.info("创建angular项目启动模块app,初始化依赖项有'ui.router','ui.load','restangular','ngSanitize','ngAnimate','ngTouch','ui.bootstrap'...");
         /*var angular = require('angular');
          var asyncLoader = require('angular-async-loader');*/
         var app = angular.module('app', ['ui.router', 'ui.load', 'restangular', 'ngSanitize', 'ngAnimate', 'ngTouch', 'ui.bootstrap','pascalprecht.translate'/* 国际化 */, 'templates'/* 模板缓存 */,'ng.ueditor'/* angular-ueditor */]);
         //配置APP
         app.config(configure);
-        // var ip = '127.0.0.1';// 本地使用的ip
-        var ip = '47.94.0.247';// 服务器上的ip
+        var ip = '127.0.0.1';// 本地使用的ip
+        // var ip = '47.94.0.247';// 服务器上的ip
         var port = 3003;
         var wsPort = 3004;
         app.constant('baseRequestUrl', 'http://' + ip + ':' + port + '/');

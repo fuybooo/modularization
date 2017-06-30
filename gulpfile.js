@@ -190,7 +190,7 @@ gulp.task('jshint', function () {
 // 静态服务
 gulp.task('serve', function () {
     browserSync.init({
-        open: false,
+        // open: false,
         server: {
             baseDir: './'
         }

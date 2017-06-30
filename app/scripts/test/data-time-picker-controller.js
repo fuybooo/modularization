@@ -96,5 +96,12 @@ define(function(require) {
             }
         ];
 
+
+        // 对moment的应用
+
+        console.log(moment);
+        console.log(moment());
+        console.log(moment('2017-06-90'));
+
     });
 });

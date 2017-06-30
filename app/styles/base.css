@@ -362,6 +362,14 @@ ul[class^="cr"] li h6 {
     width: 260px;
 }
 
+.w260i {
+    width: 260px!important;
+}
+
+.w320i {
+    width: 320px!important;
+}
+
 .w480 {
     width: 480px;
 }

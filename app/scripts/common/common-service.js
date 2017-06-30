@@ -1,13 +1,20 @@
-define(function(require) {
+define(function (require) {
     var app = require('app');
     var $ = require('jquery');
     app.factory('commonService', function ($timeout, $compile) {
         var service = {};
         /**
+         * 全局计数器
+         */
+        service.counts = {
+            customSelect: 0
+        };
+        /**
          * 所有的正则
          */
         service.REGEXP = {
-            username: /^[\u4E00-\u9FA5A-Za-z0-9\-_@\.\|\/]+$/ // 只能包含数字/英文/汉字/下划线/减号/@符号/点/竖杠/斜杠
+            username: /^[\u4E00-\u9FA5A-Za-z0-9\-_@\.\|\/]+$/, // 只能包含数字/英文/汉字/下划线/减号/@符号/点/竖杠/斜杠
+            pictureFile: /\.(?:jpg|png|gif)$/i // 图片的文件名称支持的格式
         };
 
         /**
@@ -353,22 +360,22 @@ define(function(require) {
         /**
          * 格式化时间
          */
-        service.dateTimeFormatter = function(){
+        service.dateTimeFormatter = function () {
             var date = new Date(), formatter = 'yyyy-MM-dd';
             var len = arguments.length;
-            if(len === 1){
-                if(typeof arguments[0] === 'object'){
+            if (len === 1) {
+                if (typeof arguments[0] === 'object') {
                     date = arguments[0];
                 }
-                if(typeof arguments[0] === 'string'){
+                if (typeof arguments[0] === 'string') {
                     formatter = arguments[0];
                 }
             }
-            if(len === 2){
-                if(typeof arguments[0] === 'object' && typeof arguments[1] === 'string'){
+            if (len === 2) {
+                if (typeof arguments[0] === 'object' && typeof arguments[1] === 'string') {
                     date = arguments[0];
                     formatter = arguments[1];
-                }else if(typeof arguments[1] === 'object' && typeof arguments[0] === 'string'){
+                } else if (typeof arguments[1] === 'object' && typeof arguments[0] === 'string') {
                     date = arguments[1];
                     formatter = arguments[0];
                 }
@@ -381,7 +388,7 @@ define(function(require) {
             var minute = date.getMinutes();
             var second = date.getSeconds();
             var formatDate;
-            switch(formatter){
+            switch (formatter) {
                 case 'yyyy-MM-dd':
                     formatDate = year + '-' + ('0' + month).slice(-2) + '-' + ('0' + day).slice(-2);
                     break;
@@ -394,12 +401,12 @@ define(function(require) {
          * @param fn
          * @param isClear 是否重新执行 默认为undefined，不重新执行
          */
-        service.once = (function(){
+        service.once = (function () {
             var memory = {};
             var _key = 0;
-            return function(fn){
+            return function (fn) {
                 var isClear = arguments[1];
-                if(isClear !== true) {
+                if (isClear !== true) {
                     for (var key in memory) {
                         if (!Object.hasOwnProperty(key)) {
                             // 判断函数是否在memory中
@@ -417,6 +424,84 @@ define(function(require) {
                 return result;
             }
         })();
+
+        /**
+         * 获取strs中每一个字符在str中顺次出现的索引值
+         * @param str
+         * @param strs
+         * @example
+         * behindString('abcdefgabcdefg', 'abcga')
+         * 得到的结果为 [0,1,2,6,7]
+         */
+        service.getIndexes = function (str, strs) {
+            str = str.toLowerCase();
+            strs = strs.toLowerCase();
+            /**
+             * 返回字符串str中第一次出现ch之后的内容
+             * @param str
+             * @param ch
+             */
+            var getAfterString = function (str, ch) {
+                var index = str.indexOf(ch);
+                return {
+                    index: index,
+                    strBehind: str.slice(index + 1)
+                };
+            };
+            var _str = str;
+            var _strObjs = [];
+            for (var i = 0, l = strs.length; i < l; i++) {
+
+                var result = getAfterString(_str, strs[i]);
+                _str = result.strBehind;
+                _strObjs.push(result);
+            }
+            var indexes = [];
+            for (var i = 0, l = _strObjs.length; i < l; i++) {
+                var index = 0;
+                for (var j = 0; j <= i; j++) {
+                    index += _strObjs[j].index;
+
+                }
+                index += i;
+                indexes.push(index);
+            }
+            return indexes;
+        };
+
+        /**
+         * 将文字拆分为字符
+         * @param str
+         * @param n 关键字
+         *
+         * @example
+         *
+         * 对str进行拆分 凸显以n为关键字查询出来的结果
+         * str = addPolicyCtrl
+         * n = apc
+         *
+         * 则返回的结果应为： a（粗体）ddP(粗体)olic(粗体)yCtrl
+         *
+         */
+        service.splitString = function (str, n) {
+            str = str + '';
+            var spans = '';
+            var indexes = [];
+            if (n) {
+                indexes = service.getIndexes(str, n);
+            }
+            for (var i = 0, l = str.length; i < l; i++) {
+                var cls = '';
+                if (indexes.length !== 0) {
+                    if (i === indexes[0]) {
+                        cls = 'text-match';
+                        indexes.shift(); // 移除第一项
+                    }
+                }
+                spans += '<span class="' + cls + '">' + str.charAt(i) + '</span>';
+            }
+            return spans;
+        };
 
 
         return service;

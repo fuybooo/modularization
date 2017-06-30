@@ -40,7 +40,8 @@ require.config({
         'dataService': 'scripts/common/data-service',
         'popupwinService': 'scripts/common/popupwin-service',
         'bootstrapTableDirective': 'scripts/common/bootstrap-table-directive',
-        'commonDirective': 'scripts/common/common-directive'
+        'commonDirective': 'scripts/common/common-directive',
+        'moment': 'vendor/moment/moment'
     },
     shim : {
         'angular':{
@@ -183,6 +184,7 @@ require(
         'bootstrap',
         'zTree',
         'ECharts',
+        'moment',
         // 'baidu-map',
 
         'bootstrap-table',

@@ -285,6 +285,14 @@ define(function (require) {
                     'scripts/common-function/scroll-controller'
                 ]
             })
+            .state('home.customSelect', {
+                url: '/commonFunction/customSelect',
+                templateUrl: 'app/views/common-function/custom-select-example.html',
+                controller: 'CustomSelectExampleController',
+                dependencies: [
+                    'scripts/common-function/custom-select-example-controller'
+                ]
+            })
             .state('home.developmentManual', { // 使用abstract时，访问路径不能直接写abstract的访问路径，而应该写其子页面
                 abstract: true,
                 url: '/developmentManual',

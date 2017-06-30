@@ -30,7 +30,7 @@ define(function(require) {
                 $(document).off('click.toggleUserMenu').on('click.toggleUserMenu', function (e) {
                     // 在非angular的上下文环境改变$scope的属性,不会被更新到视图上去,需要使用$apply封装一下
                     $scope.$apply(function () {
-                        if (e && e.whith === 3) return;
+                        if (e && e.which === 3) return;
                         if ($('.js-nav-user-li').is(':hidden')) return;
                         if ($(e.target).hasClass('js-nav-user')) return;
                         $scope.isUserMenu = false;

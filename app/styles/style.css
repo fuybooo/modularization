@@ -756,7 +756,9 @@ td.show .bt-col-editable .glyphicon {
 .common-icon-trash::before{
     content: '\f1f8';
 }
-
+.common-icon-down::before{
+    content: '\f107';
+}
 
 
 /* 文字颜色渐变 */
@@ -1407,4 +1409,97 @@ td.show .bt-col-editable .glyphicon {
 .test-poll-chart{
     width: 100%;
     height: 400px;
+}
+
+
+.input-focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+/* custom-select */
+.custom-select-wrap{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+}
+.custom-select-list{
+    position: absolute;
+    width: 100%;
+    border: 1px solid #66afe9;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    overflow: auto;
+    max-height: 120px;
+}
+.custom-select-item{
+    line-height: 25px;
+    background-color: #fff;
+    padding-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+}
+.custom-select-item.active{
+    background-color: #f5e79e;
+}
+.custom-select-no-click.active{
+    background-color: #fff!important;
+}
+.text-place-holder{
+    color: #999;
+}
+.custom-select-main{
+    background-image: url("../images/down.png");
+    background-position: 96%;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    padding-right: 30px;
+}
+/* 3种方式实现下三角的图表效果 */
+/*1.使用背景图片，这种方式兼容性最高，但是最浪费性能，需要多请求一张图片*/
+/*2.使用一个span元素的before伪元素，缺点是会遮挡住选择框，鼠标点击到伪元素的地方时会出现问题*/
+/*3.在选择框控件中添加一个伪元素，缺点是input标签不支持伪元素*/
+/*.custom-select-main::before{*/
+    /*display: inline-block;*/
+    /*font-family: "FontAwesome";*/
+    /*content: '\f107';*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+    /*vertical-align: baseline;*/
+    /*line-height:1;*/
+    /*position: absolute;*/
+    /*right: 10px;*/
+    /*font-size: 1.4em;*/
+    /*color: #999;*/
+/*}*/
+.un-select{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.custom-select-main.form-control[readonly]{
+    background-color: #fff;
+}
+.text-match {
+    font-weight: bold;
+    color: #D542E2;
+    text-shadow: 1px 1px 1px #ccc;
+}
+
+/* custom-select end*/
+
+/* 图片裁剪 */
+
+.photo-clip-img-box{
+    height: 402px;
+    width: 602px;
+    margin-top: 20px;
+    border: 1px solid #777;
+    border-radius: 4px;
 }
