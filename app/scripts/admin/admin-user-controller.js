@@ -2,7 +2,7 @@ define(function(require) {
     'use strict';
     var app = require('app');
     var $ = require('jquery');
-    app.controller('AdminUserController', function ($rootScope, $scope, $compile, dataService, commonService) {
+    app.controller('AdminUserController', function ($rootScope, $scope, $compile, dataService, commonService, $http) {
         var $table = $('#bt-admin-user');
         var tableData;
         var initTable = function () {
@@ -115,5 +115,12 @@ define(function(require) {
         initTable();
         // 加载表格数据
         renderTable();
+
+        // 测试加载静态资源
+        var pro = $http({
+            method: 'get',
+            url: 'app/json/login.json'
+        });
+        console.log('pro',pro);
     });
 });
