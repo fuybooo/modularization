@@ -12,6 +12,7 @@ define(function(require) {
                 pageNumber: 1,
                 pageSize: 7,
                 pageList: [7, 10, 20, 50, 100],
+                height: 400,
                 columns: [
                     {
                         checkbox: true

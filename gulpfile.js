@@ -214,14 +214,14 @@ gulp.task('watch:ts', function(){
 //     gulp.watch('tss/**/*.ts', ['ts']);
 // });
 
-var tsProject = $.typescript.createProject('tsconfig.json')
+// var tsProject = $.typescript.createProject('tsconfig.json')
 // typescript 任务 // es6 任务
 // gulp.task('ts', function(){
 //     return tsProject.src().pipe(tsProject()).pipe(gulp.dest('ts-dist'));
 // });
-gulp.task('ts', function(){
-    return tsProject.src().pipe(tsProject()).pipe(gulp.dest('app/scripts/research'));
-});
+// gulp.task('ts', function(){
+//     return tsProject.src().pipe(tsProject()).pipe(gulp.dest('app/scripts/research'));
+// });
 
 
 
@@ -263,7 +263,7 @@ gulp.task('dev', ['clean:app'], function () {
 
 // 默认组合任务
 // gulp.task('default', ['serve', 'watch']);
-gulp.task('default', ['serve', 'watch:ts']);
+gulp.task('default', ['serve', 'watch']);
 
 // 在服务器上运行：只需要启动服务即可
 gulp.task('start', ['serve']);

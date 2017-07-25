@@ -78,9 +78,9 @@ html, body {
 
 .app-container {
     padding-top: 70px;
-    min-height: 780px;
     overflow-x: hidden;
 }
+
 
 
 .app-footer {

@@ -348,6 +348,14 @@ define(function (require) {
                     'scripts/test/photo-clip-controller'
                 ]
             })
+            .state('home.canvasSpecial', {
+                url: '/test/canvasSpecial',
+                templateUrl: 'app/views/test/canvas-special.html',
+                controller: 'CanvasSpecialController',
+                dependencies: [
+                    'scripts/test/canvas-special-controller'
+                ]
+            })
             .state('home.endlessScroll', {
                 url: '/test/endlessScroll',
                 templateUrl: 'app/views/test/endless-scroll.html',

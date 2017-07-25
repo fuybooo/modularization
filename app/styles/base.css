@@ -71,6 +71,9 @@ textarea.ng-dirty.ng-invalid:focus {
 .c-555 {
     color: #555;
 }
+.bc-000{
+    background-color: #000;
+}
 
 /* cursor */
 .cp {
@@ -80,6 +83,7 @@ textarea.ng-dirty.ng-invalid:focus {
 .cd {
     cursor: default;
 }
+
 
 /* display */
 .dn {
