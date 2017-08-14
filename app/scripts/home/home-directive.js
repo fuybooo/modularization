@@ -1,4 +1,4 @@
-define(function(require) {
+define(function (require) {
     var app = require('app');
     var $ = require('jquery');
     /**
@@ -10,7 +10,7 @@ define(function(require) {
             replace: true,
             templateUrl: 'app/views/nav.html',
             controller: 'HomeController',
-            link: function(scope, ele){
+            link: function (scope, ele) {
                 // 在指令中使用rootScope
                 var rootScope = $injector.get('$rootScope');
                 var $navLi = $('.js-app-header').find('.navbar-nav li');
@@ -34,5 +34,5 @@ define(function(require) {
         };
     })
     ;
-    
+
 });

@@ -146,13 +146,13 @@ define(function (require) {
         var W = $(window).width();
         var H = $(window).height() - 183;
         // 小球的半径
-        var R = 8;
+        var R = W / 36 / 5 - 1;
         var num_w = (2 * NUMBER_W + 1) * (R + 1);
         var colon_w = 9 * (R + 1);
         // 数字距离画布顶部的距离
         var TOP = 60;
         // 数字距离画布左边的距离
-        var LEFT = (W - (6 * num_w + 2 * colon_w)) / 2;
+        var LEFT = W / 5;
         var leftArr = [
             LEFT,
             LEFT + num_w,
@@ -333,7 +333,7 @@ define(function (require) {
                 }
             }
             
-            while (balls.length > Math.min(300, count)) {
+            while (balls.length > Math.min(600, count)) {
                 balls.pop();
             }
         }

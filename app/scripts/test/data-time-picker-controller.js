@@ -4,7 +4,6 @@ define(function(require) {
     app.controller('DataTimePickerController', function ($rootScope, $scope, $location,$anchorScroll) {
         console.log('DataTimePickerController');
         var dateOptions = {
-            language:  'zh-CN',
             weekStart: 1,
             format: 'yyyy-mm-dd',
             minView: 2,
@@ -102,6 +101,50 @@ define(function(require) {
         console.log(moment);
         console.log(moment());
         console.log(moment('2017-06-90'));
+
+        // 测试ajax请求
+        $.ajax({
+            url: 'http://127.0.0.1:3003/login',
+            data: {
+                username:'1',
+                password:'1',
+                validateCode:'oknefx'
+            },
+            type: 'post',
+            success: function(data){
+                console.log('success:', data);
+            },
+            error: function(data){
+                console.log('error:', data);
+            }
+        });
+
+        // 如何使用全局ajax处理参数
+
+        $(document).ajaxStart(function(){
+           console.log('ajaxStart:', arguments);
+        });
+
+        $(document).ajaxSend(function(){
+           console.log('ajaxSend:', arguments);
+        });
+
+        $(document).ajaxSuccess(function(){
+           console.log('ajaxSuccess:', arguments);
+        });
+
+        $(document).ajaxComplete(function(){
+           console.log('ajaxComplete:', arguments);
+        });
+
+        $(document).ajaxError(function(){
+           console.log('ajaxError:', arguments);
+        });
+
+        $(document).ajaxStop(function(){
+           console.log('ajaxStop:', arguments);
+        });
+
 
     });
 });

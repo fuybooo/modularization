@@ -20,7 +20,7 @@ define(function(require) {
                         return;
                     }
                     if ($(this).hasClass('js-dropdown-a')) {
-                        if ($(this).parent().toggleClass('open'));
+                        $(this).parent().toggleClass('open');
                     } else {
                         $(ele).find('li').removeClass('active');
                         $(this).parent().addClass('active');
